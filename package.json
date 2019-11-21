@@ -32,7 +32,7 @@
   "dependencies": {
     "@zeitiger/elevatezoom": "^2.5.4",
     "backbone": "1.1.2",
-    "bootstrap": "^3.3.7",
+    "bootstrap": "^3.4.1",
     "bootstrap-3-typeahead": "^4.0.2",
     "bxslider": "^4.2.14",
     "jquery": "^3.3.1",
