@@ -1,0 +1,82 @@
+﻿  {% extends "email/email" %}
+
+  {% block body-content %}
+  
+  {% if user and user.firstName %}
+		<span style="line-height:25px;font-size:18px;font-weight: bold;color:#333; font-family:'Trebuchet MS', Verdana, Geneva, sans-serif;">{{ labels.orderWelcome }} {{ model.order.billingInfo.billingContact.firstName }} {{ model.order.billingInfo.billingContact.lastNameOrSurname }},</span>
+	{% else %}
+		<span style="line-height:25px;font-size:18px;font-weight: bold;color:#333; font-family:'Trebuchet MS', Verdana, Geneva, sans-serif;">	{{ labels.emailOpeningAlternative|safe }}</span>
+	{% endif %}
+
+    <p style="color:#333;font-size: 16px;font-weight:normal;font-family:'Trebuchet MS', Verdana, Geneva, sans-serif;">A return cannot be processed for the requested items.</p>
+
+    <p style="margin-bottom: 25px;color:#333;font-size: 16px;font-weight:normal;font-family:'Trebuchet MS', Verdana, Geneva, sans-serif;">Your product has been mailed back to you.</p>
+
+    <span style="color:#333;font-size: 16px;font-weight:normal;font-family:'Trebuchet MS', Verdana, Geneva, sans-serif;">Please review our return policy here:</span>
+    
+    <a style="color:#333;font-size: 16px;font-weight:normal;font-family:'Trebuchet MS', Verdana, Geneva, sans-serif;" href="http://{{domainName}}/returns-exchanges">elisailana.com/exchanges</a>
+    
+	<p style="display:block;color:#333;font-size: 18px;font-weight:bold;margin-top:30px;line-height:25px;font-family:'Trebuchet MS', Verdana, Geneva, sans-serif;">Sincerely, </p>
+	
+	<p style="display:block;font-size: 16px;font-weight: normal;margin: 20px 0 40px 0;line-height:25px;font-family:'Trebuchet MS', Verdana, Geneva, sans-serif;">The Elisa Ilana Jewelry Customer Service Team</p>
+{% comment %}
+    <div class="mz-returncontent " style=" display: block; width: 100%;">
+    <div style=" clear:both;display: block; width: 100%; margin: 0 auto; margin-bottom: 20px;">
+        <p style="color:#000;font-family:Helvetica,  sans-serif,Arial;font-size: 22px;padding: 20px 0;width: 85%;display: block;margin: 0 auto;">Hello {{ user.firstName}},</p>
+        <p style="word-break: break-all;color:#000;display: block;line-height: 30px; font-family:Helvetica,Arial, sans-serif Verdana, Geneva, sans-serif ‘Trebuchet MS’, sans-serif; font-size: 18px; padding: 10px 0; width:85%;margin: 0 auto;text-align:justify;line-height:25px; ">A return cannot be processed for the requested items. Please review the return policy <a style=" margin: 0; text-decoration: none; color:#000; " href="http://{{domainName}}/return-policy/">here,</a> or email contact@{{domainName}} for more information.</p>
+    </div> 
+    
+  </div> 
+
+
+	<dl class="mz-orderheader">
+	<!--
+		<dt>{{ labels.orderNo }}</dt>
+		<dd><a href="https://{{domainName}}/checkout/{{model.id}}/confirmation">{{ model.orderNumber }}</a></dd>
+-->
+
+		<dt style="font-weight:bold;">{{ labels.return }}</dt>
+		<dd>{{ model.returnNumber }}</dd>
+
+		<dt style="font-weight:bold;">{{ labels.orderDate }}:</dt>
+		<dd>{{ model.auditInfo.createDate }}</dd>
+
+		<dt style="font-weight:bold;">{{ labels.returnRequestDate }}</dt>
+		<dd>{{ model.rmaDeadline }}</dd>
+	</dl>
+	<br />
+
+	<p>
+	{% if user and user.firstName %}
+		{{ labels.emailOpening|string_format(user.firstName)|safe }}
+	{% else %}
+		{{ labels.emailOpeningAlternative|safe }}
+	{% endif %}
+	</p>
+
+	{{ labels.returnRejectedBlob1|string_format(siteContext.generalSettings.websiteName, domainName)|safe }}
+
+	<table class="mz-ordersummary">
+        <thead>
+            <tr>
+                <th class="mz-ordersummary-header-qty">{{ labels.qty }}</th>
+                <th class="mz-ordersummary-header-product">{{ labels.product }}</th>
+            </tr>
+		</thead>
+		<tbody class="mz-ordersummary-lineitems">
+		{% for item in model.items %}
+			{% for reason in item.reasons %}
+			<tr class="mz-ordersummary-line mz-ordersummary-line-item">
+				<td style="border:1px solid #ccc;text-align:center;">{{ reason.quantity }}</td>
+				<td style="border:1px solid #ccc;text-align:center;" class="mz-ordersummary-item-product">{{ item.product.name }}</td>
+			</tr>
+			{% endfor %}
+		{% endfor %}
+		</tbody>
+    </table>
+
+	{{ labels.returnRejectedBlob2|safe }}
+
+	{{ labels.emailClosing|string_format(siteContext.generalSettings.websiteName)|safe }}
+    {% endcomment %}
+{% endblock body-content %}

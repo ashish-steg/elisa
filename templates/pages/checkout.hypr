@@ -1,0 +1,87 @@
+﻿{% extends "page" %}
+
+{% block title-tag-content %}{% firstof pageContext.metaTitle labels.checkout %} - {% parent %}{% endblock title-tag-content %}
+
+{% block head-tag-scripts %}
+{% parent %}
+{% if siteContext.checkoutSettings.visaCheckout.isEnabled and not pageContext.isEditMode %}
+    {% include "modules/common/anti-clickjacking-script" %}
+{% endif %}
+{% endblock head-tag-scripts %}
+
+{% block body-tag-classes %} mz-checkout {% endblock body-tag-classes %}
+
+{% block site-nav %}{% endblock site-nav %}
+
+{% block breadcrumbs %}
+<div class="mz-breadcrumbs col-xs-12">
+  <a href="/" class="mz-breadcrumb-link">Home</a>
+  <span class="mz-breadcrumb-separator">/</span>
+  <span class="mz-breadcrumb-current">Checkout</span>
+</div>
+{% endblock breadcrumbs %}
+
+{% block body-content %}
+
+{% require_script "pages/checkout" %}
+
+{% preload_json model "checkout" %}
+
+<div class="mz-l-container">
+    <h2 class="mz-pagetitle col-xs-12">
+        {{ labels.checkout }}
+    </h2>
+
+    <form id="checkout-form" class="mz-checkoutform fades-in input-status col-xs-12 no-pad" method="post" onsubmit="return false;">
+
+    {% include "modules/common/message-bar" with model=model.messages %}
+
+    <div id="checkout-leftcol">
+
+        <div class="mz-formstep mz-checkoutform-shippingaddress col-xs-12 no-pad" id="step-shipping-address">
+            {% include "modules/checkout/step-shipping-address" %}
+        </div>
+        {% if model.requiresFulfillmentInfo %}
+            <div class="mz-formstep mz-checkoutform-shippingmethod col-xs-12 no-pad" id="step-shipping-method">
+                {% include "modules/checkout/step-shipping-method" %}
+            </div>
+        {% endif %}
+
+        <div>The value of your package will be declared for the full order amount. Elisa Ilana is NOT responsible for any additional fees charged by the Post Service and/or customs upon arrival.</div>
+
+        <div class="mz-formstep mz-checkoutform-paymentinfo col-xs-12 no-pad" id="step-payment-info">
+            {% include "modules/checkout/step-payment-info" %}
+        </div>
+
+        <div class="mz-formstep mz-checkoutform-review col-xs-12 no-pad" id="step-review">
+            {% include "modules/checkout/step-review" %}
+        </div>
+
+    </div>
+
+    <div id="checkout-rightcol">
+
+        <div class="mz-formstep mz-checkoutform-ordersummary col-xs-12 no-pad" id="order-summary">
+        </div>
+
+        <div class="mz-l-formfieldgroup pull-right">
+            <div class="mz-checkoutform-couponcode mz-l-formfieldgroup-row" id="coupon-code-field" >
+                {% include "modules/checkout/coupon-code-field" %}
+            </div>
+            {% if themeSettings.showCheckoutCommentsField %}
+            <br/>
+            <div class="mz-checkoutform-comments mz-l-formfieldgroup-row" id="comments-field" >
+                {% include "modules/checkout/comments-field" %}
+            </div>
+            {% endif %}
+        </div>
+
+    </div>
+
+</form>
+
+</div>
+<div id="kountzone">
+      {% dropzone "kount" scope="template" %}
+</div>
+{% endblock body-content %}

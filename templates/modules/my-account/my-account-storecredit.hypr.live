@@ -1,0 +1,51 @@
+﻿<div class="col-xs-12">
+    <div class="row">
+        <div class="col-sm-12 my-account-page">
+            <h3>{{ labels.myGiftCertificateBalance }}</h3>
+            <p>You currently have a gift certificate balance of <strong>{{ model.totalCreditAmount|currency }}</strong> This balance will be automatically applied to any future purchases you make.</p>
+
+            <h3 class="inline">Redeeming your gift certificate is easy!</h3>
+            <p>Just enter the coupon code below to your voucher to your account. We will automatically use the promo to all purchases you make today or payable in the future. You can always check your voucher funds from your My Account.</p>
+            <br />
+            <p class="large">Enter your gift certificate code, then click Apply</p>
+            <input type="text" class="mz-accountstorecredit-input" data-mz-entering-credit />
+            <button class="mz-button mz-accountstorecredit-add" data-mz-action="addStoreCredit">{{ labels.apply }}</button>
+            <h4 class="mz-myaccount-error" id="storecredit-error"></h4>
+
+            {% if model.totalCreditAmount != 0 %}
+                <table class="table store-credit zebra-striped">
+                    <thead>
+                        <tr>
+                            <th>{{ labels.digitalCreditCode }}</th>
+                            <th>{{ labels.date }}</th>
+                            <th>{{ labels.amount }}</th>
+                            <th>{{ labels.digitalCreditBalance }}</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for credit in model.credits %}
+                            {% if credit.currentBalance != 0 %}
+                            <tr>
+                                <td><span class="visible-xs-inline">{{ labels.digitalCreditCode }}: </span>{{ credit.code }}</td>
+                                <td><span class="visible-xs-inline">{{ labels.creditDate }}: </span>{{ credit.activationDate|date("F j, Y") }}</td>
+                                <td><span class="visible-xs-inline">{{ labels.creditAmount }}: </span>{{ credit.initialBalance|currency }}</td>
+                                <td><span class="visible-xs-inline">{{ labels.remaining }}: </span>{{ credit.currentBalance|currency }}</td>
+                            </tr>
+                            {% endif %}
+                        {% endfor %}
+                        </tbody>
+                    <tfoot>
+                        <tr>
+                            <td colspan="3">
+                                <span class="mz-accountstorecredit-totallabel">{{ labels.totalCreditBalance }}</span>
+                            </td>
+                            <td align="left">
+                                <span class="mz-accountstorecredit-totalamount">{{ model.totalCreditAmount|currency }}</span>
+                            </td>
+                        </tr>
+                    </tfoot>
+                </table>
+            {% endif %}
+        </div>
+    </div>
+</div>

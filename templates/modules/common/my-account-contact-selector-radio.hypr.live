@@ -1,0 +1,27 @@
+﻿<div class="mz-contactselector mz-contactselector-radio {% block module-classes %}{% endblock module-classes %}">
+    {% block contact-selector %}
+        {% if model.contactId == "new" %}
+        <div>
+            <span class="mz-contactselector-inputwrapper">
+                <input type="radio" data-mz-value="{{ contactcontext }}contactId" name="contactId" value="new" data-mz-enternewcontact checked="checked">
+            </span>
+            <span class="mz-contactselector-summarywrapper">
+                {% block enter-new-form %}
+                {% include "modules/common/address-form" with model=editingContact %}
+                {% endblock enter-new-form %}
+            </span>
+        </div>
+        {% else %}
+        <label class="mz-contactselector-contact mz-contactselector-new">
+            <span class="mz-contactselector-inputwrapper">
+                <input type="radio" data-mz-value="{{ contactcontext }}contactId" name="contactId" value="new" data-mz-enternewcontact>
+            </span>
+            <span class="mz-contactselector-summarywrapper">
+                <div class="mz-addresssummary">
+                    <span>{{ labels.enterNewAddress }}</span>
+                </div>
+            </span>
+        </label>
+        {% endif %}
+    {% endblock contact-selector %}
+</div>

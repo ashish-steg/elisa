@@ -1,0 +1,27 @@
+{% if model.items.length > 0 %}
+    <div class="cart-popout-qty">{{ model.items.length }} ITEM IN BAG</div>
+    {% for item in model.items %}
+    <div class="cart-popout-item">
+        <div class="cart-popout-img">
+            {% if item.product.imageUrl %}
+                {% if item.product|get_product_attribute("tenant~color-mapping")|prop('values')|first|prop('value') %}
+                    {% if item.product.isImgMapped %}
+                        <img class="mz-carttable-item-image img-responsive mz-carttable-item-image-position" src="{% make_url "image" item.product with max=120 as_parameters %}" {% if item.product.imageAlternateText %}alt="{{ item.product.imageAlternateText }}"{% endif %} />
+                    {% endif %}
+                {% else %}
+                    <img class="mz-carttable-item-image img-responsive mz-carttable-item-image-position" src="{% make_url "image" item.product with max=120 as_parameters %}" {% if item.product.imageAlternateText %}alt="{{ item.product.imageAlternateText }}"{% endif %} />
+                {% endif %}
+            {% endif %}
+        </div>
+        <div class="cart-popout-info"><b>{{ item.product.name }}</b><br />QTY {{ item.quantity }}</div>
+        <div class="cart-popout-total">${{ item.discountedTotal }}</div>
+    </div>
+    {% endfor %}
+    <div class="cart-popout-subtotal">SUBTOTAL ${{ model.discountedTotal }}</div>
+    <div class="cart-popout-buttons">
+        <button class="mz-button button-secondary" data-mz-action="goToCart">EDIT BAG</button>
+        <form method="post" value="" action="{{ pageContext.secureHost }}/cart/checkout" id="cartform"><button data-mz-action="checkout">CHECKOUT</button></form>
+    </div>
+{% else %}
+    There are no items in your cart!
+{% endif %}

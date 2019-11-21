@@ -1,0 +1,16 @@
+{% extends "page" %}
+
+{% block title-tag-content %}{% firstof pageContext.metaTitle model.name %}  - {% parent %}{% endblock title-tag-content %}
+
+
+{% block body-tag-classes %} mz-category {% endblock body-tag-classes %}
+
+{% block body-content %}
+
+{% require_script "pages/category" %}
+
+	{% dropzone "parent-category-page-top" scope="page" %}
+	{% dropzone "parent-category-page-bottom" scope="page" %}
+</div>
+
+{% endblock body-content %}

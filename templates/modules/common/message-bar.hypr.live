@@ -1,0 +1,9 @@
+﻿<div class="mz-messagebar col-xs-12" data-mz-message-bar>
+    {% if model.length > 0 %}
+    <ul class="is-showing warning-message">
+        {% for msg in model %}
+            <li class="mz-error-item" >{{ msg.message }}</li>
+        {% endfor %}
+    </ul>
+    {% endif %}
+</div>

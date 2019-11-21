@@ -1,0 +1,6 @@
+<a href="/{{ model.content.slug }}/c/{{ model.categoryId }}">
+    <div class="category">
+        <img src="{{ model.content.categoryImages|first|prop('imageUrl') }}" />
+        <span class="categoryName">{{ model.content.name }}</span>
+    </div>
+</a>

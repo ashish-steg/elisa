@@ -1,0 +1,190 @@
+{% if model.content.productShortDescription and themeSettings.showProductDetailShortDesc %}
+<div class="mz-productdetail-shortdesc mz-l-stack-section">
+    <h4 class="mz-l-stack-sectiontitle">{{ labels.shortDesc }}</h4>
+    <span itemscope="description">{{ model.content.productShortDescription|safe }}</span>
+</div>
+{% endif %}
+
+<div class="col-sm-12">
+    <h2 class="mz-pagetitle" itemprop="name">{{ model.content.productName }}</h2>
+</div>
+<div class="col-sm-12 mz-prod-info">
+    <div itemprop="offers" itemscope itemtype="http://schema.org/Offer" class="mz-productdetail-price mz-l-stack-section">
+        {% include "modules/product/price-stack" %}
+    </div>
+    <dl class="mz-productcodes mz-propertylist mz-pagetitle-note mz-l-stack-section">
+        <div class="data-container">
+            <dt class="mz-productcodes-productcode-label">{{ labels.sku }}</dt>
+            <dd class="mz-productcodes-productcode" itemprop="sku">{{ model.properties|findwhere("attributeFQN", "Tenant~sku")|prop("values")|first|prop("stringValue") }}</dd>
+        </div>
+        <div class="data-container">
+            {% if model.properties|findwhere("attributeFQN", "Tenant~style") %}
+                <dt class="mz-productcodes-productcode-label">{{ labels.style }}</dt>
+                <dd class="mz-productcodes-productcode" itemprop="sku">{{ model.properties|findwhere("attributeFQN", "Tenant~style")|prop("values")|first|prop("stringValue") }}</dd>
+            {% endif %}
+        </div>
+    </dl>
+</div>
+
+{% if model.options and model.options.length > 0 %}
+<div class="mz-productdetail-options mz-l-stack-section">
+    {% if model.productType == "MOTHERS BRACELET" %}
+        {% include "modules/product/product-options-mother-bracelet" %}
+    {% else %}
+        {% include "modules/product/product-options" %}
+    {% endif %}
+</div>
+{% endif %}
+
+<section class="mz-l-stack-section mz-productdetail-conversion col-sm-12">
+    <div class="row">
+        <div class="mz-productdetail-conversion-controls">
+            <div class="col-md-3 col-sm-12">
+                <span class="mz-qty-label">{{ labels.quantity }}</span>
+            </div>
+            <div class="col-md-6 col-sm-12">
+                <span class="qty-button qty-minus disabled">&minus;</span>
+                <input class="mz-productdetail-qty" type="text" value="1" min="1" {% if not model.purchasableState.isPurchasable %} disabled="disabled" {% endif %} data-mz-value="quantity" />
+                <span class="qty-button qty-plus">+</span>
+            </div>
+            <div class="col-sm-3">
+                <span class="mz-validationmessage" data-mz-validationmessage-for="quantity"></span>
+            </div>
+        </div>
+    </div>
+    <br />
+    <div class="row">
+        <div class="col-sm-8">
+            <div class="mz-productdetail-conversion-buttons row">
+                <div class="col-sm-7">
+                    <button id="add-to-cart" class="mz-productdetail-addtocart mz-button {% if not model.purchasableState.isPurchasable %}is-disabled{% endif %} fill-col" {% if not model.purchasableState.isPurchasable and not model|get_product_attribute_value("tenant~archive") %} disabled="disabled" {% endif %} data-mz-action="addToCart" >
+                    {{ labels.addToBag }}
+                    </button>
+                </div>
+
+                {% if siteContext.supportsInStorePickup %}
+                <form class="mz-instorepickup" method="POST" data-mz-localstoresform action="/location/product">
+                    <button type="submit" {% if model.notDoneConfiguring or not model.purchasableState.isPurchasable or not model.supportsInStorePickup %} disabled="disabled" {% endif %} class="mz-button mz-instorepickuplink-button {% if model.notDoneConfiguring or not model.purchasableState.isPurchasable or not model.supportsInStorePickup %}is-disabled{% endif %}" data-mz-action="checkLocalStores">{{ labels.checkLocalStores }}</button>
+                    <input type="hidden" data-mz-localstoresform-input name="item" value="{% json_attribute model %}" />
+                </form>
+                {% endif %}
+            </div>
+
+            <div class="mz-productdetail-conversion-buttons row">
+                <div class="col-sm-7">
+                    <button id="continueShopping" class="mz-productdetail-continueshopping mz-button button-primary fill-col">
+                    {{ labels.continueShopping }}
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-sm-4">
+            <div class="mz-save-favorite pull-right">
+                <button class="{% if model.inWishlist %}added-to-wishlist{% else %}just-added-to-wishlist{% endif %} {% if not model.purchasableState.isPurchasable %}is-disabled{% endif %}" id="add-to-wishlist" data-mz-action="addToWishlist">
+                    <i class="icon favorite1"></i>
+                </button>
+                <a target="_blank" href="#" data-mz-action="print"><i class="icon printer"></i></a>
+                <a target="_blank" href="https://www.facebook.com/sharer/sharer.php?u={{ pageContext.secureHost }}{{ model.url}}"><i class="icon social-facebook-circle"></i></a>
+                <a target="_blank" href="https://plus.google.com/share?url={{ pageContext.secureHost }}{{ model.url}}"><i class="icon social-google-plus1-circle"></i></a>
+                <a target="_blank" href="https://pinterest.com/pin/create/button/?url={{ pageContext.secureHost }}{{ model.url}}&media={% if model.content.productImages.length > 0 %}{{ model.content.productImages|first|prop('imageUrl') }}{% endif %}"><i class="icon social-pinterest-circle"></i></a>
+                <a id="twitter" target="_blank" href="https://twitter.com/home?status={{ pageContext.secureHost }}{{ model.url}}"><i class="icon social-twitter-circle"></i></a>
+            </div>
+        </div>
+    </div>
+
+    {% if not model.purchasableState.isPurchasable %}
+    {% if model.isComplete == true %}
+    <p class="mz-productdetail-notpurchasable">
+        {% for message in model.purchasableState.messages %}
+            {% if message.message !== "Not done configuring" %}
+                <span>{{ message.message }}</span>
+            {% endif %}
+        {% endfor %}
+    </p>
+    {% endif %}
+    {% endif %}
+</section>
+
+<div class="mz-productdetail-fulldesc mz-l-stack-section col-sm-12">
+    <h4 class="mz-l-stack-sectiontitle border-top">{{ labels.details }}</h4>
+    {{ model.content.productFullDescription|safe }}
+</div>
+
+
+
+{% if model.productUsage == 'Bundle' %}
+<div class="mz-productdetail-bundleitems mz-l-stack-section col-sm-12">
+    <h4 class="mz-l-stack-sectiontitle">{{ labels.bundleContents }}</h4>
+    <dl class="mz-propertylist mz-propertylist-justified">
+        {% for prod in model.bundledProducts %}
+        <dt>
+            {% if prod.quantity != 1 %}{{ prod.quantity }} x {% endif %}
+            {{ prod.content.productName }}
+        </dt>
+        <dd>
+            {{ prod.content.productShortDescription|safe }}
+        </dd>
+        {% endfor %}
+    </dl>
+</div>
+{% endif %}
+
+{% if model.properties and themeSettings.showProductDetailProperties %}
+<div class="mz-productdetail-properties mz-l-stack-section col-sm-12 col-md-8 col-lg-5">
+    <dl class="mz-propertylist">
+        {% for property in model.properties %}
+            {% if property.attributeFQN != "tenant~product-crosssell" and property.attributeFQN != "tenant~product-upsell" and property.attributeFQN != "tenant~badges" and property.attributeFQN != "tenant~archive" %}
+                {% if property.values and not property.isHidden %}
+                    {% for v in property.values %}
+                    <dr class="col-xs-12">
+                        <dt>{{property.attributeDetail.name}}</dt>
+                        <dd>{% if v.stringValue %}{{v.stringValue}}{% else %}{{v.value}}{% endif %}</dd>
+                    </dr>
+                    {% endfor %}
+                {% endif %}
+            {% endif %}
+        {% endfor %}
+    </dl>
+</div>
+{% endif %}
+
+{% comment %}
+
+    {% if themeSettings.showProductDetailMeasurements and model.bundledProducts %}
+    <div class="mz-productdetail-measurements mz-l-stack-section col-sm-12">
+        <h4 class="mz-l-stack-sectiontitle">{{ labels.measurements }}</h4>
+
+        {% for product in model.bundledProducts %}
+        {% if product.measurements %}
+        <div class="mz-productbundle-measurements-product">
+            <span class="mz-productbundle-measurements-productname">{{ product.content.productName }}</span>
+            <span> x {{ product.quantity }}</span>
+        </div>
+        <dl class="mz-propertylist mz-propertylist-justified mz-propertylist-inline">
+            <dt>{{ labels.weight }}</dt>
+            <dd itemprop="weight" itemscope itemtype="http://schema.org/QuantitativeValue">
+                <span itemprop="value">{{ product.measurements.packageWeight.value }}</span> <span itemprop="unitCode">{{ product.measurements.packageWeight.unit }}</span>
+            </dd>
+
+            <dt>{{ labels.length }}</dt>
+            <dd itemprop="length" itemscope itemtype="http://schema.org/QuantitativeValue">
+                <span itemprop="value">{{ product.measurements.packageLength.value }}</span> <span itemprop="unitCode">{{ product.measurements.packageLength.unit }}</span>
+            </dd>
+
+            <dt>{{ labels.width }}</dt>
+            <dd itemprop="width" itemscope itemtype="http://schema.org/QuantitativeValue">
+                <span itemprop="value">{{ product.measurements.packageWidth.value }}</span> <span itemprop="unitCode">{{ product.measurements.packageWidth.unit }}</span>
+            </dd>
+
+            <dt>{{ labels.height }}</dt>
+            <dd itemprop="height" itemscope itemtype="http://schema.org/QuantitativeValue">
+                <span itemprop="value">{{ product.measurements.packageHeight.value }}</span> <span itemprop="unitCode">{{ product.measurements.packageHeight.unit }}</span>
+            </dd>
+
+        </dl>
+        {% endif %}
+        {% endfor %}
+    </div>
+    {% endif %}
+{% endcomment %}

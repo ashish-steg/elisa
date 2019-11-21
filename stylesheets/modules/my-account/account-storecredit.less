@@ -1,0 +1,95 @@
+﻿#account-storecredit {
+    .mz-accountstorecredit-form {
+        margin-bottom: 20px;
+        input,
+        button {
+            float: left;
+        }
+        input {
+            @media only screen and (max-width: 500px) {
+                width: ~"calc(100% - 70px)";
+                min-width: 0;
+            }
+            @media only screen and (min-width: 768px) {
+                min-width: 300px;
+            }
+        }
+        button {
+            @media only screen and (max-width: 500px) {
+                min-width: 0;
+            }
+        }
+    }
+    .mz-accountstorecredit-table {
+        @media only screen and (max-width: 767px) {
+            display: block;
+        }
+        thead {
+            @media only screen and (max-width: 767px) {
+                display: none;
+            }
+            th {
+                padding-right: 15px;
+                padding-left: 15px;
+                border-bottom: 1px solid @gray4;
+                &.mz-accountstorecredit-header-creditamount,
+                &.mz-accountstorecredit-header-remaining {
+                    text-align: right;
+                }
+            }
+        }
+        td {
+            padding: 5px 15px;
+        }
+        tbody {
+            @media only screen and (max-width: 767px) {
+                display: block;
+            }
+            tr {
+                @media only screen and (max-width: 767px) {
+                    display: block;
+                }
+
+            }
+            td {
+                &.mz-accountstorecredit-cell-creditamount,
+                &.mz-accountstorecredit-cell-remaining {
+                    @media only screen and (min-width: 768px) {
+                        text-align: right;
+                    }
+                }
+                @media only screen and (max-width: 767px) {
+                    display: block;
+                }
+            }
+        }
+        tfoot {
+            @media only screen and (max-width: 767px) {
+                display: block;
+                width: 100%;
+            }
+            .mz-accountstorecredit-totalrow {
+                font-weight: bold;
+                @media only screen and (max-width: 767px) {
+                    display: block;
+                }
+            }
+            .mz-accountstorecredit-totallabelcell {
+                padding-top: 15px;
+                @media only screen and (max-width: 767px) {
+                    float: left;
+                }
+            }
+            .mz-accountstorecredit-total {
+                padding-top: 15px;
+                text-align: right;
+                @media only screen and (max-width: 767px) {
+                    float: right;
+                }
+            }
+        }
+    }
+    .info-message {
+        margin-top: 10px;
+    }
+}

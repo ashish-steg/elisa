@@ -1,0 +1,287 @@
+<footer id="footer5" class="mz-pagefooter col-xs-12 no-pad">
+	<div class="footer-top container">
+		<div class="row">
+	    	<div class="newsletter-wrapper col-xs-12 col-md-6">
+	    		<h6>{{ labels.getOnTheList }}</h6>
+	    		<a class="newsletter-link" href="#" alt="{{ labels.signUpNewsletter }}" title="{{ labels.signUpNewsletter }}" target="_blank" rel="nofollow"><button class="primary">{{ labels.signUpNewsletter }} <i class="icon chevron2-right"></i></button></a>
+    		</div>
+	    	<div class="social-links-wrapper col-xs-12 col-md-6">
+				<h6>{{ labels.stayConnected }}</h6>
+	    		{% if themeSettings.socialBloggerUrl %}
+		    		<a class="social-link" href="{{ themeSettings.socialBloggerUrl }}" alt="{{ labels.followBlog }}" title="{{ labels.followBlog }}" target="_blank" rel="nofollow">
+			    		{% if themeSettings.socialIconStyle == "Simple" %}
+			    			<i class="icon social-blogger"></i>
+			    		{% endif %}
+			    		{% if themeSettings.socialIconStyle == "Circle" %}
+			    			<i class="icon social-blogger-circle"></i>
+			    		{% endif %}
+			    		{% if themeSettings.socialIconStyle == "Circle Punched" %}
+			    			<i class="icon social-blogger-circle-punched"></i>
+			    		{% endif %}
+			    		{% if themeSettings.socialIconStyle == "Square" %}
+			    			<i class="icon social-blogger-square"></i>
+			    		{% endif %}
+	    			</a>
+	    		{% endif %}
+	    		{% if themeSettings.socialFacebookUrl %}
+		    		<a class="social-link" href="{{ themeSettings.socialFacebookUrl }}" alt="{{ labels.followFacebook }}" title="{{ labels.followFacebook }}" target="_blank" rel="nofollow">
+			    		{% if themeSettings.socialIconStyle == "Simple" %}
+			    			<i class="icon social-facebook"></i>
+			    		{% endif %}
+			    		{% if themeSettings.socialIconStyle == "Circle" %}
+			    			<i class="icon social-facebook-circle"></i>
+			    		{% endif %}
+			    		{% if themeSettings.socialIconStyle == "Circle Punched" %}
+			    			<i class="icon social-facebook-circle-punched"></i>
+			    		{% endif %}
+			    		{% if themeSettings.socialIconStyle == "Square" %}
+			    			<i class="icon social-facebook-square"></i>
+			    		{% endif %}
+	    			</a>
+	    		{% endif %}
+	    		{% if themeSettings.socialGooglePlusUrl %}
+		    		<a class="social-link" href="{{ themeSettings.socialGooglePlusUrl }}" alt="{{ labels.followGooglePlus }}" title="{{ labels.followGooglePlus }}" target="_blank" rel="nofollow">
+			    		{% if themeSettings.socialIconStyle == "Simple" %}
+			    			<i class="icon social-google-plus1"></i>
+			    		{% endif %}
+			    		{% if themeSettings.socialIconStyle == "Circle" %}
+			    			<i class="icon social-google-plus1-circle"></i>
+			    		{% endif %}
+			    		{% if themeSettings.socialIconStyle == "Circle Punched" %}
+			    			<i class="icon social-google-plus1-circle-punched"></i>
+			    		{% endif %}
+			    		{% if themeSettings.socialIconStyle == "Square" %}
+			    			<i class="icon social-google-plus1-square"></i>
+			    		{% endif %}
+	    			</a>
+	    		{% endif %}
+	    		{% if themeSettings.socialInstagramUrl %}
+		    		<a class="social-link" href="{{ themeSettings.socialInstagramUrl }}" alt="{{ labels.followInstagram }}" title="{{ labels.followInstagram }}" target="_blank" rel="nofollow">
+			    		{% if themeSettings.socialIconStyle == "Simple" %}
+			    			<i class="icon social-instagram"></i>
+			    		{% endif %}
+			    		{% if themeSettings.socialIconStyle == "Circle" %}
+			    			<i class="icon social-instagram-circle"></i>
+			    		{% endif %}
+			    		{% if themeSettings.socialIconStyle == "Circle Punched" %}
+			    			<i class="icon social-instagram-circle-punched"></i>
+			    		{% endif %}
+			    		{% if themeSettings.socialIconStyle == "Square" %}
+			    			<i class="icon social-instagram-square"></i>
+			    		{% endif %}
+	    			</a>
+	    		{% endif %}
+	    		{% if themeSettings.socialLinkedInUrl %}
+		    		<a class="social-link" href="{{ themeSettings.socialLinkedInUrl }}" alt="{{ labels.followLinkedIn }}" title="{{ labels.followLinkedIn }}" target="_blank" rel="nofollow">
+			    		{% if themeSettings.socialIconStyle == "Simple" %}
+			    			<i class="icon social-linkedin"></i>
+			    		{% endif %}
+			    		{% if themeSettings.socialIconStyle == "Circle" %}
+			    			<i class="icon social-linkedin-circle"></i>
+			    		{% endif %}
+			    		{% if themeSettings.socialIconStyle == "Circle Punched" %}
+			    			<i class="icon social-linkedin-circle-punched"></i>
+			    		{% endif %}
+			    		{% if themeSettings.socialIconStyle == "Square" %}
+			    			<i class="icon social-linkedin-square"></i>
+			    		{% endif %}
+	    			</a>
+	    		{% endif %}
+	    		{% if themeSettings.socialPinterestUrl %}
+		    		<a class="social-link" href="{{ themeSettings.socialPinterestUrl }}" alt="{{ labels.followPinterest }}" title="{{ labels.followPinterest }}" target="_blank" rel="nofollow">
+			    		{% if themeSettings.socialIconStyle == "Simple" %}
+			    			<i class="icon social-pinterest"></i>
+			    		{% endif %}
+			    		{% if themeSettings.socialIconStyle == "Circle" %}
+			    			<i class="icon social-pinterest-circle"></i>
+			    		{% endif %}
+			    		{% if themeSettings.socialIconStyle == "Circle Punched" %}
+			    			<i class="icon social-pinterest-circle-punched"></i>
+			    		{% endif %}
+			    		{% if themeSettings.socialIconStyle == "Square" %}
+			    			<i class="icon social-pinterest-square"></i>
+			    		{% endif %}
+	    			</a>
+	    		{% endif %}
+	    		{% if themeSettings.socialTumblrUrl %}
+		    		<a class="social-link" href="{{ themeSettings.socialTumblrUrl }}" alt="{{ labels.followTumblr }}" title="{{ labels.followTumblr }}" target="_blank" rel="nofollow">
+			    		{% if themeSettings.socialIconStyle == "Simple" %}
+			    			<i class="icon social-tumblr"></i>
+			    		{% endif %}
+			    		{% if themeSettings.socialIconStyle == "Circle" %}
+			    			<i class="icon social-tumblr-circle"></i>
+			    		{% endif %}
+			    		{% if themeSettings.socialIconStyle == "Circle Punched" %}
+			    			<i class="icon social-tumblr-circle-punched"></i>
+			    		{% endif %}
+			    		{% if themeSettings.socialIconStyle == "Square" %}
+			    			<i class="icon social-tumblr-square"></i>
+			    		{% endif %}
+	    			</a>
+	    		{% endif %}
+	    		{% if themeSettings.socialTwitterUrl %}
+		    		<a class="social-link" href="{{ themeSettings.socialTwitterUrl }}" alt="{{ labels.followTwitter }}" title="{{ labels.followTwitter }}" target="_blank" rel="nofollow">
+			    		{% if themeSettings.socialIconStyle == "Simple" %}
+			    			<i class="icon social-twitter"></i>
+			    		{% endif %}
+			    		{% if themeSettings.socialIconStyle == "Circle" %}
+			    			<i class="icon social-twitter-circle"></i>
+			    		{% endif %}
+			    		{% if themeSettings.socialIconStyle == "Circle Punched" %}
+			    			<i class="icon social-twitter-circle-punched"></i>
+			    		{% endif %}
+			    		{% if themeSettings.socialIconStyle == "Square" %}
+			    			<i class="icon social-twitter-square"></i>
+			    		{% endif %}
+	    			</a>
+	    		{% endif %}
+	    		{% if themeSettings.socialVimeoUrl %}
+		    		<a class="social-link" href="{{ themeSettings.socialVimeoUrl }}" alt="{{ labels.followVimeo }}" title="{{ labels.followVimeo }}" target="_blank" rel="nofollow">
+			    		{% if themeSettings.socialIconStyle == "Simple" %}
+			    			<i class="icon social-vimeo"></i>
+			    		{% endif %}
+			    		{% if themeSettings.socialIconStyle == "Circle" %}
+			    			<i class="icon social-vimeo-circle"></i>
+			    		{% endif %}
+			    		{% if themeSettings.socialIconStyle == "Circle Punched" %}
+			    			<i class="icon social-vimeo-circle-punched"></i>
+			    		{% endif %}
+			    		{% if themeSettings.socialIconStyle == "Square" %}
+			    			<i class="icon social-vimeo-square"></i>
+			    		{% endif %}
+	    			</a>
+	    		{% endif %}
+	    		{% if themeSettings.socialYouTubeUrl %}
+		    		<a class="social-link" href="{{ themeSettings.socialYouTubeUrl }}" alt="{{ labels.followYouTube }}" title="{{ labels.followYouTube }}" target="_blank" rel="nofollow">
+			    		{% if themeSettings.socialIconStyle == "Simple" %}
+			    			<i class="icon social-youtube1"></i>
+			    		{% endif %}
+			    		{% if themeSettings.socialIconStyle == "Circle" %}
+			    			<i class="icon social-youtube1-circle"></i>
+			    		{% endif %}
+			    		{% if themeSettings.socialIconStyle == "Circle Punched" %}
+			    			<i class="icon social-youtube1-circle-punched"></i>
+			    		{% endif %}
+			    		{% if themeSettings.socialIconStyle == "Square" %}
+			    			<i class="icon social-youtube1-square"></i>
+			    		{% endif %}
+	    			</a>
+	    		{% endif %}
+	    	</div>
+	    </div>
+    </div>
+    <div class="footer-middle container {% if not pageContext.isDesktop %}not-desktop{% endif %}">
+    	<div class="row">
+		    <ul class="footer-link-col col-xs-12 col-md-3">
+				{% if pageContext.isDesktop %}
+					<li class="title"><h6>{{ labels.company }}</h6></li>
+				{% else %}
+					<a class="title accordion-toggle collapsed" data-toggle="collapse" data-parent="#footer-collapse" href="#footer5-link-col-1" aria-expanded="false" rel="nofollow"><h6>{{ labels.company }} <i class="icon chevron2-up"></i></h6></a>
+					<ul id="footer5-link-col-1" class="collapse col-xs-12 no-pad" aria-expanded="false">
+		    	{% endif %}
+					<li><a class="footer-link" href="#" alt="{{ labels.aboutUs }}" title="{{ labels.aboutUs }}" rel="nofollow">{{ labels.aboutUs }}</a></li>
+					<li><a class="footer-link" href="#" alt="{{ labels.privacyPolicy }}" title="{{ labels.privacyPolicy }}" rel="nofollow">{{ labels.privacyPolicy }}</a></li>
+					<li><a class="footer-link" href="#" alt="{{ labels.termsConditions }}" title="{{ labels.termsConditions }}" rel="nofollow">{{ labels.termsConditions }}</a></li>
+				{% if not pageContext.isDesktop %}
+					</ul>
+		    	{% endif %}
+			</ul>
+		    <ul class="footer-link-col col-xs-12 col-md-3">
+				{% if pageContext.isDesktop %}
+					<li class="title"><h6>{{ labels.myAccount }}</h6></li>
+				{% else %}
+					<a class="title accordion-toggle collapsed" data-toggle="collapse" data-parent="#footer-collapse" href="#footer5-link-col-2" aria-expanded="false" rel="nofollow"><h6>{{ labels.myAccount }} <i class="icon chevron2-up"></i></h6></a>
+					<ul id="footer5-link-col-2" class="collapse col-xs-12 no-pad" aria-expanded="false">
+		    	{% endif %}
+			        {% if user.isAnonymous %}
+						<li><a class="footer-link" href="/user/login" alt="{{ labels.logIn }}" title="{{ labels.logIn }}" rel="nofollow">{{ labels.logIn }}</a> / <a class="footer-link" href="/user/signup" alt="{{ labels.register }}" title="{{ labels.register }}" rel="nofollow">{{ labels.register }}</a></li>
+					{% else %}
+						<li><a class="footer-link" href="/logout" class="mz-utilitynav-link" alt="{{ labels.logout }}" title="{{ labels.logout }}" rel="nofollow">{{ labels.logout }}</a></li>
+					{% endif %}
+					<li><a class="footer-link" href="#" alt="{{ labels.orderStatus }}" title="{{ labels.orderStatus }}" rel="nofollow">{{ labels.orderStatus }}</a></li>
+					<li><a class="footer-link" href="#" alt="{{ labels.wishlist }}" title="{{ labels.wishlist }}" rel="nofollow">{{ labels.wishlist }}</a></li>
+				{% if not pageContext.isDesktop %}
+					</ul>
+		    	{% endif %}
+			</ul>
+		    <ul class="footer-link-col col-xs-12 col-md-3">
+				{% if pageContext.isDesktop %}
+					<li class="title"><h6>{{ labels.quickLinks }}</h6></li>
+				{% else %}
+					<a class="title accordion-toggle collapsed" data-toggle="collapse" data-parent="#footer-collapse" href="#footer5-link-col-3" aria-expanded="false" rel="nofollow"><h6>{{ labels.quickLinks }} <i class="icon chevron2-up"></i></h6></a>
+					<ul id="footer5-link-col-3" class="collapse col-xs-12 no-pad" aria-expanded="false">
+		    	{% endif %}
+					<li><a class="footer-link" href="#" alt="{{ labels.helpFAQ }}" title="{{ labels.helpFAQ }}" rel="nofollow">{{ labels.helpFAQ }}</a></li>
+					<li><a class="footer-link" href="#" alt="{{ labels.shippingInformation }}" title="{{ labels.shippingInformation }}" rel="nofollow">{{ labels.shippingInformation }}</a></li>
+					<li><a class="footer-link" href="#" alt="{{ labels.viewCart }}" title="{{ labels.viewCart }}" rel="nofollow">{{ labels.viewCart }}</a></li>
+				{% if not pageContext.isDesktop %}
+					</ul>
+		    	{% endif %}
+			</ul>
+		    <ul class="footer-link-col col-xs-12 col-md-3">
+				{% if pageContext.isDesktop %}
+					<li class="title"><h6>{{ labels.contactUs }}</h6></li>
+				{% else %}
+					<a class="title accordion-toggle collapsed" data-toggle="collapse" data-parent="#footer-collapse" href="#footer5-link-col-4" aria-expanded="false" rel="nofollow"><h6>{{ labels.contactUs }} <i class="icon chevron2-up"></i></h6></a>
+					<ul id="footer5-link-col-4" class="collapse col-xs-12 no-pad" aria-expanded="false">
+		    	{% endif %}
+					<li><a class="footer-link" href="tel:123-456-7890" alt="{{ labels.callUs }}" title="{{ labels.callUs }}" rel="nofollow">123-456-7890</a></li>
+					<li><a class="footer-link" href="mailto:Info@CompanyName.com" alt="{{ labels.emailUs }}" title="{{ labels.emailUs }}" rel="nofollow">Info@CompanyName.com</a></li>
+					<li><a class="footer-link" href="/store-locator" alt="Locate us" title="Locate us" rel="nofollow">101 Waller St<br>
+					Austin, TX 78702 ({{ labels.map }})</a></li>
+				{% if not pageContext.isDesktop %}
+					</ul>
+		    	{% endif %}
+			</ul>
+		</div>
+    </div>
+	<div class="footer-bottom container {% if not pageContext.isDesktop %}not-desktop{% endif %}">
+		<div class="row">
+			<div class="cc-icons-wrapper col-xs-12 col-md-6 pull-right">
+			    {% for ccEnabled in siteContext.checkoutSettings.supportedCards %}
+			    	{% if ccEnabled == "[VISA, VISA]" %}
+						<i class="icon cc-visa"></i>
+			    	{% endif %}
+			    {% endfor %}
+			    {% for ccEnabled in siteContext.checkoutSettings.supportedCards %}
+			    	{% if ccEnabled == "[AMEX, AMEX]" %}
+						<i class="icon cc-amex"></i>
+			    	{% endif %}
+			    {% endfor %}
+			    {% for ccEnabled in siteContext.checkoutSettings.supportedCards %}
+			    	{% if ccEnabled == "[MC, MC]" %}
+						<i class="icon cc-mc"></i>
+			    	{% endif %}
+			    {% endfor %}
+			    {% for ccEnabled in siteContext.checkoutSettings.supportedCards %}
+			    	{% if ccEnabled == "[DISCOVER, DISCOVER]" %}
+						<i class="icon cc-discover"></i>
+			    	{% endif %}
+			    {% endfor %}
+			    {% for ccEnabled in siteContext.checkoutSettings.supportedCards %}
+			    	{% if ccEnabled == "[JCB, JCB]" %}
+						<b>JCB</b>
+			    	{% endif %}
+			    {% endfor %}
+			    {% for externalPayment in siteContext.checkoutSettings.externalPaymentWorkflowSettings %}
+					{% if externalPayment.isEnabled %}
+			            {% if externalPayment.name|lower == "visacheckout" %}
+							<i><b><i class="icon cc-visa"></i> {{ labels.checkout }}</b></i>
+			            {% endif %}
+			            {% if externalPayment.name|lower == "paypalexpress2" %}
+							<i class="icon cc-paypal"></i>
+			            {% endif %}
+					{% endif %}
+			    {% endfor %}
+			</div>
+		    <div id="copyright" class="mz-pagefooter-copyright col-xs-12 col-md-6 pull-left">
+		        <span class="mz-pagefooter-copyrighttext">
+		            &copy; {% now Y %} {{ siteContext.generalSettings.websiteName }}. {{ labels.allRightsReserved }}
+		        </span> 
+		        <span class="mz-pagefooter-poweredby">
+		             {{ labels.poweredBy }}
+		        </span>
+		    </div>
+		</div>
+    </div>
+</footer>

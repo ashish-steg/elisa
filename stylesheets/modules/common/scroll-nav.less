@@ -1,0 +1,22 @@
+﻿.mz-scrollnav {
+    .mz-scrollnav-item {
+        &.active .mz-scrollnav-link {
+            font-weight: bold;
+            color: @gray4;
+        }
+    }
+    .mz-scrollnav-link {
+        .permalink(@gray3);
+    }
+    &.affix {
+        position: fixed;
+        top: 13%;
+        &.sticky-header {
+            top: 120px;
+        }
+    }
+
+    &.affix-bottom {
+        position: absolute;
+    }
+}

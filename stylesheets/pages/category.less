@@ -1,0 +1,50 @@
+﻿.mz-category,
+.mz-searchresults {
+
+	@media only screen and (max-width:767px) {
+		.row {
+			margin: 0 !important;
+		}
+
+		header {
+			.container-fluid {
+				padding: 0 !important;
+			}
+		}
+		.mz-drop-zone-tippy-top {
+			margin: 0 -15px;
+		}
+		.mz-drop-zone-categorypromo1 {
+			margin: 0 -20px;
+		}
+	}
+	.mz-pagingcontrols {
+		margin-bottom: 10;
+		margin-right: 5px;
+	}
+}
+.parentCategory-top-dropzone {
+	display: flex;
+	flex-direction: row;
+	justify-content: space-between;
+	-ms-flex-pack: justify;
+	width: 100%;
+
+	#mz-drop-zone-parent-category-page-top-right, #mz-drop-zone-parent-category-page-top-left {
+		width: 50%;
+	}
+}
+
+#mz-drop-zone-categorypromo1 {
+	width: 99vw;
+	margin-left: -2%;
+
+	@media only screen and (max-width: 787px){
+		margin-left: ~'calc(-15px - 2%)';
+	}
+
+	img {
+		width: 100%;
+		padding: 0;
+	}
+}

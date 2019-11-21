@@ -1,0 +1,123 @@
+<!-- Modal -->
+<div class="quickview" id="quickview_{{ model.productCode }}" tabindex="-1" role="dialog" aria-labelledby="Product Quickview">
+    <div class="modal-dialog col-xs-12 no-pad" role="document">
+        <div class="modal-content col-xs-12 no-pad">
+            <div class="modal-body col-xs-12 no-pad">
+                <div itemscope itemtype="http://schema.org/Product" class="mz-l-container">
+                    <div data-mz-productimages class="mz-productimages mz-l-sidebar align-left col-xs-12 col-sm-5">
+                        {% include "modules/product/product-images" %}
+                    </div>
+
+                    <div class="mz-productdetail-wrap col-xs-12 col-sm-7">
+                        <h2 class="mz-pagetitle" itemprop="name">
+                            <strong>{{ model.content.productName }}</strong>
+                            <button type="button" class="close no-style" data-dismiss="modal" aria-label="Close"><span aria-hidden="true"><i class="icon exit1-circle"></i></span></button>
+                        </h2>
+                        {% include "modules/common/message-bar" %}
+                        <div id="product-detail" class="mz-productdetail mz-l-stack col-xs-12 no-pad">
+                            <div class="flex-row">
+                                <div itemprop="offers" itemscope itemtype="http://schema.org/Offer" class="mz-productdetail-price mz-l-stack-section">
+                                    {% include "modules/product/price-stack" %}
+                                </div>
+
+                                <dl class="mz-productcodes mz-propertylist mz-pagetitle-note mz-l-stack-section">
+                                    {% if model.properties|findwhere("attributeFQN", "Tenant~style") %}
+                                        <dt class="mz-productcodes-productcode-label">{{ labels.style }}</dt>
+                                        <dd class="mz-productcodes-productcode" itemprop="sku">{{ model.properties|findwhere("attributeFQN", "Tenant~style")|prop("values")|first|prop("stringValue") }}</dd>
+                                    {% endif %}
+                                    {% if model.properties|findwhere("attributeFQN", "Tenant~sku") %}
+                                        <dt class="mz-productcodes-productcode-label">{{ labels.sku }}</dt>
+                                        <dd class="mz-productcodes-productcode" itemprop="sku">{{ model.properties|findwhere("attributeFQN", "Tenant~sku")|prop("values")|first|prop("stringValue") }}</dd>
+                                    {% endif %}
+                                </dl>
+                            </div>
+                            {% if model.content.productShortDescription and themeSettings.showProductDetailShortDesc %}
+                            <div class="mz-productdetail-shortdesc mz-l-stack-section">
+                                <h4 class="mz-l-stack-sectiontitle"><strong>{{ labels.shortDesc }}</strong></h4>
+                                <span itemscope="description">{{ model.content.productShortDescription|safe }}</span>
+                            </div>
+                            {% endif %}
+
+                            {% if model.options and model.options.length > 0 %}
+                            <div class="mz-productdetail-options mz-l-stack-section">
+                                <h4 class="mz-l-stack-sectiontitle">{{ labels.options }}</h4>
+                                <div class="mz-productdetail-options-container">
+                                    {% if model.productType == "MOTHERS BRACELET" %}
+                                        {% include "modules/product/product-options-mother-bracelet" %}
+                                    {% else %}
+                                        {% include "modules/product/product-options" %}
+                                    {% endif %}
+                                </div>
+                            </div>
+                            {% endif %}
+                            
+
+                            <section class="mz-l-stack-section mz-productdetail-conversion">
+                                <div class="mz-productdetail-conversion-controls">
+                                    <span class="mz-qty-label">{{ labels.qty }}</span>
+                                    <span class="mz-qty-control minus {% if not model.purchasableState.isPurchasable %}disabled{% endif %}">-</span>
+                                    <input class="mz-productdetail-qty" type="number" value="1" min="1" {% if not model.purchasableState.isPurchasable %} disabled="disabled" {% endif %} data-mz-value="quantity" />
+                                    <span class="mz-qty-control plus {% if not model.purchasableState.isPurchasable %}disabled{% endif %}">+</span>
+                                </div>
+                                <span class="mz-validationmessage" data-mz-validationmessage-for="quantity"></span>
+                                <div class="flex-row">
+                                    <div class="mz-productdetail-conversion-buttons">
+                                        <button id="add-to-cart" class="mz-button btnAddToCart {% if not model.purchasableState.isPurchasable %}is-disabled{% endif %}" {% if not model.purchasableState.isPurchasable %} disabled="disabled" {% endif %} data-mz-action="addToCart" >
+                                            {{ labels.addToCart }}
+                                        </button>
+                                        <button class="continueshopping">
+                                            Continue Shopping
+                                        </button>
+                                        <a href="{{ model.url }}">View Full Product Details ></a>
+
+                                        {% comment %}
+                                        {% if siteContext.supportsInStorePickup %}
+                                            <form class="mz-instorepickup" method="POST" data-mz-localstoresform action="/location/product">
+                                                <button type="submit" {% if model.notDoneConfiguring or not model.purchasableState.isPurchasable or not model.supportsInStorePickup %} disabled="disabled" {% endif %} class="mz-button mz-instorepickuplink-button {% if model.notDoneConfiguring or not model.purchasableState.isPurchasable or not model.supportsInStorePickup %}is-disabled{% endif %}" data-mz-action="checkLocalStores">{{ labels.checkLocalStores }}</button>
+                                                <input type="hidden" data-mz-localstoresform-input name="item" value="{% json_attribute model %}" />
+                                            </form>
+                                        {% endif %}
+                                        {% endcomment %}
+                                    </div>
+                                    <div class="mz-share">
+                                        {% if siteContext.generalSettings.isWishlistCreationEnabled %}
+                                            <div class="mz-wishlist {% if not model.purchasableState.isPurchasable %}is-disabled{% endif %}"> 
+                                                <a id="add-to-wishlist" class="mz-productdetail-addtowishlist" data-mz-action="addToWishlist">
+                                                    <img src="/resources/images/icons/wishlistheart.png" />
+                                                </a>
+                                            </div>
+                                        {% endif %}
+                                        <div class="socialShare">
+                                            <a target="_blank" href="https://www.facebook.com/sharer/sharer.php?u={{ pageContext.secureHost }}{{ model.url}}"><i style="color: #7f7f7f; font-size: 2em;" class="icon social-facebook-circle"></i></a>
+                                            <a target="_blank" href="https://plus.google.com/share?url={{ pageContext.secureHost }}{{ model.url}}"><i style="color: #7f7f7f; font-size: 2em;" class="icon social-google-plus1-circle"></i></a>
+                                            <a target="_blank" href="https://pinterest.com/pin/create/button/?url={{ pageContext.secureHost }}{{ model.url}}&media={% if model.content.productImages.length > 0 %}{{ model.content.productImages|first|prop('imageUrl') }}{% endif %}"><i style="color: #7f7f7f; font-size: 2em;" class="icon social-pinterest-circle"></i></a>
+                                            <a target="_blank" href="https://twitter.com/home?status={{ pageContext.secureHost }}{{ model.url}}"><i style="color: #7f7f7f; font-size: 2em;" class="icon social-twitter-circle"></i></a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </section>
+
+                            {% if model.productUsage == 'Bundle' %}
+                            <div class="mz-productdetail-bundleitems mz-l-stack-section">
+                            <h4 class="mz-l-stack-sectiontitle">{{ labels.bundleContents }}</h4>
+                            <dl class="mz-propertylist mz-propertylist-justified">
+                            {% for prod in model.bundledProducts %}
+                                <dt>
+                                {% if prod.quantity != 1 %}{{ prod.quantity }} x {% endif %}
+                                {{ prod.content.productName }}
+                                </dt>
+                                <dd>
+                                {{ prod.content.productShortDescription|safe }}
+                                </dd>
+                            {% endfor %}
+                            </dl>
+                            </div>
+                            {% endif %}
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

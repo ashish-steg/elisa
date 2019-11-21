@@ -1,0 +1,96 @@
+﻿  {% extends "email/email" %}
+
+  {% block body-content %}
+    <div style=" display: block; width: 100%;  font-family:Arial, Helvetica, sans-serif
+Verdana, Geneva, sans-serif
+‘Trebuchet MS’, Helvetica, sans-serif;font-style: normal;font-weight:300;padding:20px 0 0 0;">
+    
+    <p style="margin:0 ;line-height:21px;color:#333;font-size: 20px;font-weight:bold;font-family:'Trebuchet MS', Verdana, Geneva, sans-serif;">
+        {{ labels.orderWelcome }} {{ model.billingInfo.billingContact.firstName }} {{ model.billingInfo.billingContact.lastNameOrSurname }}!
+    </p> 
+   <p style="line-height:21px;color:#333;font-family:'Trebuchet MS', Verdana, Geneva, sans-serif; font-weight: 300;margin-bottom: 30px;" >Good news! This email is to notify you that your Order <span style="color:#000;font-weight:bold;font-size: 20px;">#{{model.orderNumber}}</span> has shipped.</p>
+    {% for tracking in model.packages %}
+        {% if tracking.trackingNumber %}
+        <p>Your tracking number is 
+            {{tracking.trackingNumber}}
+        </p>
+        {% endif %}
+    {% endfor %}
+    <p style="line-height:21px;color#333;font-family:'Trebuchet MS', Verdana, Geneva, sans-serif;font-size: 18px;font-weight: bold; margin-bottom:0;" >To review your order, please click on the following link:</p>
+    <span style="display:block;margin-top: 15px;color: #333;text-decoration: none;font-size: 16px;color#333;font-family:'Trebuchet MS', Verdana, Geneva, sans-serif;">http://{{domainName}}/myaccount</span>
+    <p style="font-style: italic;font-weight: bold;font-family:'Trebuchet MS', Verdana, Geneva, sans-serif; color: #333; font-size: 13px;padding: 20px 0;margin: 0 0 20px 0;border-bottom: 1px solid #ccc;">Please note: The charge on your credit card will appear as "Elisa Ilana Jewelry"</p>
+        
+        <div style="overflow:hidden; width: 100%">
+            <div style="float:left; width: 49%;">
+                <span style="font-family:'Trebuchet MS', Verdana, Geneva, sans-serif;font-size: 18px; font-weight: bold; padding-bottom: 10px; display: block;color:#000; ">Ship to:</span>
+                <p  style="margin:0;line-height:21px;color:#333;font-size: 14px;font-family:'Trebuchet MS', Verdana, Geneva, sans-serif;font-weight: 300; font-style: normal;>{% include "modules/common/email-address-summary" with model=model.fulfillmentInfo.fulfillmentContact %}</p>
+            </div>
+            
+            <div style="float:left;width: 50%;">
+                <span style="font-family:'Trebuchet MS', Verdana, Geneva, sans-serif;font-size: 18px;font-weight: bold; padding-bottom: 10px; display: block;color:#000; ">{{ labels.itemsShipped }}</span>
+                {% for package in model.packages %}
+                <p style="color:#333; margin: 0;font-size: 14px;font-family:'Trebuchet MS', Verdana, Geneva, sans-serif; font-weight: 300; font-style: normal;line-height:20px;"> {{ labels.orderShippedPkgHeader|string_format(package.fulfillmentDate, package.shippingMethodName) }}</p>
+                {% endfor %}
+            </div>
+        </div> 
+        
+        
+        
+   {% for package in model.packages %}
+   <table width="100%" align="left" cellpadding="8" cellspacing="8" width="100%"   style="color:#333;margin:10px 0;border-collapse:collapse;border-spacing:5px;border-color:#cfcfcf;font-family:Helvetica,Arial, sans-serif Verdana, Geneva, sans-serif ‘Trebuchet MS’, sans-serif;font-weight: 300; font-style: normal;" >
+        <thead>
+            
+            <tr style="color:#333;background:#ccc;text-transform:uppercase; font-family:'Trebuchet MS', Verdana, Geneva, sans-serif;font-weight: 300; font-size: 18px; font-style: bold;"> 
+                <td style="text-align:left; padding-left:30px;">{{ labels.product }}</td>
+                <td width="25%" style="text-align:center; ">{{ labels.qty }}</td>
+                
+            </tr>
+        </thead>
+        {% for packageItem in package.items %}
+            <tbody class="mz-ordersummary-package">
+                <tr class="mz-ordersummary-line mz-ordersummary-line-item">
+                    <td class="mz-ordersummary-item-product">
+                        {% if packageItem.product.productUsage !== 'Bundle' %}
+                            <img class="mob-full-wid" src="http:{{ packageItem.product.imageUrl}}?max=100">
+                        {% endif %}
+                        <div style='font-size: 14px;font-family:'Trebuchet MS', Verdana, Geneva, sans-serif;color: #333; text-transform: uppercase;'>STYLE:&nbsp;{{ packageItem.product.productCode }}</div>
+                        <div style='font-weight:bold;font-family: 'Trebuchet MS', Verdana, Geneva, sans-serif;font-size: 14px; color: #333;'>{{ packageItem.product.name }}</div>
+                        {% if packageItem.product.productUsage == 'Bundle' %}
+                        <dl class="mz-propertylist" style="font-size: 13px;font-family:'Trebuchet MS', Verdana, Geneva, sans-serif;">
+                        {% for bundledProduct in packageItem.product.bundledProducts %}
+                        <dt>{{ bundledProduct.productCode }}</dt>&nbsp;
+                        <dd>{{ bundledProduct.name }} ({{ bundledProduct.quantity }})</dd>
+                        {% endfor %}
+                        </dl>
+                        {% endif %}
+                    </td>
+                    <td style="text-align:center;">{{ packageItem.quantity }}</td>
+                </tr>
+            </tbody>
+        {% endfor %}
+    </table>
+    {% endfor %}
+<div style="padding:20px 0 30px 0; clear: both; margin-bottom: 30px; border-bottom: 1px solid #ccc; font-family:'Trebuchet MS', Verdana, Geneva, sans-serif;font-size: 16px;">
+            <span style='font-family: 'Trebuchet MS', Verdana, Geneva, sans-serif;font-size: 14px; color: #333;'><strong>If you selected Standard Shipping for this order:</strong></span>
+             
+            <p style="margin:10px 0 25px 0;font-family: 'Trebuchet MS', Verdana, Geneva, sans-serif;font-size: 14px; color: #333;">This is the last notification about your order that you will receive.</p>
+    
+            <span style="font-size: 16px;font-family: 'Trebuchet MS', Verdana, Geneva, sans-serif;color: #333;"><strong>If you selected Ground, Expedited or Overnight Shipping for this order:</strong></span>
+            
+            <p style="margin:10px 0 25px 0;font-family: 'Trebuchet MS', Verdana, Geneva, sans-serif;font-size: 14px; color: #333;">UPS will email you the tracking number for your package when they arrive for their Monday-Friday pickups. The email will come from UPS Quantum View (auto-notify@ups.com). Please check your email Spam/Junk folder if you do not find it in your email Inbox.</p>
+            
+            <p style="font-weight: bold;font-family: 'Trebuchet MS', Verdana, Geneva, sans-serif;font-size: 14px; color: #333; margin:0;"><a href="http://{{domainName}}/faq" style="text-decoration: underline;" title="Click here">Click here</a> for FAQ.</p>
+        </div>
+        
+        <p style=" font-family:'Trebuchet MS', Verdana, Geneva, sans-serif; font-weight: bold; font-size: 16px; margin-bottom: 5%">Thank you so much for shopping elisailana.com!</p>
+        
+    {% comment%}    
+    
+    {{ labels.orderShipmentBlob2|safe }}
+
+    {{ labels.emailClosing|string_format(siteContext.generalSettings.websiteName)|safe }}
+    
+    {% endcomment%}    
+  </div>
+    
+{% endblock body-content %}

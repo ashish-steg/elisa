@@ -1,0 +1,36 @@
+<div class="row">
+    <div class="col-sm-12 my-account-page">
+        <table class="table my-account-table">
+            <thead>
+                <tr>
+                    <th colspan="5">{{ labels.quickOrder }}</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% if model.orderHistory.items.length == 0 %}
+                <tr>
+                    <td>You have not placed any orders</td>
+                </tr>
+                {% else %}
+                    <tr>
+                        <td>
+                            <table class="table quick-order">
+                                <thead>
+                                    <tr>
+                                        <th colspan="2">{{ labels.item }}</th>
+                                        <th>{{ labels.price }}</th>
+                                        <th>{{ labels.quantity }}</th>
+                                        <th>{{ labels.addToBag }}</th>
+                                    </tr>
+                                </thead>
+                                <tbody data-mz-quickOrder-list>
+                                        {% include "modules/my-account/my-account-quick-order-listing" with model=model.orderHistory %}
+                                </tbody>
+                            </table>
+                        </td>
+                    </tr>
+                {% endif %}
+            </tbody>
+        </table>
+    </div>
+</div>

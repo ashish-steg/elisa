@@ -1,0 +1,2872 @@
+{% extends "page" %}
+
+{% block breadcrumbs %}
+{% endblock breadcrumbs %}
+
+{% block title-tag-content %}Boilerplate Styleguide{% endblock title-tag-content %}
+
+{% block body-tag-classes %} styleguide {% endblock body-tag-classes %}
+
+{% block body-content %}
+
+{% require_script "pages/styleguide" %}
+<div class="container">
+	<div class="col-xs-12">
+		<h1>Color Variables</h1>
+		<table class="solid">
+		<tr>
+			<td class="bg-color1-light">
+				 @primary-light<br>
+				 @color1-light
+			</td>
+			<td class="bg-color2-light">
+				 @secondary-light<br>
+				 @color2-light
+			</td>
+			<td class="bg-color3-light">
+				<br>
+				 @color3-light
+			</td>
+			<td class="bg-color4-light">
+				<br>
+				 @color4-light
+			</td>
+			<td class="bg-color5-light">
+				<br>
+				 @color5-light
+			</td>
+		</tr>
+		<tr>
+			<td class="bg-color1">
+				 @primary<br>
+				 @color1
+			</td>
+			<td class="bg-color2">
+				 @secondary<br>
+				 @color2
+			</td>
+			<td class="bg-color3">
+				<br>
+				 @color3
+			</td>
+			<td class="bg-color4">
+				<br>
+				 @color4
+			</td>
+			<td class="bg-color5">
+				<br>
+				 @color5
+			</td>
+		</tr>
+		<tr>
+			<td class="bg-color1-dark">
+				 @primary-dark<br>
+				 @color1-dark
+			</td>
+			<td class="bg-color2-dark">
+				 @secondary-dark<br>
+				 @color2-dark
+			</td>
+			<td class="bg-color3-dark">
+				<br>
+				 @color3-dark
+			</td>
+			<td class="bg-color4-dark">
+				<br>
+				 @color4-dark
+			</td>
+			<td class="bg-color5-dark">
+				<br>
+				 @color5-dark
+			</td>
+		</tr>
+		<tr>
+			<td style="background: {{ themeSettings.themeGray1 }}; color: {{ themeSettings.themeGray4 }};">
+				 @gray1
+			</td>
+			<td style="background: {{ themeSettings.themeGray2 }}; color: {{ themeSettings.themeGray4 }};">
+				 @gray2
+			</td>
+			<td style="background: {{ themeSettings.themeGray3 }};">
+				 @gray3
+			</td>
+			<td style="background: {{ themeSettings.themeGray4 }};">
+				 @gray4
+			</td>
+			<td style="background: {{ themeSettings.textColor }};">
+				 @color-text
+			</td>
+		</tr>
+		<tr>
+			<td style="background:{{ themeSettings.hyperlinkColor }};">
+				 @color-hyperlink
+			</td>
+			<td style="background: {{ themeSettings.customInputColor }};">
+				 @color-radio-checkbox
+			</td>
+			<td style="background: {{ themeSettings.successNotificationColor }};">
+				 @color-success
+			</td>
+			<td style="background: {{ themeSettings.warningNotificationColor }};">
+				 @color-warning
+			</td>
+		</tr>
+		</table>
+	</div>
+	<div class="col-xs-12">
+		<h1>Buttons</h1>
+		<table>
+		<tr>
+			<td>
+				 button<br>
+				 button.color1
+			</td>
+			<td>
+				<button class="color1">.color1</button>
+			</td>
+		</tr>
+		<tr>
+			<td>
+				 button.color2
+			</td>
+			<td>
+				<button class="color2">.color2</button>
+			</td>
+		</tr>
+		<tr>
+			<td>
+				 button.color3
+			</td>
+			<td>
+				<button class="color3">.color3</button>
+			</td>
+		</tr>
+		<tr>
+			<td>
+				 button.color4
+			</td>
+			<td>
+				<button class="color4">.color4</button>
+			</td>
+		</tr>
+		<tr>
+			<td>
+				 button.color5
+			</td>
+			<td>
+				<button class="color5">.color5</button>
+			</td>
+		</tr>
+		<tr>
+			<td>
+				 button.gray
+			</td>
+			<td>
+				<button class="gray">.gray</button>
+			</td>
+		</tr>
+		<tr>
+			<td>
+				 button[disabled]<br>
+				 button.is-disabled
+			</td>
+			<td>
+				<button disabled>disabled</button>
+			</td>
+		</tr>
+		<tr>
+			<td>
+				 button.icon.exit
+			</td>
+			<td>
+				<button class="color1 icon exit">.color1</button>
+			</td>
+			<td>
+				<button class="color2 icon exit">.color2</button>
+			</td>
+			<td>
+				<button class="color3 icon exit">.color3</button>
+			</td>
+			<td>
+				<button class="color4 icon exit">.color4</button>
+			</td>
+			<td>
+				<button class="color5 icon exit">.color5</button>
+			</td>
+			<td>
+				<button class="gray icon exit">.gray</button>
+			</td>
+			<td>
+				<button class="icon exit" disabled>disabled</button>
+			</td>
+		</tr>
+		<tr>
+			<td>
+				 button.icon.plus
+			</td>
+			<td>
+				<button class="color1 icon plus">.color1</button>
+			</td>
+			<td>
+				<button class="color2 icon plus">.color2</button>
+			</td>
+			<td>
+				<button class="color3 icon plus">.color3</button>
+			</td>
+			<td>
+				<button class="color4 icon plus">.color4</button>
+			</td>
+			<td>
+				<button class="color5 icon plus">.color5</button>
+			</td>
+			<td>
+				<button class="gray icon plus">.gray</button>
+			</td>
+			<td>
+				<button class="icon plus" disabled>disabled</button>
+			</td>
+		</tr>
+		<tr>
+			<td>
+				 button.icon.checkmark
+			</td>
+			<td>
+				<button class="color1 icon checkmark">.color1</button>
+			</td>
+			<td>
+				<button class="color2 icon checkmark">.color2</button>
+			</td>
+			<td>
+				<button class="color3 icon checkmark">.color3</button>
+			</td>
+			<td>
+				<button class="color4 icon checkmark">.color4</button>
+			</td>
+			<td>
+				<button class="color5 icon checkmark">.color5</button>
+			</td>
+			<td>
+				<button class="gray icon checkmark">.gray</button>
+			</td>
+			<td>
+				<button class="icon checkmark" disabled>disabled</button>
+			</td>
+		</tr>
+		<tr>
+			<td>
+				 button.icon.chevron.left
+			</td>
+			<td>
+				<button class="color1 icon chevron left">.color1</button>
+			</td>
+			<td>
+				<button class="color2 icon chevron left">.color2</button>
+			</td>
+			<td>
+				<button class="color3 icon chevron left">.color3</button>
+			</td>
+			<td>
+				<button class="color4 icon chevron left">.color4</button>
+			</td>
+			<td>
+				<button class="color5 icon chevron left">.color5</button>
+			</td>
+			<td>
+				<button class="gray icon chevron left">.gray</button>
+			</td>
+			<td>
+				<button class="icon chevron left" disabled>disabled</button>
+			</td>
+		</tr>
+		<tr>
+			<td>
+				 button.icon.chevron.right
+			</td>
+			<td>
+				<button class="color1 icon chevron right">.color1</button>
+			</td>
+			<td>
+				<button class="color2 icon chevron right">.color2</button>
+			</td>
+			<td>
+				<button class="color3 icon chevron right">.color3</button>
+			</td>
+			<td>
+				<button class="color4 icon chevron right">.color4</button>
+			</td>
+			<td>
+				<button class="color5 icon chevron right">.color5</button>
+			</td>
+			<td>
+				<button class="gray icon chevron right">.gray</button>
+			</td>
+			<td>
+				<button class="icon chevron right" disabled>disabled</button>
+			</td>
+		</tr>
+		<tr>
+			<td>
+				 button.icon.chevron.up
+			</td>
+			<td>
+				<button class="color1 icon chevron up">.color1</button>
+			</td>
+			<td>
+				<button class="color2 icon chevron up">.color2</button>
+			</td>
+			<td>
+				<button class="color3 icon chevron up">.color3</button>
+			</td>
+			<td>
+				<button class="color4 icon chevron up">.color4</button>
+			</td>
+			<td>
+				<button class="color5 icon chevron up">.color5</button>
+			</td>
+			<td>
+				<button class="gray icon chevron up">.gray</button>
+			</td>
+			<td>
+				<button class="icon chevron up" disabled>disabled</button>
+			</td>
+		</tr>
+		<tr>
+			<td>
+				 button.icon.chevron.down
+			</td>
+			<td>
+				<button class="color1 icon chevron down">.color1</button>
+			</td>
+			<td>
+				<button class="color2 icon chevron down">.color2</button>
+			</td>
+			<td>
+				<button class="color3 icon chevron down">.color3</button>
+			</td>
+			<td>
+				<button class="color4 icon chevron down">.color4</button>
+			</td>
+			<td>
+				<button class="color5 icon chevron down">.color5</button>
+			</td>
+			<td>
+				<button class="gray icon chevron down">.gray</button>
+			</td>
+			<td>
+				<button class="icon chevron down" disabled>disabled</button>
+			</td>
+		</tr>
+		</table>
+	</div>
+	<div class="col-xs-12">
+		<h1>Text</h1>
+		<table class="border">
+		<tr>
+			<td style="white-space: nowrap;">
+				 @font1
+			</td>
+			<td>
+				<h1 style="margin:0; font-family: {{ themeSettings.primaryFont }}">Primary Font - {{ themeSettings.primaryFont }}</h1>
+			</td>
+		</tr>
+		<tr>
+			<td style="white-space: nowrap;">
+				 @font2
+			</td>
+			<td>
+				<h1 style="margin:0; font-family: {{ themeSettings.secondaryFont }}">Secondary Font - {{ themeSettings.secondaryFont }}</h1>
+			</td>
+		</tr>
+		<tr>
+			<td style="white-space: nowrap;">
+				 h1
+			</td>
+			<td>
+				<h1 style="margin:0;">h1 Headline</h1>
+			</td>
+		</tr>
+		<tr>
+			<td style="white-space: nowrap;">
+				 h2
+			</td>
+			<td>
+				<h2 style="margin:0;">h2 Headline</h2>
+			</td>
+		</tr>
+		<tr>
+			<td style="white-space: nowrap;">
+				 h3
+			</td>
+			<td>
+				<h3 style="margin:0;">h3 Headline</h3>
+			</td>
+		</tr>
+		<tr>
+			<td style="white-space: nowrap;">
+				 h4
+			</td>
+			<td>
+				<h4 style="margin:0;">h4 Headline</h4>
+			</td>
+		</tr>
+		<tr>
+			<td style="white-space: nowrap;">
+				 h5
+			</td>
+			<td>
+				<h5 style="margin:0;">h5 Headline</h5>
+			</td>
+		</tr>
+		<tr>
+			<td style="white-space: nowrap;">
+				 h6
+			</td>
+			<td>
+				<h6 style="margin:0;">h6 Headline</h6>
+			</td>
+		</tr>
+		<tr>
+			<td style="white-space: nowrap;">
+				 p
+			</td>
+			<td>
+				<p style="margin:0;">
+					 Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer enim augue, maximus sed convallis ut, porttitor nec nisi. Fusce rutrum volutpat metus, et facilisis lorem. Etiam eget nunc non metus laoreet dapibus a ut elit. Aliquam erat volutpat. Nulla porttitor, eros ac hendrerit consequat, lacus risus interdum dolor, sed porta magna est in est. Vivamus vulputate venenatis diam, in cursus enim aliquet id. Sed lobortis fringilla urna, finibus vulputate nulla. Morbi malesuada nunc sodales metus iaculis, vitae venenatis massa feugiat.
+				</p>
+			</td>
+		</tr>
+		<tr>
+			<td style="white-space: nowrap;">
+				 a
+			</td>
+			<td>
+				 This is <a href="#">an example of an</a> inline link.<br>
+				 This is <a href="#" class="hovered">the hover state of an</a> inline link.
+			</td>
+		</tr>
+		<tr>
+			<td style="white-space: nowrap;">
+				 .color1-light<br>
+				 .primary-light
+			</td>
+			<td>
+				<span class="color1-light">This is an example of colored text. <i class="icon cart1"></i><i class="icon favorite1"></i><i class="icon star-half"></i></span>
+			</td>
+		</tr>
+		<tr>
+			<td style="white-space: nowrap;">
+				 .color1<br>
+				 .primary
+			</td>
+			<td>
+				<span class="color1">This is an example of colored text. <i class="icon cart1"></i><i class="icon favorite1"></i><i class="icon star-half"></i></span>
+			</td>
+		</tr>
+		<tr>
+			<td style="white-space: nowrap;">
+				 .color1-dark<br>
+				 .primary-dark
+			</td>
+			<td>
+				<span class="color1-dark">This is an example of colored text. <i class="icon cart1"></i><i class="icon favorite1"></i><i class="icon star-half"></i></span>
+			</td>
+		</tr>
+		<tr>
+			<td style="white-space: nowrap;">
+				 .color2-light<br>
+				 .secondary-light
+			</td>
+			<td>
+				<span class="color2-light">This is an example of colored text. <i class="icon cart1"></i><i class="icon favorite1"></i><i class="icon star-half"></i></span>
+			</td>
+		</tr>
+		<tr>
+			<td style="white-space: nowrap;">
+				 .color2<br>
+				 .secondary
+			</td>
+			<td>
+				<span class="color2">This is an example of colored text. <i class="icon cart1"></i><i class="icon favorite1"></i><i class="icon star-half"></i></span>
+			</td>
+		</tr>
+		<tr>
+			<td style="white-space: nowrap;">
+				 .color2-dark<br>
+				 .secondary-dark
+			</td>
+			<td>
+				<span class="color2-dark">This is an example of colored text. <i class="icon cart1"></i><i class="icon favorite1"></i><i class="icon star-half"></i></span>
+			</td>
+		</tr>
+		<tr>
+			<td style="white-space: nowrap;">
+				 .color3-light
+			</td>
+			<td>
+				<span class="color3-light">This is an example of colored text. <i class="icon cart1"></i><i class="icon favorite1"></i><i class="icon star-half"></i></span>
+			</td>
+		</tr>
+		<tr>
+			<td style="white-space: nowrap;">
+				 .color3
+			</td>
+			<td>
+				<span class="color3">This is an example of colored text. <i class="icon cart1"></i><i class="icon favorite1"></i><i class="icon star-half"></i></span>
+			</td>
+		</tr>
+		<tr>
+			<td style="white-space: nowrap;">
+				 .color3-dark
+			</td>
+			<td>
+				<span class="color3-dark">This is an example of colored text. <i class="icon cart1"></i><i class="icon favorite1"></i><i class="icon star-half"></i></span>
+			</td>
+		</tr>
+		<tr>
+			<td style="white-space: nowrap;">
+				 .color4-light
+			</td>
+			<td>
+				<span class="color4-light">This is an example of colored text. <i class="icon cart1"></i><i class="icon favorite1"></i><i class="icon star-half"></i></span>
+			</td>
+		</tr>
+		<tr>
+			<td style="white-space: nowrap;">
+				 .color4
+			</td>
+			<td>
+				<span class="color4">This is an example of colored text. <i class="icon cart1"></i><i class="icon favorite1"></i><i class="icon star-half"></i></span>
+			</td>
+		</tr>
+		<tr>
+			<td style="white-space: nowrap;">
+				 .color4-dark
+			</td>
+			<td>
+				<span class="color4-dark">This is an example of colored text. <i class="icon cart1"></i><i class="icon favorite1"></i><i class="icon star-half"></i></span>
+			</td>
+		</tr>
+		<tr>
+			<td style="white-space: nowrap;">
+				 .color5-light
+			</td>
+			<td>
+				<span class="color5-light">This is an example of colored text. <i class="icon cart1"></i><i class="icon favorite1"></i><i class="icon star-half"></i></span>
+			</td>
+		</tr>
+		<tr>
+			<td style="white-space: nowrap;">
+				 .color5
+			</td>
+			<td>
+				<span class="color5">This is an example of colored text. <i class="icon cart1"></i><i class="icon favorite1"></i><i class="icon star-half"></i></span>
+			</td>
+		</tr>
+		<tr>
+			<td style="white-space: nowrap;">
+				 .color5-dark
+			</td>
+			<td>
+				<span class="color5-dark">This is an example of colored text. <i class="icon cart1"></i><i class="icon favorite1"></i><i class="icon star-half"></i></span>
+			</td>
+		</tr>
+		<tr>
+			<td style="white-space: nowrap;">
+				 .white
+			</td>
+			<td style="background: {{ themeSettings.themeGray3 }}">
+				<span class="white">This is an example of colored text. <i class="icon cart1"></i><i class="icon favorite1"></i><i class="icon star-half"></i></span>
+			</td>
+		</tr>
+		<tr>
+			<td style="white-space: nowrap;">
+				 .gray1
+			</td>
+			<td style="background: {{ themeSettings.themeGray3 }}">
+				<span class="gray1">This is an example of colored text. <i class="icon cart1"></i><i class="icon favorite1"></i><i class="icon star-half"></i></span>
+			</td>
+		</tr>
+		<tr>
+			<td style="white-space: nowrap;">
+				 .gray2
+			</td>
+			<td style="background: {{ themeSettings.themeGray3 }}">
+				<span class="gray2">This is an example of colored text. <i class="icon cart1"></i><i class="icon favorite1"></i><i class="icon star-half"></i></span>
+			</td>
+		</tr>
+		<tr>
+			<td style="white-space: nowrap;">
+				 .gray3
+			</td>
+			<td>
+				<span class="gray3">This is an example of colored text. <i class="icon cart1"></i><i class="icon favorite1"></i><i class="icon star-half"></i></span>
+			</td>
+		</tr>
+		<tr>
+			<td style="white-space: nowrap;">
+				 .gray4
+			</td>
+			<td>
+				<span class="gray4">This is an example of colored text. <i class="icon cart1"></i><i class="icon favorite1"></i><i class="icon star-half"></i></span>
+			</td>
+		</tr>
+		<tr>
+			<td style="white-space: nowrap;">
+				 .black
+			</td>
+			<td>
+				<span class="black">This is an example of colored text. <i class="icon cart1"></i><i class="icon favorite1"></i><i class="icon star-half"></i></span>
+			</td>
+		</tr>
+		<tr>
+			<td style="white-space: nowrap;">
+				 .color-success
+			</td>
+			<td>
+				<span class="color-success">This is an example of colored text. <i class="icon cart1"></i><i class="icon favorite1"></i><i class="icon star-half"></i></span>
+			</td>
+		</tr>
+		<tr>
+			<td style="white-space: nowrap;">
+				 .color-warning
+			</td>
+			<td>
+				<span class="color-warning">This is an example of colored text. <i class="icon cart1"></i><i class="icon favorite1"></i><i class="icon star-half"></i></span>
+			</td>
+		</tr>
+		<tr>
+			<td style="white-space: nowrap;">
+				 .info-message
+			</td>
+			<td>
+				<div class="info-message">
+					This is an info message.
+				</div>
+			</td>
+		</tr>
+		<tr>
+			<td style="white-space: nowrap;">
+				 .warning-message
+			</td>
+			<td>
+				<div class="warning-message">
+					This is a warning message.
+				</div>
+			</td>
+		</tr>
+		</table>
+	</div>
+	<div class="col-xs-12">
+		<h1>Icons - Alerts</h1>
+		<table class="border icons">
+		<tr>
+			<td>
+				<i class="icon alert-info-circle-punched"></i>
+				<div class="icon-details">
+					<label>HTML</label>
+					<input type="text" value='<i class="icon alert-info-circle-punched"></i>'> <label>LESS</label>
+					<input type="text" value="@icon-alert-info-circle-punched">
+				</div>
+			</td>
+			<td>
+				<i class="icon alert-question-circle-punched"></i>
+				<div class="icon-details">
+					<label>HTML</label>
+					<input type="text" value='<i class="icon alert-question-circle-punched"></i>'> <label>LESS</label>
+					<input type="text" value="@icon-alert-question-circle-punched">
+				</div>
+			</td>
+			<td>
+				<i class="icon alert-warning-circle-punched"></i>
+				<div class="icon-details">
+					<label>HTML</label>
+					<input type="text" value='<i class="icon alert-warning-circle-punched"></i>'> <label>LESS</label>
+					<input type="text" value="@icon-alert-warning-circle-punched">
+				</div>
+			</td>
+			<td>
+				<i class="icon alert-warning-circle"></i>
+				<div class="icon-details">
+					<label>HTML</label>
+					<input type="text" value='<i class="icon alert-warning-circle"></i>'> <label>LESS</label>
+					<input type="text" value="@icon-alert-warning-circle">
+				</div>
+			</td>
+			<td>
+				<i class="icon alert-warning-triangle-punched"></i>
+				<div class="icon-details">
+					<label>HTML</label>
+					<input type="text" value='<i class="icon alert-warning-triangle-punched"></i>'> <label>LESS</label>
+					<input type="text" value="@icon-alert-warning-triangle-punched">
+				</div>
+			</td>
+		</tr>
+		</table>
+	</div>
+	<div class="col-xs-12">
+		<h1>Icons - Arrows</h1>
+		<table class="border icons">
+		<tr>
+			<td>
+				<i class="icon arrow1-down"></i>
+				<div class="icon-details">
+					<label>HTML</label>
+					<input type="text" value='<i class="icon arrow1-down"></i>'> <label>LESS</label>
+					<input type="text" value="@icon-arrow1-down">
+				</div>
+			</td>
+			<td>
+				<i class="icon arrow1-left"></i>
+				<div class="icon-details">
+					<label>HTML</label>
+					<input type="text" value='<i class="icon arrow1-left"></i>'> <label>LESS</label>
+					<input type="text" value="@icon-arrow1-left">
+				</div>
+			</td>
+			<td>
+				<i class="icon arrow1-right"></i>
+				<div class="icon-details">
+					<label>HTML</label>
+					<input type="text" value='<i class="icon arrow1-right"></i>'> <label>LESS</label>
+					<input type="text" value="@icon-arrow1-right">
+				</div>
+			</td>
+			<td>
+				<i class="icon arrow1-up"></i>
+				<div class="icon-details">
+					<label>HTML</label>
+					<input type="text" value='<i class="icon arrow1-up"></i>'> <label>LESS</label>
+					<input type="text" value="@icon-arrow1-up">
+				</div>
+			</td>
+		</tr>
+		<tr>
+			<td>
+				<i class="icon arrow2-down"></i>
+				<div class="icon-details">
+					<label>HTML</label>
+					<input type="text" value='<i class="icon arrow2-down"></i>'> <label>LESS</label>
+					<input type="text" value="@icon-arrow2-down">
+				</div>
+			</td>
+			<td>
+				<i class="icon arrow2-left"></i>
+				<div class="icon-details">
+					<label>HTML</label>
+					<input type="text" value='<i class="icon arrow2-left"></i>'> <label>LESS</label>
+					<input type="text" value="@icon-arrow2-left">
+				</div>
+			</td>
+			<td>
+				<i class="icon arrow2-right"></i>
+				<div class="icon-details">
+					<label>HTML</label>
+					<input type="text" value='<i class="icon arrow2-right"></i>'> <label>LESS</label>
+					<input type="text" value="@icon-arrow2-right">
+				</div>
+			</td>
+			<td>
+				<i class="icon arrow2-up"></i>
+				<div class="icon-details">
+					<label>HTML</label>
+					<input type="text" value='<i class="icon arrow2-up"></i>'> <label>LESS</label>
+					<input type="text" value="@icon-arrow2-up">
+				</div>
+			</td>
+		</tr>
+		<tr>
+			<td>
+				<i class="icon arrow3-down-circle-punched"></i>
+				<div class="icon-details">
+					<label>HTML</label>
+					<input type="text" value='<i class="icon arrow3-down-circle-punched"></i>'> <label>LESS</label>
+					<input type="text" value="@icon-arrow3-down-circle-punched">
+				</div>
+			</td>
+			<td>
+				<i class="icon arrow3-left-circle-punched"></i>
+				<div class="icon-details">
+					<label>HTML</label>
+					<input type="text" value='<i class="icon arrow3-left-circle-punched"></i>'> <label>LESS</label>
+					<input type="text" value="@icon-arrow3-left-circle-punched">
+				</div>
+			</td>
+			<td>
+				<i class="icon arrow3-right-circle-punched"></i>
+				<div class="icon-details">
+					<label>HTML</label>
+					<input type="text" value='<i class="icon arrow3-right-circle-punched"></i>'> <label>LESS</label>
+					<input type="text" value="@icon-arrow3-right-circle-punched">
+				</div>
+			</td>
+			<td>
+				<i class="icon arrow3-up-circle-punched"></i>
+				<div class="icon-details">
+					<label>HTML</label>
+					<input type="text" value='<i class="icon arrow3-up-circle-punched"></i>'> <label>LESS</label>
+					<input type="text" value="@icon-arrow3-up-circle-punched">
+				</div>
+			</td>
+		</tr>
+		</table>
+	</div>
+	<div class="col-xs-12">
+		<h1>Icons - Chevrons</h1>
+		<table class="border icons">
+		<tr>
+			<td>
+				<i class="icon chevron-toggle1"></i>
+				<div class="icon-details">
+					<label>HTML</label>
+					<input type="text" value='<i class="icon chevron-toggle1"></i>'> <label>LESS</label>
+					<input type="text" value="@icon-chevron-toggle1">
+				</div>
+			</td>
+			<td>
+				<i class="icon chevron-toggle2"></i>
+				<div class="icon-details">
+					<label>HTML</label>
+					<input type="text" value='<i class="icon chevron-toggle2"></i>'> <label>LESS</label>
+					<input type="text" value="@icon-chevron-toggle2">
+				</div>
+			</td>
+		</tr>
+		<tr>
+			<td>
+				<i class="icon chevron1-down"></i>
+				<div class="icon-details">
+					<label>HTML</label>
+					<input type="text" value='<i class="icon chevron1-down"></i>'> <label>LESS</label>
+					<input type="text" value="@icon-chevron1-down">
+				</div>
+			</td>
+			<td>
+				<i class="icon chevron1-left"></i>
+				<div class="icon-details">
+					<label>HTML</label>
+					<input type="text" value='<i class="icon chevron1-left"></i>'> <label>LESS</label>
+					<input type="text" value="@icon-chevron1-left">
+				</div>
+			</td>
+			<td>
+				<i class="icon chevron1-right"></i>
+				<div class="icon-details">
+					<label>HTML</label>
+					<input type="text" value='<i class="icon chevron1-right"></i>'> <label>LESS</label>
+					<input type="text" value="@icon-chevron1-right">
+				</div>
+			</td>
+			<td>
+				<i class="icon chevron1-up"></i>
+				<div class="icon-details">
+					<label>HTML</label>
+					<input type="text" value='<i class="icon chevron1-up"></i>'> <label>LESS</label>
+					<input type="text" value="@icon-chevron1-up">
+				</div>
+			</td>
+		</tr>
+		<tr>
+			<td>
+				<i class="icon chevron2-down"></i>
+				<div class="icon-details">
+					<label>HTML</label>
+					<input type="text" value='<i class="icon chevron2-down"></i>'> <label>LESS</label>
+					<input type="text" value="@icon-chevron2-down">
+				</div>
+			</td>
+			<td>
+				<i class="icon chevron2-left"></i>
+				<div class="icon-details">
+					<label>HTML</label>
+					<input type="text" value='<i class="icon chevron2-left"></i>'> <label>LESS</label>
+					<input type="text" value="@icon-chevron2-left">
+				</div>
+			</td>
+			<td>
+				<i class="icon chevron2-right"></i>
+				<div class="icon-details">
+					<label>HTML</label>
+					<input type="text" value='<i class="icon chevron2-right"></i>'> <label>LESS</label>
+					<input type="text" value="@icon-chevron2-right">
+				</div>
+			</td>
+			<td>
+				<i class="icon chevron2-up"></i>
+				<div class="icon-details">
+					<label>HTML</label>
+					<input type="text" value='<i class="icon chevron2-up"></i>'> <label>LESS</label>
+					<input type="text" value="@icon-chevron2-up">
+				</div>
+			</td>
+		</tr>
+		<tr>
+			<td>
+				<i class="icon chevron3-down-circle-punch"></i>
+				<div class="icon-details">
+					<label>HTML</label>
+					<input type="text" value='<i class="icon chevron3-down-circle-punch"></i>'> <label>LESS</label>
+					<input type="text" value="@icon-chevron3-down-circle-punch">
+				</div>
+			</td>
+			<td>
+				<i class="icon chevron3-left-circle-punch"></i>
+				<div class="icon-details">
+					<label>HTML</label>
+					<input type="text" value='<i class="icon chevron3-left-circle-punch"></i>'> <label>LESS</label>
+					<input type="text" value="@icon-chevron3-left-circle-punch">
+				</div>
+			</td>
+			<td>
+				<i class="icon chevron3-right-circle-punch"></i>
+				<div class="icon-details">
+					<label>HTML</label>
+					<input type="text" value='<i class="icon chevron3-right-circle-punch"></i>'> <label>LESS</label>
+					<input type="text" value="@icon-chevron3-right-circle-punch">
+				</div>
+			</td>
+			<td>
+				<i class="icon chevron3-up-circle-punch"></i>
+				<div class="icon-details">
+					<label>HTML</label>
+					<input type="text" value='<i class="icon chevron3-up-circle-punch"></i>'> <label>LESS</label>
+					<input type="text" value="@icon-chevron3-up-circle-punch">
+				</div>
+			</td>
+		</tr>
+		<tr>
+			<td>
+				<i class="icon chevron4-down-circle-punched"></i>
+				<div class="icon-details">
+					<label>HTML</label>
+					<input type="text" value='<i class="icon chevron4-down-circle-punched"></i>'> <label>LESS</label>
+					<input type="text" value="@icon-chevron4-down-circle-punched">
+				</div>
+			</td>
+			<td>
+				<i class="icon chevron4-left-circle-punched"></i>
+				<div class="icon-details">
+					<label>HTML</label>
+					<input type="text" value='<i class="icon chevron4-left-circle-punched"></i>'> <label>LESS</label>
+					<input type="text" value="@icon-chevron4-left-circle-punched">
+				</div>
+			</td>
+			<td>
+				<i class="icon chevron4-right-circle-punched"></i>
+				<div class="icon-details">
+					<label>HTML</label>
+					<input type="text" value='<i class="icon chevron4-right-circle-punched"></i>'> <label>LESS</label>
+					<input type="text" value="@icon-chevron4-right-circle-punched">
+				</div>
+			</td>
+			<td>
+				<i class="icon chevron4-up-circle-punched"></i>
+				<div class="icon-details">
+					<label>HTML</label>
+					<input type="text" value='<i class="icon chevron4-up-circle-punched"></i>'> <label>LESS</label>
+					<input type="text" value="@icon-chevron4-up-circle-punched">
+				</div>
+			</td>
+		</tr>
+		</table>
+	</div>
+	<div class="col-xs-12">
+		<h1>Icons - Carts</h1>
+		<table class="border icons">
+		<tr>
+			<td>
+				<i class="icon basket1"></i>
+				<div class="icon-details">
+					<label>HTML</label>
+					<input type="text" value='<i class="icon basket1"></i>'> <label>LESS</label>
+					<input type="text" value="@icon-basket1">
+				</div>
+			</td>
+			<td>
+				<i class="icon basket2"></i>
+				<div class="icon-details">
+					<label>HTML</label>
+					<input type="text" value='<i class="icon basket2"></i>'> <label>LESS</label>
+					<input type="text" value="@icon-basket2">
+				</div>
+			</td>
+		</tr>
+		<tr>
+			<td>
+				<i class="icon cart1"></i>
+				<div class="icon-details">
+					<label>HTML</label>
+					<input type="text" value='<i class="icon cart1"></i>'> <label>LESS</label>
+					<input type="text" value="@icon-cart1">
+				</div>
+			</td>
+			<td>
+				<i class="icon cart2"></i>
+				<div class="icon-details">
+					<label>HTML</label>
+					<input type="text" value='<i class="icon cart2"></i>'> <label>LESS</label>
+					<input type="text" value="@icon-cart2">
+				</div>
+			</td>
+			<td>
+				<i class="icon cart3"></i>
+				<div class="icon-details">
+					<label>HTML</label>
+					<input type="text" value='<i class="icon cart3"></i>'> <label>LESS</label>
+					<input type="text" value="@icon-cart3">
+				</div>
+			</td>
+			<td>
+				<i class="icon cart4"></i>
+				<div class="icon-details">
+					<label>HTML</label>
+					<input type="text" value='<i class="icon cart4"></i>'> <label>LESS</label>
+					<input type="text" value="@icon-cart4">
+				</div>
+			</td>
+		</tr>
+		<tr>
+			<td>
+				<i class="icon cart1-right"></i>
+				<div class="icon-details">
+					<label>HTML</label>
+					<input type="text" value='<i class="icon cart1-right"></i>'> <label>LESS</label>
+					<input type="text" value="@icon-cart1-right">
+				</div>
+			</td>
+			<td>
+				<i class="icon cart2-right"></i>
+				<div class="icon-details">
+					<label>HTML</label>
+					<input type="text" value='<i class="icon cart2-right"></i>'> <label>LESS</label>
+					<input type="text" value="@icon-cart2-right">
+				</div>
+			</td>
+			<td>
+				<i class="icon cart3-right"></i>
+				<div class="icon-details">
+					<label>HTML</label>
+					<input type="text" value='<i class="icon cart3-right"></i>'> <label>LESS</label>
+					<input type="text" value="@icon-cart3-right">
+				</div>
+			</td>
+			<td>
+				<i class="icon cart4-right"></i>
+				<div class="icon-details">
+					<label>HTML</label>
+					<input type="text" value='<i class="icon cart4-right"></i>'> <label>LESS</label>
+					<input type="text" value="@icon-cart4-right">
+				</div>
+			</td>
+		</tr>
+		</table>
+	</div>
+	<div class="col-xs-12">
+		<h1>Icons - Checkmarks</h1>
+		<table class="border icons">
+		<tr>
+			<td>
+				<i class="icon checkbox-checked"></i>
+				<div class="icon-details">
+					<label>HTML</label>
+					<input type="text" value='<i class="icon checkbox-checked"></i>'> <label>LESS</label>
+					<input type="text" value="@icon-checkbox-checked">
+				</div>
+			</td>
+			<td>
+				<i class="icon checkbox-unchecked"></i>
+				<div class="icon-details">
+					<label>HTML</label>
+					<input type="text" value='<i class="icon checkbox-unchecked"></i>'> <label>LESS</label>
+					<input type="text" value="@icon-checkbox-unchecked">
+				</div>
+			</td>
+			<td>
+				<i class="icon checkmark1"></i>
+				<div class="icon-details">
+					<label>HTML</label>
+					<input type="text" value='<i class="icon checkmark1"></i>'> <label>LESS</label>
+					<input type="text" value="@icon-checkmark1">
+				</div>
+			</td>
+			<td>
+				<i class="icon checkmark2-circle-punched"></i>
+				<div class="icon-details">
+					<label>HTML</label>
+					<input type="text" value='<i class="icon checkmark2-circle-punched"></i>'> <label>LESS</label>
+					<input type="text" value="@icon-checkmark2-circle-punched">
+				</div>
+			</td>
+			<td>
+				<i class="icon checkmark2-punched"></i>
+				<div class="icon-details">
+					<label>HTML</label>
+					<input type="text" value='<i class="icon checkmark2-punched"></i>'> <label>LESS</label>
+					<input type="text" value="@icon-checkmark2-punched">
+				</div>
+			</td>
+			<td>
+				<i class="icon checkmark2"></i>
+				<div class="icon-details">
+					<label>HTML</label>
+					<input type="text" value='<i class="icon checkmark2"></i>'> <label>LESS</label>
+					<input type="text" value="@icon-checkmark2">
+				</div>
+			</td>
+		</tr>
+		</table>
+	</div>
+	<div class="col-xs-12">
+		<h1>Icons - Documents</h1>
+		<table class="border icons">
+		<tr>
+			<td>
+				<i class="icon doc-blank"></i>
+				<div class="icon-details">
+					<label>HTML</label>
+					<input type="text" value='<i class="icon doc-blank"></i>'> <label>LESS</label>
+					<input type="text" value="@icon-doc-blank">
+				</div>
+			</td>
+			<td>
+				<i class="icon doc-excel"></i>
+				<div class="icon-details">
+					<label>HTML</label>
+					<input type="text" value='<i class="icon doc-excel"></i>'> <label>LESS</label>
+					<input type="text" value="@icon-doc-excel">
+				</div>
+			</td>
+			<td>
+				<i class="icon doc-filled"></i>
+				<div class="icon-details">
+					<label>HTML</label>
+					<input type="text" value='<i class="icon doc-filled"></i>'> <label>LESS</label>
+					<input type="text" value="@icon-doc-filled">
+				</div>
+			</td>
+			<td>
+				<i class="icon doc-pdf"></i>
+				<div class="icon-details">
+					<label>HTML</label>
+					<input type="text" value='<i class="icon doc-pdf"></i>'> <label>LESS</label>
+					<input type="text" value="@icon-doc-pdf">
+				</div>
+			</td>
+			<td>
+				<i class="icon doc-word"></i>
+				<div class="icon-details">
+					<label>HTML</label>
+					<input type="text" value='<i class="icon doc-word"></i>'> <label>LESS</label>
+					<input type="text" value="@icon-doc-word">
+				</div>
+			</td>
+			<td>
+				<i class="icon download"></i>
+				<div class="icon-details">
+					<label>HTML</label>
+					<input type="text" value='<i class="icon download"></i>'> <label>LESS</label>
+					<input type="text" value="@icon-download">
+				</div>
+			</td>
+		</tr>
+		</table>
+	</div>
+	<div class="col-xs-12">
+		<h1>Icons - Maps</h1>
+		<table class="border icons">
+		<tr>
+			<td>
+				<i class="icon map-compass"></i>
+				<div class="icon-details">
+					<label>HTML</label>
+					<input type="text" value='<i class="icon map-compass"></i>'> <label>LESS</label>
+					<input type="text" value="@icon-map-compass">
+				</div>
+			</td>
+			<td>
+				<i class="icon map-marker1"></i>
+				<div class="icon-details">
+					<label>HTML</label>
+					<input type="text" value='<i class="icon map-marker1"></i>'> <label>LESS</label>
+					<input type="text" value="@icon-map-marker1">
+				</div>
+			</td>
+			<td>
+				<i class="icon map-marker2"></i>
+				<div class="icon-details">
+					<label>HTML</label>
+					<input type="text" value='<i class="icon map-marker2"></i>'> <label>LESS</label>
+					<input type="text" value="@icon-map-marker2">
+				</div>
+			</td>
+			<td>
+				<i class="icon map-marker3"></i>
+				<div class="icon-details">
+					<label>HTML</label>
+					<input type="text" value='<i class="icon map-marker3"></i>'> <label>LESS</label>
+					<input type="text" value="@icon-map-marker3">
+				</div>
+			</td>
+			<td>
+				<i class="icon map1"></i>
+				<div class="icon-details">
+					<label>HTML</label>
+					<input type="text" value='<i class="icon map1"></i>'> <label>LESS</label>
+					<input type="text" value="@icon-map1">
+				</div>
+			</td>
+			<td>
+				<i class="icon map2"></i>
+				<div class="icon-details">
+					<label>HTML</label>
+					<input type="text" value='<i class="icon map2"></i>'> <label>LESS</label>
+					<input type="text" value="@icon-map2">
+				</div>
+			</td>
+		</tr>
+		</table>
+	</div>
+	<div class="col-xs-12">
+		<h1>Icons - Menus</h1>
+		<table class="border icons">
+		<tr>
+			<td>
+				<i class="icon menu-toggle-down"></i>
+				<div class="icon-details">
+					<label>HTML</label>
+					<input type="text" value='<i class="icon menu-toggle-down"></i>'> <label>LESS</label>
+					<input type="text" value="@icon-menu-toggle-down">
+				</div>
+			</td>
+			<td>
+				<i class="icon menu-toggle-up"></i>
+				<div class="icon-details">
+					<label>HTML</label>
+					<input type="text" value='<i class="icon menu-toggle-up"></i>'> <label>LESS</label>
+					<input type="text" value="@icon-menu-toggle-up">
+				</div>
+			</td>
+			<td>
+				<i class="icon menu-toggle"></i>
+				<div class="icon-details">
+					<label>HTML</label>
+					<input type="text" value='<i class="icon menu-toggle"></i>'> <label>LESS</label>
+					<input type="text" value="@icon-menu-toggle">
+				</div>
+			</td>
+			<td>
+				<i class="icon menu1"></i>
+				<div class="icon-details">
+					<label>HTML</label>
+					<input type="text" value='<i class="icon menu1"></i>'> <label>LESS</label>
+					<input type="text" value="@icon-menu1">
+				</div>
+			</td>
+			<td>
+				<i class="icon menu2"></i>
+				<div class="icon-details">
+					<label>HTML</label>
+					<input type="text" value='<i class="icon menu2"></i>'> <label>LESS</label>
+					<input type="text" value="@icon-menu2">
+				</div>
+			</td>
+			<td>
+				<i class="icon menu3"></i>
+				<div class="icon-details">
+					<label>HTML</label>
+					<input type="text" value='<i class="icon menu3"></i>'> <label>LESS</label>
+					<input type="text" value="@icon-menu3">
+				</div>
+			</td>
+			<td>
+				<i class="icon menu4"></i>
+				<div class="icon-details">
+					<label>HTML</label>
+					<input type="text" value='<i class="icon menu4"></i>'> <label>LESS</label>
+					<input type="text" value="@icon-menu4">
+				</div>
+			</td>
+			<td>
+				<i class="icon menu5"></i>
+				<div class="icon-details">
+					<label>HTML</label>
+					<input type="text" value='<i class="icon menu5"></i>'> <label>LESS</label>
+					<input type="text" value="@icon-menu5">
+				</div>
+			</td>
+			<td>
+				<i class="icon menu6"></i>
+				<div class="icon-details">
+					<label>HTML</label>
+					<input type="text" value='<i class="icon menu6"></i>'> <label>LESS</label>
+					<input type="text" value="@icon-menu6">
+				</div>
+			</td>
+			<td>
+				<i class="icon menu7"></i>
+				<div class="icon-details">
+					<label>HTML</label>
+					<input type="text" value='<i class="icon menu7"></i>'> <label>LESS</label>
+					<input type="text" value="@icon-menu7">
+				</div>
+			</td>
+		</tr>
+		</table>
+	</div>
+	<div class="col-xs-12">
+		<h1>Icons - My Account</h1>
+		<table class="border icons">
+		<tr>
+			<td>
+				<i class="icon profile"></i>
+				<div class="icon-details">
+					<label>HTML</label>
+					<input type="text" value='<i class="icon profile"></i>'> <label>LESS</label>
+					<input type="text" value="@icon-profile">
+				</div>
+			</td>
+			<td>
+				<i class="icon profile-punched"></i>
+				<div class="icon-details">
+					<label>HTML</label>
+					<input type="text" value='<i class="icon profile-punched"></i>'> <label>LESS</label>
+					<input type="text" value="@icon-profile-punched">
+				</div>
+			</td>
+			<td>
+				<i class="icon profile-circle-punched"></i>
+				<div class="icon-details">
+					<label>HTML</label>
+					<input type="text" value='<i class="icon profile-circle-punched"></i>'> <label>LESS</label>
+					<input type="text" value="@icon-profile-circle-punched">
+				</div>
+			</td>
+			<td>
+				<i class="icon favorite1-punched"></i>
+				<div class="icon-details">
+					<label>HTML</label>
+					<input type="text" value='<i class="icon favorite1-punched"></i>'> <label>LESS</label>
+					<input type="text" value="@icon-favorite1-punched">
+				</div>
+			</td>
+			<td>
+				<i class="icon favorite1"></i>
+				<div class="icon-details">
+					<label>HTML</label>
+					<input type="text" value='<i class="icon favorite1"></i>'> <label>LESS</label>
+					<input type="text" value="@icon-favorite1">
+				</div>
+			</td>
+		</tr>
+		</table>
+	</div>
+	<div class="col-xs-12">
+		<h1>Icons - Payments</h1>
+		<table class="border icons">
+		<tr>
+			<td>
+				<i class="icon cc-amex"></i>
+				<div class="icon-details">
+					<label>HTML</label>
+					<input type="text" value='<i class="icon cc-amex"></i>'> <label>LESS</label>
+					<input type="text" value="@icon-cc-amex">
+				</div>
+			</td>
+			<td>
+				<i class="icon cc-discover"></i>
+				<div class="icon-details">
+					<label>HTML</label>
+					<input type="text" value='<i class="icon cc-discover"></i>'> <label>LESS</label>
+					<input type="text" value="@icon-cc-discover">
+				</div>
+			</td>
+			<td>
+				<i class="icon cc-mc"></i>
+				<div class="icon-details">
+					<label>HTML</label>
+					<input type="text" value='<i class="icon cc-mc"></i>'> <label>LESS</label>
+					<input type="text" value="@icon-cc-mc">
+				</div>
+			</td>
+			<td>
+				<i class="icon cc-paypal"></i>
+				<div class="icon-details">
+					<label>HTML</label>
+					<input type="text" value='<i class="icon cc-paypal"></i>'> <label>LESS</label>
+					<input type="text" value="@icon-cc-paypal">
+				</div>
+			</td>
+			<td>
+				<i class="icon cc-visa"></i>
+				<div class="icon-details">
+					<label>HTML</label>
+					<input type="text" value='<i class="icon cc-visa"></i>'> <label>LESS</label>
+					<input type="text" value="@icon-cc-visa">
+				</div>
+			</td>
+		</tr>
+		</table>
+	</div>
+	<div class="col-xs-12">
+		<h1>Icons - Product Pages</h1>
+		<table class="border icons">
+		<tr>
+			<td>
+				<i class="icon star-empty"></i>
+				<div class="icon-details">
+					<label>HTML</label>
+					<input type="text" value='<i class="icon star-empty"></i>'> <label>LESS</label>
+					<input type="text" value="@icon-star-empty">
+				</div>
+			</td>
+			<td>
+				<i class="icon star-half"></i>
+				<div class="icon-details">
+					<label>HTML</label>
+					<input type="text" value='<i class="icon star-half"></i>'> <label>LESS</label>
+					<input type="text" value="@icon-star-half">
+				</div>
+			</td>
+			<td>
+				<i class="icon star-full"></i>
+				<div class="icon-details">
+					<label>HTML</label>
+					<input type="text" value='<i class="icon star-full"></i>'> <label>LESS</label>
+					<input type="text" value="@icon-star-full">
+				</div>
+			</td>
+			<td>
+				<i class="icon more-photos"></i>
+				<div class="icon-details">
+					<label>HTML</label>
+					<input type="text" value='<i class="icon more-photos"></i>'> <label>LESS</label>
+					<input type="text" value="@icon-more-photos">
+				</div>
+			</td>
+			<td>
+				<i class="icon printer"></i>
+				<div class="icon-details">
+					<label>HTML</label>
+					<input type="text" value='<i class="icon printer"></i>'> <label>LESS</label>
+					<input type="text" value="@icon-printer">
+				</div>
+			</td>
+			<td>
+				<i class="icon favorite2-punched"></i>
+				<div class="icon-details">
+					<label>HTML</label>
+					<input type="text" value='<i class="icon favorite2-punched"></i>'> <label>LESS</label>
+					<input type="text" value="@icon-favorite2-punched">
+				</div>
+			</td>
+			<td>
+				<i class="icon favorite2"></i>
+				<div class="icon-details">
+					<label>HTML</label>
+					<input type="text" value='<i class="icon favorite2"></i>'> <label>LESS</label>
+					<input type="text" value="@icon-favorite2">
+				</div>
+			</td>
+		</tr>
+		</table>
+	</div>
+	<div class="col-xs-12">
+		<h1>Icons - Operating System</h1>
+		<table class="border icons">
+		<tr>
+			<td>
+				<i class="icon os-android"></i>
+				<div class="icon-details">
+					<label>HTML</label>
+					<input type="text" value='<i class="icon os-android"></i>'> <label>LESS</label>
+					<input type="text" value="@icon-os-android">
+				</div>
+			</td>
+			<td>
+				<i class="icon os-appleinc"></i>
+				<div class="icon-details">
+					<label>HTML</label>
+					<input type="text" value='<i class="icon os-appleinc"></i>'> <label>LESS</label>
+					<input type="text" value="@icon-os-appleinc">
+				</div>
+			</td>
+			<td>
+				<i class="icon os-linux"></i>
+				<div class="icon-details">
+					<label>HTML</label>
+					<input type="text" value='<i class="icon os-linux"></i>'> <label>LESS</label>
+					<input type="text" value="@icon-os-linux">
+				</div>
+			</td>
+			<td>
+				<i class="icon os-windows1"></i>
+				<div class="icon-details">
+					<label>HTML</label>
+					<input type="text" value='<i class="icon os-windows1"></i>'> <label>LESS</label>
+					<input type="text" value="@icon-os-windows1">
+				</div>
+			</td>
+			<td>
+				<i class="icon os-windows2"></i>
+				<div class="icon-details">
+					<label>HTML</label>
+					<input type="text" value='<i class="icon os-windows2"></i>'> <label>LESS</label>
+					<input type="text" value="@icon-os-windows2">
+				</div>
+			</td>
+		</tr>
+		</table>
+	</div>
+	<div class="col-xs-12">
+		<h1>Icons - Other</h1>
+		<table class="border icons">
+		<tr>
+			<td>
+				<i class="icon home1"></i>
+				<div class="icon-details">
+					<label>HTML</label>
+					<input type="text" value='<i class="icon home1"></i>'> <label>LESS</label>
+					<input type="text" value="@icon-home1">
+				</div>
+			</td>
+			<td>
+				<i class="icon home2"></i>
+				<div class="icon-details">
+					<label>HTML</label>
+					<input type="text" value='<i class="icon home2"></i>'> <label>LESS</label>
+					<input type="text" value="@icon-home2">
+				</div>
+			</td>
+			</tr>
+			<tr>
+			<td>
+				<i class="icon back"></i>
+				<div class="icon-details">
+					<label>HTML</label>
+					<input type="text" value='<i class="icon back"></i>'> <label>LESS</label>
+					<input type="text" value="@icon-back">
+				</div>
+			</td>
+			<td>
+				<i class="icon disabled"></i>
+				<div class="icon-details">
+					<label>HTML</label>
+					<input type="text" value='<i class="icon disabled"></i>'> <label>LESS</label>
+					<input type="text" value="@icon-disabled">
+				</div>
+			</td>
+			<td>
+				<i class="icon edit"></i>
+				<div class="icon-details">
+					<label>HTML</label>
+					<input type="text" value='<i class="icon edit"></i>'> <label>LESS</label>
+					<input type="text" value="@icon-edit">
+				</div>
+			</td>
+			<td>
+				<i class="icon refresh"></i>
+				<div class="icon-details">
+					<label>HTML</label>
+					<input type="text" value='<i class="icon refresh"></i>'> <label>LESS</label>
+					<input type="text" value="@icon-refresh">
+				</div>
+			</td>
+			<td>
+				<i class="icon save"></i>
+				<div class="icon-details">
+					<label>HTML</label>
+					<input type="text" value='<i class="icon save"></i>'> <label>LESS</label>
+					<input type="text" value="@icon-save">
+				</div>
+			</td>
+			</tr>
+			<tr>
+			<td>
+				<i class="icon trash1"></i>
+				<div class="icon-details">
+					<label>HTML</label>
+					<input type="text" value='<i class="icon trash1"></i>'> <label>LESS</label>
+					<input type="text" value="@icon-trash1">
+				</div>
+			</td>
+			<td>
+				<i class="icon trash2"></i>
+				<div class="icon-details">
+					<label>HTML</label>
+					<input type="text" value='<i class="icon trash2"></i>'> <label>LESS</label>
+					<input type="text" value="@icon-trash2">
+				</div>
+			</td>
+			<td>
+				<i class="icon trash3"></i>
+				<div class="icon-details">
+					<label>HTML</label>
+					<input type="text" value='<i class="icon trash3"></i>'> <label>LESS</label>
+					<input type="text" value="@icon-trash3">
+				</div>
+			</td>
+		</tr>
+		</table>
+	</div>
+	<div class="col-xs-12">
+		<h1>Icons - Searches</h1>
+		<table class="border icons">
+		<tr>
+			<td>
+				<i class="icon search1"></i>
+				<div class="icon-details">
+					<label>HTML</label>
+					<input type="text" value='<i class="icon search1"></i>'> <label>LESS</label>
+					<input type="text" value="@icon-search1">
+				</div>
+			</td>
+			<td>
+				<i class="icon search2"></i>
+				<div class="icon-details">
+					<label>HTML</label>
+					<input type="text" value='<i class="icon search2"></i>'> <label>LESS</label>
+					<input type="text" value="@icon-search2">
+				</div>
+			</td>
+			<td>
+				<i class="icon search3"></i>
+				<div class="icon-details">
+					<label>HTML</label>
+					<input type="text" value='<i class="icon search3"></i>'> <label>LESS</label>
+					<input type="text" value="@icon-search3">
+				</div>
+			</td>
+			<td>
+				<i class="icon search4"></i>
+				<div class="icon-details">
+					<label>HTML</label>
+					<input type="text" value='<i class="icon search4"></i>'> <label>LESS</label>
+					<input type="text" value="@icon-search4">
+				</div>
+			</td>
+			<td>
+				<i class="icon search5"></i>
+				<div class="icon-details">
+					<label>HTML</label>
+					<input type="text" value='<i class="icon search5"></i>'> <label>LESS</label>
+					<input type="text" value="@icon-search5">
+				</div>
+			</td>
+		</tr>
+		</table>
+	</div>
+	<div class="col-xs-12">
+		<h1>Icons - Shipping</h1>
+		<table class="border icons">
+		<tr>
+			<td>
+				<i class="icon shipping-box"></i>
+				<div class="icon-details">
+					<label>HTML</label>
+					<input type="text" value='<i class="icon shipping-box"></i>'> <label>LESS</label>
+					<input type="text" value="@icon-shipping-box">
+				</div>
+			</td>
+			<td>
+				<i class="icon shipping-truck1-left"></i>
+				<div class="icon-details">
+					<label>HTML</label>
+					<input type="text" value='<i class="icon shipping-truck1-left"></i>'> <label>LESS</label>
+					<input type="text" value="@icon-shipping-truck1-left">
+				</div>
+			</td>
+			<td>
+				<i class="icon shipping-truck1-right"></i>
+				<div class="icon-details">
+					<label>HTML</label>
+					<input type="text" value='<i class="icon shipping-truck1-right"></i>'> <label>LESS</label>
+					<input type="text" value="@icon-shipping-truck1-right">
+				</div>
+			</td>
+			<td>
+				<i class="icon shipping-truck2-left"></i>
+				<div class="icon-details">
+					<label>HTML</label>
+					<input type="text" value='<i class="icon shipping-truck2-left"></i>'> <label>LESS</label>
+					<input type="text" value="@icon-shipping-truck2-left">
+				</div>
+			</td>
+			<td>
+				<i class="icon shipping-truck2-right"></i>
+				<div class="icon-details">
+					<label>HTML</label>
+					<input type="text" value='<i class="icon shipping-truck2-right"></i>'> <label>LESS</label>
+					<input type="text" value="@icon-shipping-truck2-right">
+				</div>
+			</td>
+			<td>
+				<i class="icon shipping-truck3-left"></i>
+				<div class="icon-details">
+					<label>HTML</label>
+					<input type="text" value='<i class="icon shipping-truck3-left"></i>'> <label>LESS</label>
+					<input type="text" value="@icon-shipping-truck3-left">
+				</div>
+			</td>
+			<td>
+				<i class="icon shipping-truck3-right"></i>
+				<div class="icon-details">
+					<label>HTML</label>
+					<input type="text" value='<i class="icon shipping-truck3-right"></i>'> <label>LESS</label>
+					<input type="text" value="@icon-shipping-truck3-right">
+				</div>
+			</td>
+		</tr>
+		</table>
+	</div>
+	<div class="col-xs-12">
+		<h1>Icons - Add/Remove/Close</h1>
+		<table class="border icons">
+		<tr>
+			<td>
+				<i class="icon minus1-circle-punched"></i>
+				<div class="icon-details">
+					<label>HTML</label>
+					<input type="text" value='<i class="icon minus1-circle-punched"></i>'> <label>LESS</label>
+					<input type="text" value="@icon-minus1-circle-punched">
+				</div>
+			</td>
+			<td>
+				<i class="icon minus1-circle"></i>
+				<div class="icon-details">
+					<label>HTML</label>
+					<input type="text" value='<i class="icon minus1-circle"></i>'> <label>LESS</label>
+					<input type="text" value="@icon-minus1-circle">
+				</div>
+			</td>
+			<td>
+				<i class="icon minus"></i>
+				<div class="icon-details">
+					<label>HTML</label>
+					<input type="text" value='<i class="icon minus"></i>'> <label>LESS</label>
+					<input type="text" value="@icon-minus">
+				</div>
+			</td>
+		</tr>
+		<tr>
+			<td>
+				<i class="icon plus2-circle-punch"></i>
+				<div class="icon-details">
+					<label>HTML</label>
+					<input type="text" value='<i class="icon plus2-circle-punch"></i>'> <label>LESS</label>
+					<input type="text" value="@icon-plus2-circle-punch">
+				</div>
+			</td>
+			<td>
+				<i class="icon plus2-circle"></i>
+				<div class="icon-details">
+					<label>HTML</label>
+					<input type="text" value='<i class="icon plus2-circle"></i>'> <label>LESS</label>
+					<input type="text" value="@icon-plus2-circle">
+				</div>
+			</td>
+			<td>
+				<i class="icon plus2"></i>
+				<div class="icon-details">
+					<label>HTML</label>
+					<input type="text" value='<i class="icon plus2"></i>'> <label>LESS</label>
+					<input type="text" value="@icon-plus2">
+				</div>
+			</td>
+		</tr>
+		<tr>
+			<td>
+				<i class="icon exit1-circle-punched"></i>
+				<div class="icon-details">
+					<label>HTML</label>
+					<input type="text" value='<i class="icon exit1-circle-punched"></i>'> <label>LESS</label>
+					<input type="text" value="@icon-exit1-circle-punched">
+				</div>
+			</td>
+			<td>
+				<i class="icon exit1-circle"></i>
+				<div class="icon-details">
+					<label>HTML</label>
+					<input type="text" value='<i class="icon exit1-circle"></i>'> <label>LESS</label>
+					<input type="text" value="@icon-exit1-circle">
+				</div>
+			</td>
+			<td>
+				<i class="icon exit1"></i>
+				<div class="icon-details">
+					<label>HTML</label>
+					<input type="text" value='<i class="icon exit1"></i>'> <label>LESS</label>
+					<input type="text" value="@icon-exit1">
+				</div>
+			</td>
+		</tr>
+		</table>
+	</div>
+	<div class="col-xs-12">
+		<h1>Icons - Shrink/Expand</h1>
+		<table class="border icons">
+		<tr>
+			<td>
+				<i class="icon enlarge1"></i>
+				<div class="icon-details">
+					<label>HTML</label>
+					<input type="text" value='<i class="icon enlarge1"></i>'> <label>LESS</label>
+					<input type="text" value="@icon-enlarge1">
+				</div>
+			</td>
+			<td>
+				<i class="icon shrink1"></i>
+				<div class="icon-details">
+					<label>HTML</label>
+					<input type="text" value='<i class="icon shrink1"></i>'> <label>LESS</label>
+					<input type="text" value="@icon-shrink1">
+				</div>
+			</td>
+		</tr>
+		<tr>
+			<td>
+				<i class="icon enlarge2"></i>
+				<div class="icon-details">
+					<label>HTML</label>
+					<input type="text" value='<i class="icon enlarge2"></i>'> <label>LESS</label>
+					<input type="text" value="@icon-enlarge2">
+				</div>
+			</td>
+			<td>
+				<i class="icon shrink2"></i>
+				<div class="icon-details">
+					<label>HTML</label>
+					<input type="text" value='<i class="icon shrink2"></i>'> <label>LESS</label>
+					<input type="text" value="@icon-shrink2">
+				</div>
+			</td>
+		</tr>
+		<tr>
+			<td>
+				<i class="icon zoom-in1"></i>
+				<div class="icon-details">
+					<label>HTML</label>
+					<input type="text" value='<i class="icon zoom-in1"></i>'> <label>LESS</label>
+					<input type="text" value="@icon-zoom-in1">
+				</div>
+			</td>
+			<td>
+				<i class="icon zoom-out1"></i>
+				<div class="icon-details">
+					<label>HTML</label>
+					<input type="text" value='<i class="icon zoom-out1"></i>'> <label>LESS</label>
+					<input type="text" value="@icon-zoom-out1">
+				</div>
+			</td>
+		</tr>
+		<tr>
+			<td>
+				<i class="icon zoom-in2"></i>
+				<div class="icon-details">
+					<label>HTML</label>
+					<input type="text" value='<i class="icon zoom-in2"></i>'> <label>LESS</label>
+					<input type="text" value="@icon-zoom-in2">
+				</div>
+			</td>
+			<td>
+				<i class="icon zoom-out2"></i>
+				<div class="icon-details">
+					<label>HTML</label>
+					<input type="text" value='<i class="icon zoom-out2"></i>'> <label>LESS</label>
+					<input type="text" value="@icon-zoom-out2">
+				</div>
+			</td>
+		</tr>
+		<tr>
+			<td>
+				<i class="icon minus1-circle-punched"></i>
+				<div class="icon-details">
+					<label>HTML</label>
+					<input type="text" value='<i class="icon minus1-circle-punched"></i>'> <label>LESS</label>
+					<input type="text" value="@icon-minus1-circle-punched">
+				</div>
+			</td>
+			<td>
+				<i class="icon minus1-circle"></i>
+				<div class="icon-details">
+					<label>HTML</label>
+					<input type="text" value='<i class="icon minus1-circle"></i>'> <label>LESS</label>
+					<input type="text" value="@icon-minus1-circle">
+				</div>
+			</td>
+			<td>
+				<i class="icon minus"></i>
+				<div class="icon-details">
+					<label>HTML</label>
+					<input type="text" value='<i class="icon minus"></i>'> <label>LESS</label>
+					<input type="text" value="@icon-minus">
+				</div>
+			</td>
+		</tr>
+		<tr>
+			<td>
+				<i class="icon plus2-circle-punch"></i>
+				<div class="icon-details">
+					<label>HTML</label>
+					<input type="text" value='<i class="icon plus2-circle-punch"></i>'> <label>LESS</label>
+					<input type="text" value="@icon-plus2-circle-punch">
+				</div>
+			</td>
+			<td>
+				<i class="icon plus2-circle"></i>
+				<div class="icon-details">
+					<label>HTML</label>
+					<input type="text" value='<i class="icon plus2-circle"></i>'> <label>LESS</label>
+					<input type="text" value="@icon-plus2-circle">
+				</div>
+			</td>
+			<td>
+				<i class="icon plus2"></i>
+				<div class="icon-details">
+					<label>HTML</label>
+					<input type="text" value='<i class="icon plus2"></i>'> <label>LESS</label>
+					<input type="text" value="@icon-plus2">
+				</div>
+			</td>
+		</tr>
+		</table>
+	</div>
+	<div class="col-xs-12">
+		<h1>Icons - Contact</h1>
+		<table class="border icons">
+		<tr>
+			<td>
+				<i class="icon phone1"></i>
+				<div class="icon-details">
+					<label>HTML</label>
+					<input type="text" value='<i class="icon phone1"></i>'> <label>LESS</label>
+					<input type="text" value="@icon-phone1">
+				</div>
+			</td>
+			<td>
+				<i class="icon phone2"></i>
+				<div class="icon-details">
+					<label>HTML</label>
+					<input type="text" value='<i class="icon phone2"></i>'> <label>LESS</label>
+					<input type="text" value="@icon-phone2">
+				</div>
+			</td>
+			<td>
+				<i class="icon phone3"></i>
+				<div class="icon-details">
+					<label>HTML</label>
+					<input type="text" value='<i class="icon phone3"></i>'> <label>LESS</label>
+					<input type="text" value="@icon-phone3">
+				</div>
+			</td>
+		</tr>
+		<tr>
+			<td>
+				<i class="icon email1-circle"></i>
+				<div class="icon-details">
+					<label>HTML</label>
+					<input type="text" value='<i class="icon email1-circle"></i>'> <label>LESS</label>
+					<input type="text" value="@icon-email1-circle">
+				</div>
+			</td>
+			<td>
+				<i class="icon email1-punched"></i>
+				<div class="icon-details">
+					<label>HTML</label>
+					<input type="text" value='<i class="icon email1-punched"></i>'> <label>LESS</label>
+					<input type="text" value="@icon-email1-punched">
+				</div>
+			</td>
+			<td>
+				<i class="icon email1"></i>
+				<div class="icon-details">
+					<label>HTML</label>
+					<input type="text" value='<i class="icon email1"></i>'> <label>LESS</label>
+					<input type="text" value="@icon-email1">
+				</div>
+			</td>
+		</tr>
+		<tr>
+			<td>
+				<i class="icon email2-circle"></i>
+				<div class="icon-details">
+					<label>HTML</label>
+					<input type="text" value='<i class="icon email2-circle"></i>'> <label>LESS</label>
+					<input type="text" value="@icon-email2-circle">
+				</div>
+			</td>
+			<td>
+				<i class="icon email2-punched"></i>
+				<div class="icon-details">
+					<label>HTML</label>
+					<input type="text" value='<i class="icon email2-punched"></i>'> <label>LESS</label>
+					<input type="text" value="@icon-email2-punched">
+				</div>
+			</td>
+			<td>
+				<i class="icon email2"></i>
+				<div class="icon-details">
+					<label>HTML</label>
+					<input type="text" value='<i class="icon email2"></i>'> <label>LESS</label>
+					<input type="text" value="@icon-email2">
+				</div>
+			</td>
+		</tr>
+		</table>
+	</div>
+	<div class="col-xs-12">
+		<h1>Icons - Social Circle Punched</h1>
+		<table class="border icons">
+		<tr>
+			<td>
+				<i class="icon social-blogger-circle-punched"></i>
+				<div class="icon-details">
+					<label>HTML</label>
+					<input type="text" value='<i class="icon social-blogger-circle-punched"></i>'> <label>LESS</label>
+					<input type="text" value="@icon-social-blogger-circle-punched">
+				</div>
+			</td>
+			<td>
+				<i class="icon social-facebook-circle-punched"></i>
+				<div class="icon-details">
+					<label>HTML</label>
+					<input type="text" value='<i class="icon social-facebook-circle-punched"></i>'> <label>LESS</label>
+					<input type="text" value="@icon-social-facebook-circle-punched">
+				</div>
+			</td>
+			<td>
+				<i class="icon social-google-plus1-circle-punched"></i>
+				<div class="icon-details">
+					<label>HTML</label>
+					<input type="text" value='<i class="icon social-google-plus1-circle-punched"></i>'> <label>LESS</label>
+					<input type="text" value="@icon-social-google-plus1-circle-punched">
+				</div>
+			</td>
+			<td>
+				<i class="icon social-google-plus3-circle-punched"></i>
+				<div class="icon-details">
+					<label>HTML</label>
+					<input type="text" value='<i class="icon social-google-plus3-circle-punched"></i>'> <label>LESS</label>
+					<input type="text" value="@icon-social-google-plus3-circle-punched">
+				</div>
+			</td>
+			<td>
+				<i class="icon social-instagram-circle-punched"></i>
+				<div class="icon-details">
+					<label>HTML</label>
+					<input type="text" value='<i class="icon social-instagram-circle-punched"></i>'> <label>LESS</label>
+					<input type="text" value="@icon-social-instagram-circle-punched">
+				</div>
+			</td>
+			<td>
+				<i class="icon social-linkedin-circle-punched"></i>
+				<div class="icon-details">
+					<label>HTML</label>
+					<input type="text" value='<i class="icon social-linkedin-circle-punched"></i>'> <label>LESS</label>
+					<input type="text" value="@icon-social-linkedin-circle-punched">
+				</div>
+			</td>
+			<td>
+				<i class="icon social-pinterest-circle-punched"></i>
+				<div class="icon-details">
+					<label>HTML</label>
+					<input type="text" value='<i class="icon social-pinterest-circle-punched"></i>'> <label>LESS</label>
+					<input type="text" value="@icon-social-pinterest-circle-punched">
+				</div>
+			</td>
+			<td>
+				<i class="icon social-tumblr-circle-punched"></i>
+				<div class="icon-details">
+					<label>HTML</label>
+					<input type="text" value='<i class="icon social-tumblr-circle-punched"></i>'> <label>LESS</label>
+					<input type="text" value="@icon-social-tumblr-circle-punched">
+				</div>
+			</td>
+			<td>
+				<i class="icon social-twitter-circle-punched"></i>
+				<div class="icon-details">
+					<label>HTML</label>
+					<input type="text" value='<i class="icon social-twitter-circle-punched"></i>'> <label>LESS</label>
+					<input type="text" value="@icon-social-twitter-circle-punched">
+				</div>
+			</td>
+			<td>
+				<i class="icon social-vimeo-circle-punched"></i>
+				<div class="icon-details">
+					<label>HTML</label>
+					<input type="text" value='<i class="icon social-vimeo-circle-punched"></i>'> <label>LESS</label>
+					<input type="text" value="@icon-social-vimeo-circle-punched">
+				</div>
+			</td>
+			<td>
+				<i class="icon social-youtube1-circle-punched"></i>
+				<div class="icon-details">
+					<label>HTML</label>
+					<input type="text" value='<i class="icon social-youtube1-circle-punched"></i>'> <label>LESS</label>
+					<input type="text" value="@icon-social-youtube1-circle-punched">
+				</div>
+			</td>
+		</tr>
+		</table>
+	</div>
+	<div class="col-xs-12">
+		<h1>Icons - Social Circle</h1>
+		<table class="border icons">
+		<tr>
+			<td>
+				<i class="icon social-blogger-circle"></i>
+				<div class="icon-details">
+					<label>HTML</label>
+					<input type="text" value='<i class="icon social-blogger-circle"></i>'> <label>LESS</label>
+					<input type="text" value="@icon-social-blogger-circle">
+				</div>
+			</td>
+			<td>
+				<i class="icon social-facebook-circle"></i>
+				<div class="icon-details">
+					<label>HTML</label>
+					<input type="text" value='<i class="icon social-facebook-circle"></i>'> <label>LESS</label>
+					<input type="text" value="@icon-social-facebook-circle">
+				</div>
+			</td>
+			<td>
+				<i class="icon social-google-plus1-circle"></i>
+				<div class="icon-details">
+					<label>HTML</label>
+					<input type="text" value='<i class="icon social-google-plus1-circle"></i>'> <label>LESS</label>
+					<input type="text" value="@icon-social-google-plus1-circle">
+				</div>
+			</td>
+			<td>
+				<i class="icon social-google-plus3-circle"></i>
+				<div class="icon-details">
+					<label>HTML</label>
+					<input type="text" value='<i class="icon social-google-plus3-circle"></i>'> <label>LESS</label>
+					<input type="text" value="@icon-social-google-plus3-circle">
+				</div>
+			</td>
+			<td>
+				<i class="icon social-instagram-circle"></i>
+				<div class="icon-details">
+					<label>HTML</label>
+					<input type="text" value='<i class="icon social-instagram-circle"></i>'> <label>LESS</label>
+					<input type="text" value="@icon-social-instagram-circle">
+				</div>
+			</td>
+			<td>
+				<i class="icon social-linkedin-circle"></i>
+				<div class="icon-details">
+					<label>HTML</label>
+					<input type="text" value='<i class="icon social-linkedin-circle"></i>'> <label>LESS</label>
+					<input type="text" value="@icon-social-linkedin-circle">
+				</div>
+			</td>
+			<td>
+				<i class="icon social-pinterest-circle"></i>
+				<div class="icon-details">
+					<label>HTML</label>
+					<input type="text" value='<i class="icon social-pinterest-circle"></i>'> <label>LESS</label>
+					<input type="text" value="@icon-social-pinterest-circle">
+				</div>
+			</td>
+			<td>
+				<i class="icon social-tumblr-circle"></i>
+				<div class="icon-details">
+					<label>HTML</label>
+					<input type="text" value='<i class="icon social-tumblr-circle"></i>'> <label>LESS</label>
+					<input type="text" value="@icon-social-tumblr-circle">
+				</div>
+			</td>
+			<td>
+				<i class="icon social-twitter-circle"></i>
+				<div class="icon-details">
+					<label>HTML</label>
+					<input type="text" value='<i class="icon social-twitter-circle"></i>'> <label>LESS</label>
+					<input type="text" value="@icon-social-twitter-circle">
+				</div>
+			</td>
+			<td>
+				<i class="icon social-vimeo-circle"></i>
+				<div class="icon-details">
+					<label>HTML</label>
+					<input type="text" value='<i class="icon social-vimeo-circle"></i>'> <label>LESS</label>
+					<input type="text" value="@icon-social-vimeo-circle">
+				</div>
+			</td>
+			<td>
+				<i class="icon social-youtube1-circle"></i>
+				<div class="icon-details">
+					<label>HTML</label>
+					<input type="text" value='<i class="icon social-youtube1-circle"></i>'> <label>LESS</label>
+					<input type="text" value="@icon-social-youtube1-circle">
+				</div>
+			</td>
+		</tr>
+		</table>
+	</div>
+	<div class="col-xs-12">
+		<h1>Icons - Social Square</h1>
+		<table class="border icons">
+		<tr>
+			<td>
+				<i class="icon social-blogger-square"></i>
+				<div class="icon-details">
+					<label>HTML</label>
+					<input type="text" value='<i class="icon social-blogger-square"></i>'> <label>LESS</label>
+					<input type="text" value="@icon-social-blogger-square">
+				</div>
+			</td>
+			<td>
+				<i class="icon social-facebook-square"></i>
+				<div class="icon-details">
+					<label>HTML</label>
+					<input type="text" value='<i class="icon social-facebook-square"></i>'> <label>LESS</label>
+					<input type="text" value="@icon-social-facebook-square">
+				</div>
+			</td>
+			<td>
+				<i class="icon social-google-plus1-square"></i>
+				<div class="icon-details">
+					<label>HTML</label>
+					<input type="text" value='<i class="icon social-google-plus1-square"></i>'> <label>LESS</label>
+					<input type="text" value="@icon-social-google-plus1-square">
+				</div>
+			</td>
+			<td>
+				<i class="icon social-google-plus3-square"></i>
+				<div class="icon-details">
+					<label>HTML</label>
+					<input type="text" value='<i class="icon social-google-plus3-square"></i>'> <label>LESS</label>
+					<input type="text" value="@icon-social-google-plus3-square">
+				</div>
+			</td>
+			<td>
+				<i class="icon social-instagram-square"></i>
+				<div class="icon-details">
+					<label>HTML</label>
+					<input type="text" value='<i class="icon social-instagram-square"></i>'> <label>LESS</label>
+					<input type="text" value="@icon-social-instagram-square">
+				</div>
+			</td>
+			<td>
+				<i class="icon social-linkedin-square"></i>
+				<div class="icon-details">
+					<label>HTML</label>
+					<input type="text" value='<i class="icon social-linkedin-square"></i>'> <label>LESS</label>
+					<input type="text" value="@icon-social-linkedin-sqare">
+				</div>
+			</td>
+			<td>
+				<i class="icon social-pinterest-square"></i>
+				<div class="icon-details">
+					<label>HTML</label>
+					<input type="text" value='<i class="icon social-pinterest-square"></i>'> <label>LESS</label>
+					<input type="text" value="@icon-social-pinterest-square">
+				</div>
+			</td>
+			<td>
+				<i class="icon social-tumblr-square"></i>
+				<div class="icon-details">
+					<label>HTML</label>
+					<input type="text" value='<i class="icon social-tumblr-square"></i>'> <label>LESS</label>
+					<input type="text" value="@icon-social-tumblr-square">
+				</div>
+			</td>
+			<td>
+				<i class="icon social-twitter-square"></i>
+				<div class="icon-details">
+					<label>HTML</label>
+					<input type="text" value='<i class="icon social-twitter-square"></i>'> <label>LESS</label>
+					<input type="text" value="@icon-social-twitter-square">
+				</div>
+			</td>
+			<td>
+				<i class="icon social-vimeo-square"></i>
+				<div class="icon-details">
+					<label>HTML</label>
+					<input type="text" value='<i class="icon social-vimeo-square"></i>'> <label>LESS</label>
+					<input type="text" value="@icon-social-vimeo-square">
+				</div>
+			</td>
+			<td>
+				<i class="icon social-youtube1-square"></i>
+				<div class="icon-details">
+					<label>HTML</label>
+					<input type="text" value='<i class="icon social-youtube1-square"></i>'> <label>LESS</label>
+					<input type="text" value="@icon-social-youtube1-square">
+				</div>
+			</td>
+		</tr>
+		</table>
+	</div>
+	<div class="col-xs-12">
+		<h1>Icons - Social</h1>
+		<table class="border icons">
+		<tr>
+			<td>
+				<i class="icon social-blogger"></i>
+				<div class="icon-details">
+					<label>HTML</label>
+					<input type="text" value='<i class="icon social-blogger"></i>'> <label>LESS</label>
+					<input type="text" value="@icon-social-blogger">
+				</div>
+			</td>
+			<td>
+				<i class="icon social-facebook"></i>
+				<div class="icon-details">
+					<label>HTML</label>
+					<input type="text" value='<i class="icon social-facebook"></i>'> <label>LESS</label>
+					<input type="text" value="@icon-social-facebook">
+				</div>
+			</td>
+			<td>
+				<i class="icon social-google-plus1"></i>
+				<div class="icon-details">
+					<label>HTML</label>
+					<input type="text" value='<i class="icon social-google-plus1"></i>'> <label>LESS</label>
+					<input type="text" value="@icon-social-google-plus1">
+				</div>
+			</td>
+			<td>
+				<i class="icon social-google-plus3"></i>
+				<div class="icon-details">
+					<label>HTML</label>
+					<input type="text" value='<i class="icon social-google-plus3"></i>'> <label>LESS</label>
+					<input type="text" value="@icon-social-google-plus3">
+				</div>
+			</td>
+			<td>
+				<i class="icon social-instagram"></i>
+				<div class="icon-details">
+					<label>HTML</label>
+					<input type="text" value='<i class="icon social-instagram"></i>'> <label>LESS</label>
+					<input type="text" value="@icon-social-instagram">
+				</div>
+			</td>
+			<td>
+				<i class="icon social-linkedin"></i>
+				<div class="icon-details">
+					<label>HTML</label>
+					<input type="text" value='<i class="icon social-linkedin"></i>'> <label>LESS</label>
+					<input type="text" value="@icon-social-linkedin">
+				</div>
+			</td>
+			<td>
+				<i class="icon social-pinterest"></i>
+				<div class="icon-details">
+					<label>HTML</label>
+					<input type="text" value='<i class="icon social-pinterest"></i>'> <label>LESS</label>
+					<input type="text" value="@icon-social-pinterest">
+				</div>
+			</td>
+			<td>
+				<i class="icon social-tumblr"></i>
+				<div class="icon-details">
+					<label>HTML</label>
+					<input type="text" value='<i class="icon social-tumblr"></i>'> <label>LESS</label>
+					<input type="text" value="@icon-social-tumblr">
+				</div>
+			</td>
+			<td>
+				<i class="icon social-twitter"></i>
+				<div class="icon-details">
+					<label>HTML</label>
+					<input type="text" value='<i class="icon social-twitter"></i>'> <label>LESS</label>
+					<input type="text" value="@icon-social-twitter">
+				</div>
+			</td>
+			<td>
+				<i class="icon social-vimeo"></i>
+				<div class="icon-details">
+					<label>HTML</label>
+					<input type="text" value='<i class="icon social-vimeo"></i>'> <label>LESS</label>
+					<input type="text" value="@icon-social-vimeo">
+				</div>
+			</td>
+			<td>
+				<i class="icon social-youtube1"></i>
+				<div class="icon-details">
+					<label>HTML</label>
+					<input type="text" value='<i class="icon social-youtube1"></i>'> <label>LESS</label>
+					<input type="text" value="@icon-social-youtube1">
+				</div>
+			</td>
+			<td>
+				<i class="icon social-youtube2"></i>
+				<div class="icon-details">
+					<label>HTML</label>
+					<input type="text" value='<i class="icon social-youtube2"></i>'> <label>LESS</label>
+					<input type="text" value="@icon-social-youtube2">
+				</div>
+			</td>
+			<td>
+				<i class="icon social-youtube3"></i>
+				<div class="icon-details">
+					<label>HTML</label>
+					<input type="text" value='<i class="icon social-youtube3"></i>'> <label>LESS</label>
+					<input type="text" value="@icon-social-youtube3">
+				</div>
+			</td>
+		</tr>
+		</table>
+	</div>
+	<div class="col-xs-12">
+		<h1>Icons - Social Other</h1>
+		<table class="border icons">
+		<tr>
+			<td>
+				<i class="icon social-amazon"></i>
+				<div class="icon-details">
+					<label>HTML</label>
+					<input type="text" value='<i class="icon social-amazon"></i>'> <label>LESS</label>
+					<input type="text" value="@icon-social-amazon">
+				</div>
+			</td>
+			<td>
+				<i class="icon social-flickr1"></i>
+				<div class="icon-details">
+					<label>HTML</label>
+					<input type="text" value='<i class="icon social-flickr1"></i>'> <label>LESS</label>
+					<input type="text" value="@icon-social-flickr1">
+				</div>
+			</td>
+			<td>
+				<i class="icon social-flickr2"></i>
+				<div class="icon-details">
+					<label>HTML</label>
+					<input type="text" value='<i class="icon social-flickr2"></i>'> <label>LESS</label>
+					<input type="text" value="@icon-social-flickr2">
+				</div>
+			</td>
+			<td>
+				<i class="icon social-reddit"></i>
+				<div class="icon-details">
+					<label>HTML</label>
+					<input type="text" value='<i class="icon social-reddit"></i>'> <label>LESS</label>
+					<input type="text" value="@icon-social-reddit">
+				</div>
+			</td>
+			<td>
+				<i class="icon social-twitch"></i>
+				<div class="icon-details">
+					<label>HTML</label>
+					<input type="text" value='<i class="icon social-twitch"></i>'> <label>LESS</label>
+					<input type="text" value="@icon-social-twitch">
+				</div>
+			</td>
+		</tr>
+		</table>
+	</div>
+	<div class="col-xs-12">
+		<h1>Icons - Spinners</h1>
+		<table class="border icons">
+		<tr>
+			<td>
+				<i class="icon spinner1"></i>
+				<div class="icon-details">
+					<label>HTML</label>
+					<input type="text" value='<i class="icon spinner1"></i>'> <label>LESS</label>
+					<input type="text" value="@icon-spinner1">
+				</div>
+			</td>
+			<td>
+				<i class="icon spinner2"></i>
+				<div class="icon-details">
+					<label>HTML</label>
+					<input type="text" value='<i class="icon spinner2"></i>'> <label>LESS</label>
+					<input type="text" value="@icon-spinner2">
+				</div>
+			</td>
+			<td>
+				<i class="icon spinner3"></i>
+				<div class="icon-details">
+					<label>HTML</label>
+					<input type="text" value='<i class="icon spinner3"></i>'> <label>LESS</label>
+					<input type="text" value="@icon-spinner3">
+				</div>
+			</td>
+			<td>
+				<i class="icon spinner4"></i>
+				<div class="icon-details">
+					<label>HTML</label>
+					<input type="text" value='<i class="icon spinner4"></i>'> <label>LESS</label>
+					<input type="text" value="@icon-spinner4">
+				</div>
+			</td>
+			<td>
+				<i class="icon spinner5"></i>
+				<div class="icon-details">
+					<label>HTML</label>
+					<input type="text" value='<i class="icon spinner5"></i>'> <label>LESS</label>
+					<input type="text" value="@icon-spinner5">
+				</div>
+			</td>
+			<td>
+				<i class="icon spinner6"></i>
+				<div class="icon-details">
+					<label>HTML</label>
+					<input type="text" value='<i class="icon spinner6"></i>'> <label>LESS</label>
+					<input type="text" value="@icon-spinner6">
+				</div>
+			</td>
+		</tr>
+		</table>
+	</div>
+	<div class="col-xs-12">
+		<h1>Icons - SSLs</h1>
+		<table class="border icons">
+		<tr>
+			<td>
+				<i class="icon ssl1"></i>
+				<div class="icon-details">
+					<label>HTML</label>
+					<input type="text" value='<i class="icon ssl1"></i>'> <label>LESS</label>
+					<input type="text" value="@icon-ssl1">
+				</div>
+			</td>
+			<td>
+				<i class="icon ssl2"></i>
+				<div class="icon-details">
+					<label>HTML</label>
+					<input type="text" value='<i class="icon ssl2"></i>'> <label>LESS</label>
+					<input type="text" value="@icon-ssl2">
+				</div>
+			</td>
+			<td>
+				<i class="icon ssl3"></i>
+				<div class="icon-details">
+					<label>HTML</label>
+					<input type="text" value='<i class="icon ssl3"></i>'> <label>LESS</label>
+					<input type="text" value="@icon-ssl3">
+				</div>
+			</td>
+		</tr>
+		</table>
+	</div>
+	<div class="col-xs-12 col-md-6" style="margin-bottom: 50px;">
+		<h1>Inputs</h1>
+		<table class="border">
+		<tr>
+			<td>
+				 select
+			</td>
+			<td>
+				<select>
+					<option>Option 1</option>
+					<option>Option 2</option>
+					<option>Option 3</option>
+					<option>Option 4</option>
+				</select>
+			</td>
+		</tr>
+		<tr>
+			<td>
+				 select.styled
+			</td>
+			<td>
+				<select class="styled">
+					<option>Option 1</option>
+					<option>Option 2</option>
+					<option>Option 3</option>
+					<option>Option 4</option>
+				</select>
+			</td>
+		</tr>
+		<tr>
+			<td>
+				 &lt;input type="radio"&gt;<br>
+			</td>
+			<td>
+				<input id="radio1" type="radio" name="stylesheet-radio-1" checked="checked"></input>
+				<label for="radio1">Radio button</label>
+				<br>
+				<input id="radio2" type="radio" name="stylesheet-radio-1"></input>
+				<label for="radio2">Radio button</label>
+			</td>
+		</tr>
+		<tr>
+			<td>
+				 &lt;input type="radio" <span class="color1">class="styled"</span>&gt;<br>
+				<span class="color1">&lt;label&gt;<span class="gray3">Radio button</span>&lt;/label&gt;</span>
+				<br>
+				<br>
+				<span class="color-warning">Adjacent label is required</span>
+			</td>
+			<td>
+				<input id="radio3" class="styled" type="radio" name="stylesheet-radio-2" checked="checked"></input>
+				<label for="radio3">Radio button</label>
+				<br>
+				<input id="radio4" class="styled" type="radio" name="stylesheet-radio-2"></input>
+				<label for="radio4">Radio button</label>
+			</td>
+		</tr>
+		<tr>
+			<td>
+				 &lt;input type="checkbox"&gt;<br>
+			</td>
+			<td>
+				<input id="checkbox1" type="checkbox" checked="checked"></input>
+				<label for="checkbox1">Checkbox</label>
+			</td>
+		</tr>
+		<tr>
+			<td>
+				 &lt;input type="checkbox" <span class="color1">class="styled"</span>&gt;<br>
+				<span class="color1">&lt;label&gt;<span class="gray3">Checkbox</span>&lt;/label&gt;</span>
+				<br>
+				<br>
+				<span class="color-warning">Adjacent label is required</span>
+			</td>
+			<td>
+				<input id="checkbox2" class="styled" type="checkbox" checked="checked"></input>
+				<label for="checkbox2">Checkbox</label>
+			</td>
+		</tr>
+		<tr>
+			<td>
+				 &lt;input type="submit"&gt; <br>
+				<br>
+				<span class="color-warning">Accepts all button color classes</span>
+			</td>
+			<td>
+				<input id="input" type="submit" value="Submit"></input>
+			</td>
+		</tr>
+		<tr>
+			<td>
+				 &lt;input type="number"&gt;
+			</td>
+			<td>
+				<input id="input" type="number" value="1"></input>
+			</td>
+		</tr>
+		<tr>
+			<td>
+				 .input-status input
+			</td>
+			<td>
+				<div class="input-status">
+					<label for="input">Label</label>
+					<input id="input" type="text" placeholder="Placeholder Text"></input>
+				</div>
+			</td>
+		</tr>
+		<tr>
+			<td>
+				 .input-status.filled input
+			</td>
+			<td>
+				<div class="input-status filled">
+					<label for="input-filled">Label</label>
+					<input id="input-filled" type="text" placeholder="Placeholder Text" value="Typed Text"></input>
+				</div>
+			</td>
+		</tr>
+		<tr>
+			<td>
+				 .input-status.valid input
+			</td>
+			<td>
+				<div class="input-status valid">
+					<label for="input-valid">Label</label>
+					<input id="input-valid" type="text" placeholder="Placeholder Text" value="Typed Text"></input>
+				</div>
+			</td>
+		</tr>
+		<tr>
+			<td>
+				 .input-status.error input
+			</td>
+			<td>
+				<div class="input-status error">
+					<label for="input-error-1">Label</label>
+					<input id="input-error-1" type="text" placeholder="Placeholder Text" value="Typed Text"></input>
+					<div class="message right">
+						 .message.right
+					</div>
+				</div>
+			</td>
+		</tr>
+		<tr>
+			<td>
+				 .input-status.error input
+			</td>
+			<td>
+				<div class="input-status error">
+					<label for="input-error-2">Label</label>
+					<input id="input-error-2" type="text" placeholder="Placeholder Text" value="Typed Text"></input>
+					<div class="message bottom">
+						 .message.bottom
+					</div>
+				</div>
+			</td>
+		</tr>
+		</table>
+	</div>
+	<div class="col-xs-12 col-md-6">
+		<h1>Padding rules for Boostrap columns</h1>
+		<table class="border">
+		<tr>
+			<td>
+				 .col-xs-12
+			</td>
+			<td>
+				<div class="col-xs-12" style="background-color: #BAF5B3;">
+					<div class="col-xs-12" style="background-color: #d9edf7; height: 50px;">
+					</div>
+				</div>
+			</td>
+		</tr>
+		<tr>
+			<td>
+				 .col-xs-12.no-pad
+			</td>
+			<td>
+				<div class="col-xs-12 no-pad" style="background-color: #BAF5B3;">
+					<div class="col-xs-12" style="background-color: #d9edf7; height: 50px;">
+					</div>
+				</div>
+			</td>
+		</tr>
+		<tr>
+			<td>
+				 .col-xs-12.no-pad-r
+			</td>
+			<td>
+				<div class="col-xs-12 no-pad-r" style="background-color: #BAF5B3;">
+					<div class="col-xs-12" style="background-color: #d9edf7; height: 50px;">
+					</div>
+				</div>
+			</td>
+		</tr>
+		<tr>
+			<td>
+				 .col-xs-12.no-pad-l
+			</td>
+			<td>
+				<div class="col-xs-12 no-pad-l" style="background-color: #BAF5B3;">
+					<div class="col-xs-12" style="background-color: #d9edf7; height: 50px;">
+					</div>
+				</div>
+			</td>
+		</tr>
+		</table>
+	</div>
+	<div class="col-xs-12 col-md-6">
+		<h1>Zebra Striped Tables</h1>
+		<table class="border">
+		<tr>
+			<td style="white-space: nowrap;">
+				 table.zebra-striped<br>
+				<br>
+				 .mz-propertylist.zebra-striped<br>
+				<br>
+				<div class="primary">
+					Only affects rows in &lt;tbody&gt;<br>
+					and ".mz-propertylist" elements.
+				</div>
+			</td>
+			<td>
+				<table class="zebra-striped no-border">
+				<tr>
+					<td>
+						&nbsp;
+					</td>
+				</tr>
+				<tr>
+					<td>
+						&nbsp;
+					</td>
+				</tr>
+				<tr>
+					<td>
+						&nbsp;
+					</td>
+				</tr>
+				<tr>
+					<td>
+						&nbsp;
+					</td>
+				</tr>
+				<tr>
+					<td>
+						&nbsp;
+					</td>
+				</tr>
+				</table>
+			</td>
+		</tr>
+		</table>
+	</div>
+	<div class="col-xs-12 col-md-6">
+		<h1>Responsive Graphics</h1>
+		<table class="border">
+		<tr>
+			<td style="white-space: nowrap;">
+				 .img-responsive
+			</td>
+			<td>
+				<div style="width: 400px; height: 150px;">
+					<img class="img-responsive" src="../../resources/images/large_img.jpg">
+				</div>
+			</td>
+		</tr>
+		</table>
+	</div>
+	<div class="col-xs-12">
+		<h1>Loading spinner</h1>
+		<table class="border">
+		<tr>
+			<td style="white-space: nowrap;">
+				 .loading-spinner.spinner5.white<br>
+				<br>
+				<div class="primary">
+					 Option of ".black-bg" and ".white-bg".<br>
+					<br>
+					 Specify "spinner1" - "spinner6".<br>
+					<br>
+					 Accepts all text color classes<br>
+					<br>
+				</div>
+				<div class="color-warning">
+					Parent must have "position: relative;"
+				</div>
+			</td>
+			<td>
+				<div style="position: relative; width: 400px; height: 150px;">
+					<img class="img-responsive" src="../../resources/images/large_img_blank.jpg">
+					<div class="loading-spinner spinner5 white">
+					</div>
+				</div>
+			</td>
+		</tr>
+		<tr>
+			<td style="white-space: nowrap;">
+				 .loading-spinner<span class="primary">.white-bg</span>.spinner4.primary
+			</td>
+			<td>
+				<div style="position: relative; width: 400px; height: 150px;">
+					<img class="img-responsive" src="../../resources/images/large_img_blank.jpg">
+					<div class="loading-spinner white-bg spinner4 primary">
+					</div>
+				</div>
+			</td>
+		</tr>
+		<tr>
+			<td style="white-space: nowrap;">
+				 .loading-spinner<span class="primary">.black-bg</span>.spinner3.secondary
+			</td>
+			<td>
+				<div style="position: relative; width: 400px; height: 150px;">
+					<img class="img-responsive" src="../../resources/images/large_img_blank.jpg">
+					<div class="loading-spinner black-bg spinner3 secondary">
+					</div>
+				</div>
+			</td>
+		</tr>
+		</table>
+	</div>
+</div>
+
+{% endblock body-content %}
+
+{% block body-below-content %}
+{% endblock body-below-content %}

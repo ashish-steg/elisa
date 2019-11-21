@@ -1,0 +1,66 @@
+﻿{% extends "page" %}
+
+{% block title-tag-content %}{% firstof pageContext.metaTitle labels.cart %} - {% parent %}{% endblock title-tag-content %}
+
+{% block head-tag-scripts %}
+{% parent %}
+{% if siteContext.checkoutSettings.visaCheckout.isEnabled and not pageContext.isEditMode %}
+{% include "modules/common/anti-clickjacking-script" %}
+{% endif %}
+{% endblock head-tag-scripts %}
+
+{% block body-tag-classes %} mz-cart {% endblock body-tag-classes %}
+
+<div class="row">
+    {% block breadcrumbs %}
+    <div class="mz-breadcrumbs col-xs-12">
+      <a href="/" class="mz-breadcrumb-link">Home</a>
+      <span class="mz-breadcrumb-separator">/</span> 
+      <span class="mz-breadcrumb-current">Shopping Bag</span>
+    </div>
+    {% endblock breadcrumbs %}
+</div>
+
+{% block body-content %}
+
+{% require_script "pages/cart" %}
+
+{% preload_json model "cart" %}
+<div class="cartOverlay removeItemPopupOverlay" data-mz-id="" style='display:none'>
+    <div class="innerPopup removeItemPopup">
+        <h3> Are you sure you want to delete this item?</h3>
+        <button class="removeItemBtn" data-mz-value="true">Yes</button>
+        <button class="removeItemBtn" data-mz-value="false">No</button>
+    </div>
+</div>
+<div class="cartOverlay guestCheckout" style='display:none'>
+    <div class="innerPopup">
+        <div class="exit btn">X</div>
+        <h4>Login for an easier checkout process<br/>or<br/>Continue as guest</h4>
+        <div class="row">
+            <div class="login">
+                <span class="loginCartError"></span>
+                <span>Log In</span>
+                <input type="text" placeholder="email" id="cartLogin" />
+                <input type="password" placeholder="password" id="cartPassword" />
+                <form method="post" value="" action="{{ pageContext.secureHost }}/cart/checkout" id="cartform"><button data-mz-action="cartLogin">Log In</button></form>
+            </div>
+            <div class="guest">
+                <form method="post" value="" action="{{ pageContext.secureHost }}/cart/checkout" id="cartform"><button>Continue As A Guest</button></form>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="row">
+    <h2 class="mz-pagetitle shopping-bag col-xs-12">{{ labels.shoppingBag }}</h2>
+    <form method="post" action="{{ siteContext.secureHost }}/cart/checkout" id="cartform">
+        {% dropzone "cart-top" scope="template" %}
+        <input type="hidden" name="id" value="{{model.id}}" />
+        <div class="col-xs-12">{% include "modules/common/message-bar" with model=model.messages %}</div>
+        <table class="mz-table mz-table-cart" id="cart">
+        </table>
+    </form>
+</div>
+<div class="row">
+    {% endblock body-content %}
+</div>

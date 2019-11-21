@@ -1,0 +1,27 @@
+﻿{% extends "page" %}
+
+{% block title-tag-content %}{{ labels.searchTitle|string_format(pageContext.search.query) }}  - {% parent %}{% endblock title-tag-content %}
+
+{% block body-tag-classes %} mz-searchresults {% endblock body-tag-classes %}
+
+{% block breadcrumbs %}
+<div class="mz-breadcrumbs col-xs-12">
+    <a href="/" class="mz-breadcrumb-link">Home</a>
+    <span class="mz-breadcrumb-separator">/</span>
+    <span class="mz-breadcrumb-current">Search for "{{ pageContext.search.query|safe }}"</span>
+</div>
+{% endblock breadcrumbs %}
+
+{% block body-content %}
+
+{% require_script "pages/search" %}
+
+<div {% if pageContext.categoryId %}data-mz-category="{{ pageContext.categoryId }}" {% endif %}data-mz-search="{{ pageContext.search.query }}" class="mz-l-container">
+	{% include "pages/search-interior" %}
+</div>
+<div id="product-details-quick-view">
+    <div class="modal-content quickview-modal">
+    </div>
+</div>
+{% endblock body-content %}
+

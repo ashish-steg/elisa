@@ -1,0 +1,32 @@
+﻿{% for item in model.items %}
+{% for lineItem in item.items %}
+<tr>
+    <td>
+        <img src="{{ lineItem.product.imageUrl }}?size=110" class="quick-order-image" />
+    </td>
+    <td>
+        <p>
+            <a class="mz-itemlisting-title" href="/p/{{ lineItem.product.productCode }}">{{ lineItem.product.name }}</a>
+        </p>
+        {% for option in lineItem.product.options %}
+            <p>
+                <strong>{{ option.name }}</strong>
+                <br />
+                <strong>{{ option.value }}</strong>
+            </p>
+        {% endfor %}
+    </td>
+    <td>
+        <strong>{{ lineItem.product.price.price|currency }}</strong>
+    </td>
+    <td class="qty-field">
+        <span class="qty-button qty-minus disabled" data-mz-action="qty" >&minus;</span>
+        <input class="mz-productdetail-qty mz-quick-order" type="text" value="1" min="1" {% if lineItem.quantity < 1 %} disabled="disabled" {% endif %} data-mz-value="quantity" />
+        <span class="qty-button qty-plus" data-mz-action="qty" >+</span>
+    </td>
+    <td>
+        <button class="mz-itemlisting-action" data-mz-item-id="{{ lineItem.product.productCode }}"{% if lineItem.product.variationProductCode %} data-mz-item-variation="{{ lineItem.product.variationProductCode }}"{% endif %} data-mz-action="addItemToCart" class="primary">{{ labels.addToBag }}</button>
+    </td>
+</tr>
+{% endfor %}
+{% endfor %}

@@ -1,0 +1,84 @@
+<div class="mz-login-modal-wrapper">
+    <div class="row">
+        <div class="mz-login-modal col-sm-8 col-sm-offset-2">
+            <div class="row">
+                <div class="col-sm-2 col-sm-offset-10">
+                    <span class="close-modal">close x</span>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-12">
+                    <h3>Log in or create an account</h3>
+                </div>
+            </div>
+            <div class="mz-login-modal-container">
+                <div class="row">
+                    <div class="col-sm-6">
+                        <div class="row mz-login-form">
+                            <div class="col-sm-12">
+                                <form method="post" name="mz-loginform">
+                                    <div class="row">
+                                        <div class="col-sm-11 col-sm-offset-1">
+                                            <section>
+                                                <h4 class="mz-login-modal-error"></h4>
+                                                <h4>{{ labels.logIn }}</h4>
+                                            </section>
+                                            <section>
+                                                <input name="email" value="{{ model.email|default:user.email }}" type="email" data-mz-login-email class="mz-login-modal-input" placeholder="email">
+                                            </section>
+                                            <section>
+                                                <input name="password" type="password" data-mz-login-password class="mz-login-modal-input" placeholder="password">
+                                                <input type="hidden" name="redirect" value="/myaccount" />
+                                            </section>
+                                            <section>
+                                                <input type="submit" class="mz-button mz-modal-button button-primary" value="{{ labels.logIn }}" />
+                                            </section>
+                                        </div>
+                                    </div>
+                                    <br />
+                                    <div class="row">
+                                        <div class="col-sm-12">
+                                            <a href="#" class="forgot-password" data-mz-action="launchforgotpassword">{{ labels.forgotPassword }}</a>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                        <div class="row mz-forgotpassword-form">
+                            <div class="col-sm-11 col-sm-offset-1">
+                                <form method="post" name="mz-forgotpasswordform" validate action="/user/login?returnUrl=%2fmyaccount">
+                                    <div class="row">
+                                        <div class="col-sm-12">
+                                            <section data-mz-role="popover-message" class="mz-reset-password-msg"></section>
+                                            <section>
+                                                <h4 class="mz-login-modal-error"></h4>
+                                                <h4>{{ labels.forgotPassword }} <a href="#" class="mz-reset-password-cancel" data-mz-action="loginform">CLOSE&nbsp;&nbsp;X</a></h4>
+                                            </section>
+                                            <div data-mz-role="forgotpassword-form" class="mz-forgot-password">
+                                                <section>
+                                                    <input type="email" class="mz-login-modal-input" data-mz-forgotpassword-email name="reset-password" placeholder="{{ labels.emailAddress }}" required />
+                                                </section>
+                                                <section>
+                                                    <input type="submit" class="mz-button mz-modal-button button-primary" data-mz-action="submitforgotpassword">
+                                                </section>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-4">
+                        <section>
+                            <h4>New to Elisa Ilana?</h4>
+                        </section>
+                        <section>
+                            <a href="/user/signup" id="login-modal-signup" class="mz-button mz-modal-button button-secondary">{{ labels.signUpLink }}</a>
+                        </section>
+                    </div>
+                </div>
+            </div>
+            {% include "modules/common/register-modal" %}
+        </div>
+    </div>
+</div>

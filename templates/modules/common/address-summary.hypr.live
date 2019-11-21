@@ -1,0 +1,27 @@
+﻿<span class="name">{{ model.firstName }} {{ model.lastNameOrSurname }}</span>
+<br />
+{{ model.address.address1 }}
+<br />
+{% if model.address.address2 %}
+    {{ model.address.address2 }}
+    <br />
+{% endif %}
+{% if model.address.address3 %}
+    {{ model.address.address3 }}
+    <br />
+{% endif %}
+{{ model.address.cityOrTown }}, {{ model.address.stateOrProvince }} {% if model.address.postalOrZipCode != "n/a" %}{{ model.address.postalOrZipCode }}{% endif %}
+<br />
+{{ model.address.countryCode }}
+<br />
+{% if model.phoneNumbers.home %}
+    {{ model.phoneNumbers.home }}
+{% endif %}
+<br />
+{{ model.email }}
+{% for type in model.types %}
+    {% if type.isPrimary && type.name == "Shipping" %}
+        <br />
+        <span class="address isPrimary">Default Shipping Address (Primary)</span>
+    {% endif %}
+{% endfor %}

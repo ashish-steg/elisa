@@ -1,0 +1,412 @@
+﻿{% extends "back-office/base" %}
+{% block body-content %}
+<div class="order-detail-container">
+    <table class="mz-printable-order mz-printable-order-details">
+    <thead class="header"><tr>
+        <th class="company-info">
+            <div class="company-name">{{ customContent.companyName }}</div>
+            <div class="company-contacts">{{ customContent.companyAddress }}</div>
+            <div class="company-url">{{ customContent.websiteUrl }}</div>
+        </th>
+        <th class="order-essentials">
+            <div class=""></div>
+            <div class="order-number"><span class="label">Order #</span><span>{{ model.orderNumber }}</span></div>  
+            <div class="order-date"><span class="label">Date: </span><span>{{ model.submittedDate|date(themeSettings.backofficeDateTimeFormat) }}</span></div>
+        </th>
+    </tr></thead>
+    <tbody><tr><td colspan="4">
+        <div class="section section-contacts"><table class="panes"><tbody><tr>
+            <td class="billing-address">
+                <div class="label">Bill To :</div> 
+                <div class="address">{{ model.billingInfo.billingContact.firstName }} {{ model.billingInfo.billingContact.lastNameOrSurname }}</div>
+                <div class="address">{{ model.billingInfo.billingContact.address.address1 }}</div>
+                {% if model.billingInfo.billingContact.address.address2 %}<div class="address">{{ model.billingInfo.billingContact.address.address2 }}</div>{% endif %}
+                {% if model.billingInfo.billingContact.address.address3 %}<div class="address">{{ model.billingInfo.billingContact.address.address3 }}</div>{% endif %}
+                {% if model.billingInfo.billingContact.address.address4 %}<div class="address">{{ model.billingInfo.billingContact.address.address4 }}</div>{% endif %}
+                <div class="address">{{ model.billingInfo.billingContact.address.cityOrTown }}, {{ model.billingInfo.billingContact.address.stateOrProvince }} {{ model.billingInfo.billingContact.address.postalOrZipCode }}</div>
+                {% if model.billingInfo.billingContact.phoneNumbers.home %}<div class="address">{{ model.billingInfo.billingContact.phoneNumbers.home }} (home)</div>{% endif %}
+                {% if model.billingInfo.billingContact.phoneNumbers.work %}<div class="address">{{ model.billingInfo.billingContact.phoneNumbers.work }} (work)</div>{% endif %}
+                {% if model.billingInfo.billingContact.phoneNumbers.mobile %}<div class="address">{{ model.billingInfo.billingContact.phoneNumbers.mobile }} (mobile)</div>{% endif %}
+                <div class="address">{{ model.billingInfo.billingContact.email }}</div>
+            </td>
+            <td class="shipping-address">
+                <div class="label">Ship To :</div>
+                <div class="address">{{ model.fulfillmentInfo.fulfillmentContact.firstName }} {{ model.fulfillmentInfo.fulfillmentContact.lastNameOrSurname }}</div>
+                <div class="address">{{ model.fulfillmentInfo.fulfillmentContact.address.address1 }}</div>
+                {% if model.fulfillmentInfo.fulfillmentContact.address.address2 %}<div class="address">{{ model.fulfillmentInfo.fulfillmentContact.address.address2 }}</div>{% endif %}
+                {% if model.fulfillmentInfo.fulfillmentContact.address.address3 %}<div class="address">{{ model.fulfillmentInfo.fulfillmentContact.address.address3 }}</div>{% endif %}
+                {% if model.fulfillmentInfo.fulfillmentContact.address.address4 %}<div class="address">{{ model.fulfillmentInfo.fulfillmentContact.address.address4 }}</div>{% endif %}
+                <div class="address">{{ model.fulfillmentInfo.fulfillmentContact.address.cityOrTown }}{% if  model.fulfillmentInfo.fulfillmentContact.address.cityOrTown && model.fulfillmentInfo.fulfillmentContact.address.stateOrProvince %}, {% endif %} {{ model.fulfillmentInfo.fulfillmentContact.address.stateOrProvince }} {{ model.fulfillmentInfo.fulfillmentContact.address.postalOrZipCode }}</div>
+                {% if model.fulfillmentInfo.fulfillmentContact.phoneNumbers.home %}<div class="address">{{ model.fulfillmentInfo.fulfillmentContact.phoneNumbers.home }} (home)</div>{% endif %}
+                {% if model.fulfillmentInfo.fulfillmentContact.phoneNumbers.work %}<div class="address">{{ model.fulfillmentInfo.fulfillmentContact.phoneNumbers.work }} (work)</div>{% endif %}
+                {% if model.fulfillmentInfo.fulfillmentContact.phoneNumbers.mobile %}<div class="address">{{ model.fulfillmentInfo.fulfillmentContact.phoneNumbers.mobile }} (mobile)</div>{% endif %}
+                <div class="address">{{ model.fulfillmentInfo.fulfillmentContact.email }}</div>
+            </td>
+            <td class="order-totals">
+                {% comment%} Starting of Custom Development {% endcomment %}
+                <div class="row remove-padding address">
+                    <div class="subtotal-label small-6 columns remove-padding">Subtotal</div>
+                    <div class="subtotal-value small-6 columns text-right remove-padding">{{ model.discountedSubtotal|currency }}</div>
+                </div>
+                {% for discount in model.orderDiscounts %}
+                    {% if not discount.excluded %}
+                        <div class="row remove-padding address">
+                            <div class="small-6 columns remove-padding">Discount ({{ discount.discount.name }})</div>
+                            <div class="small-6 columns text-right remove-padding">({{ discount.impact|currency }})</div>
+                        </div>
+                    {% endif %}
+                {% endfor %}
+                
+                {% if model.storeCredit and model.storeCredit > 0 %}
+                        <div class="row remove-padding remove-padding address">
+                            <div class="small-6 columns remove-padding">Store Credit</div>
+                            <div class="small-6 columns text-right remove-padding">({{ model.storeCredit|currency }})</div>
+                        </div>
+                {% endif %}
+                
+                {% if model.dutyTotal > 0 %}
+                    <div class="row remove-padding address">
+                        <div class="small-6 columns remove-padding">Duties and Taxes</div>
+                        <div class="small-6 columns text-right remove-padding">{% filter currency %} {{ model.dutyTotal|add:model.taxTotal}} {% endfilter %}</div>
+                    </div>
+                    {% else %}
+                    <div class="row remove-padding address">
+                        <div class="small-6 columns remove-padding">Tax</div>
+                        <div class="small-6 columns text-right remove-padding">{{ model.taxTotal|currency }}</div>
+                    </div>
+                {% endif %}
+                
+                <div class="row remove-padding address">
+                    <div class="small-6 columns remove-padding">Shipping ({{ model.fulfillmentInfo.shippingMethodName }})</div>
+                    <div class="small-6 columns text-right remove-padding">{{ model.shippingSubTotal|currency }}</div>
+                </div>
+                
+                {% for shippingDiscount in model.shippingDiscounts %}
+            {% if not shippingDiscount.excluded %}
+              <div class="row remove-padding address">
+                <div class="small-6 columns remove-padding">Shipping Discount ({{ shippingDiscount.discount.discount.name }})</div>
+                <div class="small-6 columns text-right remove-padding">({{ shippingDiscount.discount.impact|currency }})</div>
+              </div>
+            {% endif %}
+                {% endfor %}
+                
+                {% if model.handlingTotal > 0 %}
+                    <div class="row remove-padding address">
+                        <div class="small-6 columns remove-padding">Handling</div>
+                        <div class="small-6 columns text-right remove-padding">{{ model.handlingTotal|currency }}</div>
+                    </div>
+                {% endif %}
+                {% if model.feeTotal > 0 %}
+                    <div class="row remove-padding address">
+                        <div class="small-6 columns remove-padding">Fees</div>
+                        <div class="small-6 columns text-right remove-padding">{{ model.feeTotal|currency }}</div>
+                    </div>
+                {% endif %}
+                {% if model.adjustment and model.adjustment.amount != 0 %}
+                    <div class="row remove-padding address">
+                        <div class="small-6 columns remove-padding">Adjustments</div>
+                        <div class="small-6 columns text-right remove-padding">{% if model.adjustment %}{{ model.adjustment.amount|currency }}{% endif %}</div>
+                    </tr>
+                {% endif %}
+                <div class="row remove-padding address order-total-section">
+                    <div class="small-6 columns remove-padding">Order Total</div>
+                    <div class="small-6 columns text-right remove-padding">{{ model.total|currency }}</div>
+                </div>
+                
+                {% comment%} End of Custom Development {% endcomment %}
+                <div class="item-total small-12 columns address">{% if model.itemsOrdered %}{{ model.itemsOrdered }} items{% endif %}</div>
+            </td>
+        </tr></tbody></table></div>
+        <div class="section section-orderitems">
+            <h2 class="section-title">Items Ordered</h2>    
+            <table class="grid">
+                <thead><tr>
+                    <th>Code</th>
+                    <th>Product</th>
+                    <th class="quantity-column">Qty</th>
+                    <th class="currency-column">Price Each</th>
+                    <th class="currency-column">Total</th>
+                </tr></thead>
+                <tbody>
+                {% for item in model.items %} 
+                    <tr>
+                        <td class="product-code {% if item.quantity > 1 %} red-text {% else %} {% if item.product.options.length > 0%}red-text{% endif %}{% endif %}">{% if item.product.productCode %}{{ item.product.productCode }}{% else %}{{ item.product.productCode }}{% endif %}</td>
+                        <td class="product-desc">
+                            {% if item.product.imageUrl %}
+                            <div class="product-images columns remove-padding">
+                                <img src="{{item.product.imageUrl}}?max=100" class="product-image">
+                            </div>
+                            {% endif %}
+                            <div class="product-details columns right">
+                                <div class="product-name {% if item.quantity > 1 %} red-text {% else %} {% if item.product.options.length > 0%}red-text{% endif %}{% endif %}">{{ item.product.name }}</div>
+                                {% for option in item.product.options %}
+                                    <div class="product-option red-text">
+                                        <em class="product-option-label">[option]</em>{{ option.name }}: {{ option.value }} 
+                                        {% if option.value == null %} {{option.shopperEnteredValue}} {% endif %}
+                                    </div>
+                                {% endfor %}
+                                {% for product in item.product.bundledProducts %}
+                                    <div class="bundled-product {% if item.quantity > 1 %} red-text {% else %} {% if item.product.options.length > 0%}red-text{% endif %}{% endif %}">
+                                        <em class="product-option-label-bundle">[includes]</em>{{ product.productCode }} - {{ product.name }} (Qty. {{ product.quantity }})
+                                    </div>
+                                {% endfor %}
+                    {% for discount in item.productDiscounts %}
+                                    <div class="discount red-text">
+                                        <span class="product-discount-label">Discount (</span>{{ discount.discount.name }}<span>)</span>
+                                    </div>
+                                {% endfor %}
+                            </div>
+                        </td>
+                        <td class="quantity-column {% if item.quantity > 1 %} red-text {% else %} {% if item.product.options.length > 0%}red-text{% endif %}{% endif %}">{{ item.quantity }}</td>
+                        <td class="currency-column {% if item.quantity > 1 %} red-text {% else %} {% if item.product.options.length > 0%}red-text{% endif %}{% endif %}">{{ item.unitPrice.extendedAmount|currency }}</td>
+                        <td class="currency-column {% if item.quantity > 1 %} red-text {% else %} {% if item.product.options.length > 0%}red-text{% endif %}{% endif %}">{{ item.subtotal|currency }} <br/> {% if item.discountTotal != 0 %}({{ item.discountTotal|currency }}){% endif %}
+              </td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        </div>
+        
+        {%comment%}
+        {% if  model.packages.length>=1 %}
+        {% if model.fulfillmentInfo.shippingMethodName or (model.packages and model.packages.length) or (model.pickups and model.pickups.length) %}
+            <div class="section section-fulfillment">
+                <h2>Fulfillment</h2>
+                {% if model.packages && model.packages.length %}
+                <div class="subsection-wrapper">
+                    <h3>Shipping</h3>
+                    <table class="subsection"><tbody>
+                    {% for package in model.packages %}
+                        <tr>
+                            <td>Package #{{ forloop.counter }}</td>
+                            <td><span class="label">Status:</span> {{ package.status }}</td>
+                        </tr><tr>
+                            <td>
+                                <div class="label">Ship To</div>
+                                <div>{{ model.fulfillmentInfo.fulfillmentContact.firstName }} {{ model.fulfillmentInfo.fulfillmentContact.lastNameOrSurname }}</div>
+                                <div>{{ model.fulfillmentInfo.fulfillmentContact.address.address1 }}</div>
+                                {% if model.fulfillmentInfo.fulfillmentContact.address.address2 %}<div>{{ model.fulfillmentInfo.fulfillmentContact.address.address2 }}</div>{% endif %}
+                                {% if model.fulfillmentInfo.fulfillmentContact.address.address3 %}<div>{{ model.fulfillmentInfo.fulfillmentContact.address.address3 }}</div>{% endif %}
+                                {% if model.fulfillmentInfo.fulfillmentContact.address.address4 %}<div>{{ model.fulfillmentInfo.fulfillmentContact.address.address4 }}</div>{% endif %}
+                                <div>{{ model.fulfillmentInfo.fulfillmentContact.address.cityOrTown }}, {{ model.fulfillmentInfo.fulfillmentContact.address.stateOrProvince }} {{ model.fulfillmentInfo.fulfillmentContact.address.postalOrZipCode }}</div>
+                                {% if model.fulfillmentInfo.fulfillmentContact.phoneNumbers.home %}<div>{{ model.fulfillmentInfo.fulfillmentContact.phoneNumbers.home }} (home)</div>{% endif %}
+                                {% if model.fulfillmentInfo.fulfillmentContact.phoneNumbers.work %}<div>{{ model.fulfillmentInfo.fulfillmentContact.phoneNumbers.work }} (work)</div>{% endif %}
+                                {% if model.fulfillmentInfo.fulfillmentContact.phoneNumbers.mobile %}<div>{{ model.fulfillmentInfo.fulfillmentContact.phoneNumbers.mobile }} (mobile)</div>{% endif %}
+                                <div>{{ model.fulfillmentInfo.fulfillmentContact.email }}</div>
+                            </td>
+                            <td>
+                                <table>
+                                    <tbody>
+                                        <tr>
+                                            <td>
+                                                <div class="label">Shipping Method</div>
+                                                <div>
+                                                    {% if package.shippingMethodCode == model.fulfillmentInfo.shippingMethodCode %}
+                                                        {{ model.fulfillmentInfo.shippingMethodName }}
+                                                    {% else %}
+                                                        {% if package.shippingMethodName %}{{ package.shippingMethodName }}
+                                                        {% else %}{{ package.shippingMethodCode }}
+                                                        {% endif %}
+                                                    {% endif %}
+                                                </div>
+                                            </td><td>
+                                                <div class="label">Packaging Type</div>
+                                                <div>{{ package.packagingType }}</div>
+                                            </td><td>
+                                                <div class="label">Tracking Number</div>
+                                                <div>{{ package.trackingNumber }}</div>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                <div class="label">Total Weight</div>
+                                                <div>{{ package.measurements.weight.value }} {{ package.measurements.weight.unit }}</div>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </td>
+                        </tr><tr>
+                            <td colspan="4"><table class="grid">
+                                <thead><tr>
+                                    <th>Code</th>
+                                    <th>Products</th>
+                                    <th>Weight</th>
+                                    <th>Quantity</th>
+                                </tr></thead>
+                                <tbody>
+                                {% for packageItem in package.items %}
+                                    <tr>
+                                        <td>
+                                            {{ packageItem.productCode }}
+                                        </td>
+                                        <td>
+                                            <div class="product-name">{{ packageItem.productname }}</div>
+                                        </td>
+                                        <td>
+                                            {{ packageItem.adjustedweight.value }} {{ packageItem.adjustedweight.unit }}
+                                        </td>
+                                        <td>
+                                            {{ packageItem.quantity }}
+                                        </td>
+                                    </tr>
+                                {% endfor %}
+                                </tbody>
+                            </table></td>
+                        </tr>
+                    {% endfor %}
+                    </tbody></table>
+                </div>
+                {% endif %}
+                {% if model.pickups && model.pickups.length %}
+                <div class="subsection-wrapper">
+                    <h3>In-Store Pickup</h3>
+                    {% for pickup in model.pickups %}
+                    <table class="subsection"><tbody>
+                        <tr>
+                            <td>Pickup #{{ forloop.counter }}</td>
+                            <td>Status: {{ pickup.status }}</td>
+                        </tr><tr>
+                            <td>
+                                <div class="label">Location</div>
+                                <div>{{ pickup.fulfillmentLocationCode }}</div>
+                            </td><td>
+                                <div class="label">Pickup Date</div>
+                                {% if pickup.fulfillmentDate %}
+                                    <div>{{ pickup.fulfillmentDate|date("m/d/Y") }}</div>
+                                {% endif %}
+                            </td>
+                        </tr><tr>
+                            <td colspan="4"><table class="grid">
+                                <thead><tr>
+                                    <th>Code</th>
+                                    <th>Products</th>
+                                    <th>Weight</th>
+                                    <th>Quantity</th>
+                                </tr></thead>
+                                <tbody>
+                                {% for pickupItem in pickup.items %}
+                                    <tr>
+                                        <td>
+                                            {{ pickupItem.productCode }}
+                                        </td>
+                                        <td>
+                                            <div class="product-name">{{ pickupItem.productname }}</div>
+                                        </td>
+                                        <td>
+                                            {{ pickupItem.adjustedweight.value }} {{ pickupItem.adjustedweight.unit }}
+                                        </td>
+                                        <td>
+                                            {{ pickupItem.quantity }}
+                                        </td>
+                                    </tr>
+                                {% endfor %}
+                                </tbody>
+                            </table></td>
+                        </tr>
+                    </tbody></table>
+                    {% endfor %}
+                </div>
+                {% endif %}
+            </div>
+        {% endif %}
+        {% endif %} 
+        {%endcomment%}
+        {%comment%} Shopper Notes {%endcomment%}
+        {% if model.shopperNotes.giftMessage.length>1 or model.shopperNotes.comments.length>1 %}
+            <div class="section section-notes">
+                <h2>Comment/Gift Card Message</h2>
+                        {% if model.shopperNotes.comments %}
+                            <div class="customer_note_message">{{ model.shopperNotes.comments }}</div>
+                        {% endif %}
+                        {% if model.shopperNotes.giftMessage %}
+                            <div class="customer_note_message">{{ model.shopperNotes.giftMessage }}</div>
+                        {% endif %}
+            </div> 
+        {% endif %}
+        {%comment%} Shopper Notes {%endcomment%}
+        {%comment%} Custom Development For Internal notes {%endcomment%}
+        {% if model.notes %}
+            <div class="section section-notes">
+                <h2>Internal Notes</h2>
+                {% for notes in model.notes %}
+                    <div class="internal_note_message">*{{ notes.text }}</div>
+                {% endfor %}
+            </div>
+        {% endif %}
+        {%comment%} End of Internal Notes {%endcomment%}
+        <div class="section section-payment">
+            <h2>Payment Details</h2>
+            {% if not(model.payments) %}
+                <p class="message">No payment details were provided.</p>
+            {% endif %}
+            {% if model.payments.length > 0 %}
+                <table class="grid">
+                    <thead><tr>
+                        <th>Date</th>
+                        <th>Status</th>
+                        <th>Type</th>
+                        <th>Info</th>
+                        <th>Exp Date</th>
+                        <th>Amount</th>
+                    </tr></thead>
+                    <tbody>
+                    {% for payment in model.payments %}
+                        {% if payment.status != "Voided" %}
+                        <tr>
+                            <td>{{ payment.auditInfo.createDate|date(themeSettings.backofficeDateTimeFormat) }}</td>
+                            <td>{{ payment.status }}</td>
+                            {% if payment.paymentType == "CreditCard" %}
+                                <td>{{ payment.billingInfo.card.paymentOrCardType }}</td>
+                                <td>{{ payment.billingInfo.card.cardNumberPartOrMask }}</td>
+                                <td>
+                                    {% if payment.billingInfo.card.expireMonth %}
+                                        {{ payment.billingInfo.card.expireMonth }}/{{ payment.billingInfo.card.expireYear }}
+                                    {% endif %}
+                                </td>
+                            {% else %}
+                                {% if payment.paymentType == "Check" %}
+                                    <td>Check</td>
+                                    <td>
+                                    {% for interaction in payment.interactions %}
+                                        {% if interaction.interactionType == "Captured" %}{% endif %}
+                                    {% endfor %}
+                                    </td>
+                                    <td>N/A</td>
+                                {% else %}
+                                    {% if payment.paymentType == "StoreCredit" %}
+                                        <td>Gift Card/Store Credit</td>
+                                        <td>{{ payment.billingInfo.storeCreditCode }}</td>
+                                        <td>N/A</td>
+                                    {% else %}
+                                        <td>{{ payment.paymentType }}</td>
+                                        <td>&nbsp;</td>
+                                        <td>&nbsp;</td>
+                                    {% endif %}
+                                {% endif %}
+                            {% endif %}
+                            <td>
+                                {% if payment.amountCollected > 0 %}{{ payment.amountCollected | currency }}
+                                {% else %}{{ payment.amountRequested | currency }}
+                                {% endif %}
+                            </td>
+                        </tr>
+                        {% endif %}
+                    {% endfor %}
+                    </tbody>
+                </table>
+            {% endif %}
+        </div>
+    </td></tr></tbody>
+    </table>
+</div>
+{% endblock body-content %}
+
+
+
+
+
+
+
+
+

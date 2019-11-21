@@ -1,0 +1,90 @@
+@fp-nav-arrow-icons-size        : 30px;
+@fp-nav-arrow-icons-color       : @gray4;
+@fp-product-code-display        : none; /* "block" or "none" */
+@fp-product-description-display : none; /* "block" or "none" */
+
+#fp-slider {
+    width: ~"calc(100% - 100px)";
+    margin: 0 auto;
+    .owl-stage-outer {
+        .owl-item {
+            padding-right: 15px;
+            padding-left: 15px;
+            background-color: #fff;
+            .mz-productlisting-image {
+                @productlisting-max-img-size : @theme-settings-listProductThumbSize;
+                @productlisting-max-img-size : ~"@{theme-settings-listProductThumbSize}px";
+                position: relative;
+                height: @productlisting-max-img-size;
+                margin-bottom: 10px;
+                a {
+                    position: relative;
+                    display: block;
+                    width: 100%;
+                    height: 100%;
+                }
+                img {
+                    max-width: 200px;
+                    max-height: 200px;
+                    width: 100%;
+                    height: initial;
+                    position: absolute;
+                    top: 100%;
+                    right: 0;
+                    left: 0;
+                    -webkit-transform: translateY(-100%); /* Chrome, Safari, Opera */
+                    -ms-transform: translateY(-100%); /* IE 9 */
+                    transform: translateY(-100%);
+                    -moz-user-select: none;
+                    -webkit-user-select: none;
+                    -ms-user-select: none;
+                    user-select: none;
+                    -webkit-user-drag: none;
+                    user-drag: none;
+                }
+            }
+            .mz-productlisting-productcode {
+                display: @fp-product-code-display;
+            }
+            .mz-productlisting-shortdesc {
+                display: @fp-product-description-display;
+            }
+        }
+    }
+    .owl-nav {
+        .owl-prev,
+        .owl-next {
+            position: absolute;
+            top: 50%;
+            -webkit-transform: translateY(-50%); /* Chrome, Safari, Opera */
+            -ms-transform: translateY(-50%); /* IE 9 */
+            transform: translateY(-50%);
+            width: @fp-nav-arrow-icons-size + 20px;
+            height: @fp-nav-arrow-icons-size + 20px;
+            padding: 10px;
+            line-height: 1;
+            color: transparent;
+            opacity: 0.5;
+            &:before {
+                font-family: @font-icons;
+                font-size: @fp-nav-arrow-icons-size;
+                color: @fp-nav-arrow-icons-color;
+            }
+            &:hover {
+                opacity: 1;
+            }
+        }
+        .owl-prev {
+            left: -@fp-nav-arrow-icons-size - 20px;
+            &:before {
+                content: @icon-chevron2-left;
+            }
+        }
+        .owl-next {
+            right: -@fp-nav-arrow-icons-size - 20px;
+            &:before {
+                content: @icon-chevron2-right;
+            }
+        }
+    }
+}

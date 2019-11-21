@@ -1,0 +1,58 @@
+﻿#account-settings {
+    .mz-l-stack-sectiontitle {
+        @media only screen and (min-width: 768px) {
+            margin-top: 0;
+        }
+    }
+    .mz-accountsettings-section {
+        margin-bottom: 10px;
+        > div {
+            @media only screen and (max-width: 767px) {
+                display: block;
+            }
+        }
+        &.is-editing {
+            .mz-accountsettings-label {
+                display: block;
+            }
+        }
+    }
+    label,
+    .mz-accountsettings-label {
+        display: inline-block;
+        color: @gray3;
+    }
+    .mz-accountsettings-displayname,
+    .mz-accountsettings-displayemail,
+    .mz-accountsettings-acceptsmarketing input,
+    .mz-accountsettings-acceptsmarketing label {
+        display: inline-block;
+    }
+    .mz-accountsettings-lastname {
+        @media only screen and (max-width: 767px) {
+            display: block;
+            margin-top: 10px;
+        }
+    }
+    .mz-accountsettings-acceptsmarketing {
+        &.is-editing {
+            margin-bottom: 20px;
+            label {
+                cursor: pointer;
+            }
+        }
+        label {
+            display: inline-block;
+            margin-bottom: 0;
+            font-weight: normal;
+            white-space: normal;
+            cursor: default;
+        }
+        input {
+            margin-right: 5px;
+        }
+    }
+    .mz-link-edit-accountsettings {
+        display: inline-block;
+    }
+}

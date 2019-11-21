@@ -1,0 +1,42 @@
+{% require_script "widgets/countdown" %}
+
+<div id="countdown" class="col-xs-12" style="background-color: {{ model.config.countdownBgColor }};{% if model.config.countdownBgImg %} background-image: url({% if pageContext.isMobile %}{% make_url 'image' model.config.countdownBgImg with maxWidth=750 as_parameter %}{% else %}{{ model.config.countdownBgImg.imageUrl }}{% endif %}){% endif %}">
+  <div class="countdown-date hidden">{{ model.config.countdownDate|date("m/j/Y") }}</div>
+  <div class="countdown-before-text col-xs-12">{{ model.config.countdownBeforeText }}</div>
+  <div class="col-xs-12 no-pad">
+    {% if model.config.countdownDaysOnly or pageContext.isMobile %}
+      <div class="section-wrapper days-only col-xs-12 col-sm-4 col-sm-offset-4">
+        <div class="time-container col-xs-12">
+          <div class="time-unit days"></div>
+          <div class="time-text">{{ labels.days }}</div>
+        </div>
+      </div>
+    {% else %}
+      <div class="section-wrapper col-xs-12 col-sm-3">
+        <div class="time-container col-xs-12">
+          <div class="time-unit days"></div>
+          <div class="time-text">{{ labels.days }}</div>
+        </div>
+      </div>
+      <div class="section-wrapper col-xs-12 col-sm-3">
+        <div class="time-container col-xs-12">
+          <div class="time-unit hours"></div>
+          <div class="time-text">{{ labels.hours }}</div>
+        </div>
+      </div>
+      <div class="section-wrapper col-xs-12 col-sm-3">
+        <div class="time-container col-xs-12">
+          <div class="time-unit minutes"></div>
+          <div class="time-text">{{ labels.minutes }}</div>
+        </div>
+      </div>
+      <div class="section-wrapper col-xs-12 col-sm-3">
+        <div class="time-container col-xs-12">
+          <div class="time-unit seconds"></div>
+          <div class="time-text">{{ labels.seconds }}</div>
+        </div>
+      </div>
+    {% endif %}
+  </div>
+  <div class="countdown-after-text col-xs-12">{{ model.config.countdownAfterText }}</div>
+</div>

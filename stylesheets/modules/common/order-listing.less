@@ -1,0 +1,141 @@
+﻿.mz-orderlist {
+    .mz-orderlisting {
+        margin-bottom: 20px;
+        background-color: @my-account-order-history-details-bg;
+        border: 1px solid @my-account-section-border-color;
+        @media only screen and (min-width: 992px) {
+            display: table;
+            border-collapse: collapse;
+            border-spacing: 0;
+        }
+        .mz-orderlisting-detail {
+            padding-top: 15px;
+            padding-bottom: 15px;
+            @media only screen and (min-width: 992px) {
+                position: static;
+                float: none;
+                display: table-cell;
+                vertical-align: top;
+            }
+            .mz-orderlisting-date {
+                margin-top: 0;
+            }
+            .mz-propertylist {
+                margin-bottom: 0;
+                @media only screen and (max-width: 767px) {
+                    padding-right: 0;
+                    padding-left: 0;
+                }
+                @media only screen and (min-width: 768px) and (max-width: 991px) {
+                    clear: none;
+                }
+                @media only screen and (min-width: 992px) {
+                    padding-right: 0;
+                    padding-left: 0;
+                }
+                dt {}
+                dd {}
+            }
+            .mz-tracking-number-wrapper {
+                margin-top: 20px;
+                @media only screen and (min-width: 768px) and (max-width: 991px) {
+                    margin-top: 0;
+                    margin-bottom: 20px;
+                }
+                .mz-tracking-number {
+                    width: 100%;
+                    margin-left: 0;
+                }
+                .mz-tracking-link {
+                    text-decoration: none;
+                    text-transform: uppercase;
+                    word-break: break-word;
+                }
+            }
+            .mz-products-included {
+                .mz-products-included-title {}
+                .mz-products-included-list {
+                    width: 100%;
+                    margin-left: 0;
+                    ul {
+                        margin-top: 0;
+                        margin-bottom: 0;
+                        padding-left: 20px;
+                    }
+                    li {
+                        margin-top: 0;
+                        margin-bottom: 0;
+                    }
+                }
+            }
+            .confirmation-link {
+                text-decoration: none;
+            }
+        }
+        .mz-orderlisting-items {
+            background-color: @my-account-order-history-items-bg;
+            @media only screen and (min-width: 992px) {
+                position: static;
+                float: none;
+                display: table-cell;
+                vertical-align: top;
+            }
+            .mz-itemlisting {
+                padding-top: 15px;
+                padding-bottom: 15px;
+                &:not(:last-child) {
+                    border-bottom: 1px solid @gray1;
+                }
+                .mz-itemlisting-thumb {
+                    .mz-itemlisting-thumb-img {
+                        margin-right: auto;
+                        margin-left: auto;
+                    }
+                    @media only screen and (min-width: 501px) and (max-width: 767px) {
+                        width: 25%;
+                    }
+                }
+                .mz-itemlisting-details {
+                    @media only screen and (max-width: 500px) {
+                        padding-right: 0;
+                        padding-left: 0;
+                    }
+                    @media only screen and (min-width: 501px) and (max-width: 767px) {
+                        width: 75%;
+                    }
+                }
+                .mz-itemlisting-description {
+                    color: @gray3;
+                }
+                .mz-itemlisting-title {
+                    text-decoration: none;
+                    font-size: @font-size + 2px;
+                    @media only screen and (max-width: 991px) {
+                        font-size: @font-size-mobile + 2px;
+                    }
+                }
+                .mz-itemlisting-actions {
+                    @media only screen and (min-width: 501px) and (max-width: 767px) {
+                        width: ~"calc(75% - 15px)";
+                        margin-left: ~"calc(25% + 15px)";
+                    }
+                    @media only screen and (min-width: 768px) {
+                        text-align: right;
+                    }
+                    .mz-itemlisting-action {
+                        text-decoration: none;
+                    }
+                }
+                .mz-return-wrapper {
+                    @media only screen and (min-width: 768px) and (max-width: 991px) {
+                        text-align: right;
+                    }
+                    .mz-itemlisting-action {
+                        display: inline-block;
+                        text-decoration: none;
+                    }
+                }
+            }
+        }
+    }
+}

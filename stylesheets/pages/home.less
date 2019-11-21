@@ -1,0 +1,119 @@
+.mz-homepage {
+
+	&.push-menu-open {
+		@media only screen and (min-width: 768px){
+			#push-menu {
+    			top: -99999px !important;
+			}
+			#push-menu-body-overlay {
+				visibility: hidden !important;
+			}
+		}
+		
+		@media only screen and (max-width: 767px){
+			#push-menu {
+				position: absolute;
+			}
+			#page-content {
+				padding-top: ~'calc(100vw + 61px)';
+			}
+		}
+	}
+	.admin-message {
+		margin-bottom: 20px;
+	}
+	.mz-productlist-tiled .mz-productlist-item {
+		@media only screen and (min-width: 992px) and (max-width: 1199px) {
+			width: 25%;
+		}
+	}
+	.hero {
+		margin-bottom: 30px;
+		@media only screen and (max-width: 767px) {
+			margin-bottom: 15px;
+		}
+		.promo-widget {
+			height: 60vw;
+			max-height: 500px;
+			min-height: 300px;
+			.promo-textbox {
+				position: relative;
+				top: 50%;
+				-webkit-transform: translateY(-50%); /* Chrome, Safari, Opera */
+				-ms-transform: translateY(-50%); /* IE 9 */
+				transform: translateY(-50%);
+				height: auto;
+				@media only screen and (min-width: 768px) {
+					position: absolute;
+					right: 0;
+					left: 0;
+					width: 50%;
+					min-width: 400px;
+					margin-right: auto;
+					margin-left: auto;
+				}
+				.promo-title {
+					@media only screen and (min-width: 768px) {
+						font-size: @font-size + 20px;
+					}
+				}
+				.promo-description {
+					@media only screen and (min-width: 768px) {
+						font-size: @font-size + 10px;
+					}
+				}
+			}
+		}
+	}
+	.countdown-widget {
+		margin-bottom: 30px;
+		@media only screen and (max-width: 767px) {
+			margin-bottom: 15px;
+		}
+	}
+	.promos-widget-wrapper {
+		&:not(:last-child) {
+			margin-bottom: 30px;
+			@media only screen and (max-width: 767px) {
+				margin-bottom: 15px;
+			}
+		}
+		&.promos-row-4 {
+			display: flex;
+			flex-wrap: wrap;
+			.promo {
+				@media only screen and (min-width: 501px) and (max-width: 767px) {
+					width: 50%;
+				}
+				@media only screen and (min-width: 501px) and (max-width: 991px) {
+					margin-bottom: 30px;
+				}
+			}
+		}
+		.promo {
+			&:not(:last-child) {
+				@media only screen and (max-width: 767px) {
+					margin-bottom: 15px;
+				}
+			}
+			&.promo-4 {
+				@media only screen and (min-width: 768px) and (max-width: 991px) {
+					margin-top: 50px;
+				}
+			}
+		}
+	}
+	.featured-products-widget {
+		margin-bottom: 30px;
+		h2 {
+			margin-bottom: 30px;
+			border-bottom: 1px solid @gray2;
+		}
+	}
+
+
+
+
+
+
+}

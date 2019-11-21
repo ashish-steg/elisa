@@ -1,0 +1,73 @@
+{% require_script "modules/faceting-form" %}
+    <button class="mobile-facets-toggle top-toggle closed icon">
+        <span class="hide-filters hidden">{{ labels.filtersHide }}</span><span class="show-filters">{{ labels.filtersShow }}</span> <i class="icon chevron2-down"></i>
+    </button>
+    <section class="mz-facetingform col-xs-12 no-pad">
+    {% if model.hasValueFacets and pageContext.pagination.facetValueFilter %}
+    <div class="mz-l-sidebaritem clearall">
+        <button class="mz-button gray mz-facetingform-clearall" data-mz-action="clearFacets" data-mz-url="{% make_url "facet" "clear"  %}">{{ labels.clearAllFilters }}</button>
+    </div>
+    {% endif %}
+    {% for facet in model.facets %}
+      {% if facet.values and facet.facetType == "Hierarchy" %}
+        {% if facet.values.length == 1 %}        
+          {% include "modules/product/hierarchy-facets" with facet=facet facetValues=facet.values|first|prop("childrenFacetValues") %}
+        {% else %}
+          {% include "modules/product/hierarchy-facets" with facet=facet facetValues=facet.values %}
+        {% endif %}
+      {% endif %}
+    {% endfor %}
+    {% for facet in model.facets %}
+    {% if facet.values and facet.facetType != "Hierarchy" %}
+    <div class="mz-l-sidebaritem">
+        <a class="accordion-toggle  {% if facet.field|lower != 'tenant~jewelry-type' %}
+                                    {% if facet.field|lower != 'tenant~bracelet-type' %}
+                                    {% if facet.field|lower != 'tenant~awareness-type' %}
+                                    {% if facet.field|lower != 'tenant~earring-type' %}
+                                    {% if facet.field|lower != 'tenant~pendant-type' %}
+                                    {% if facet.field|lower != 'tenant~ring-type' %}
+                                    {% if facet.field|lower != 'tenant~type' %}
+                                        collapsed 
+                                    {% endif %}
+                                    {% endif %}
+                                    {% endif %}
+                                    {% endif %}
+                                    {% endif %}
+                                    {% endif %}
+                                    {% endif %}
+                    col-xs-12 no-pad" 
+            data-toggle="collapse" 
+            data-parent="#footer-collapse" 
+            href="#facet_{{ forloop.counter0}}" 
+            aria-expanded="{% if facet.field|lower == 'tenant~jewelry-type' or facet.field|lower == 'tenant~bracelet-type' or facet.field|lower == 'tenant~awareness-type' or facet.field|lower == 'tenant~earring-type' or facet.field|lower == 'tenant~pendant-type' or facet.field|lower == 'tenant~ring-type' or facet.field|lower == 'tenant~type' %}
+                                true
+                            {% else %}
+                                false
+                            {% endif %}">
+            <h6>{{ facet.label }} <i class="icon chevron2-up"></i></h6>
+        </a>
+        <ul id="facet_{{ forloop.counter0}}"
+            class="mz-facetingform-facet mz-facetingform-facet-hierarchy collapse
+                {% if facet.field|lower == 'tenant~jewelry-type' or facet.field|lower == 'tenant~bracelet-type' or facet.field|lower == 'tenant~awareness-type' or facet.field|lower == 'tenant~earring-type' or facet.field|lower == 'tenant~pendant-type' or facet.field|lower == 'tenant~ring-type' or facet.field|lower == 'tenant~type' %}
+                    in
+                {% endif %}
+                col-xs-12 no-pad"
+            aria-expanded="{% if or facet.field|lower == 'tenant~jewelry-type' or facet.field|lower == 'tenant~bracelet-type' or facet.field|lower == 'tenant~awareness-type' or facet.field|lower == 'tenant~earring-type' or facet.field|lower == 'tenant~pendant-type' or facet.field|lower == 'tenant~ring-type' or facet.field|lower == 'tenant~type' %}
+                                true
+                            {% else %}
+                                false
+                            {% endif %}">
+            {% for fval in facet.values %}
+                    <li>
+                        <input type="checkbox" id="{{facet.field|slugify }}_{{ fval.value|slugify }}" class="mz-facetingform-value" {% if fval.isApplied %}checked="checked"{% endif %} data-mz-facet="{{ facet.field }}" data-mz-facet-value="{{ fval.value }}" data-mz-url="{% make_url "facet" fval %}">
+                        <label class="mz-facetingform-valuelabel" {% if facet.field|lower == "tenant~color" %} style="text-transform: capitalize;" {%endif%} for="{{facet.field|slugify }}_{{ fval.value|slugify }}">{% if facet.field|lower == "tenant~color" %}{{ fval.value }}{% else %}{{ fval.label }}{% endif %}</label>
+                    </li>
+            {% endfor %}
+        </ul>
+    </div>
+    {% endif %}
+    {% endfor %}
+        <button class="mobile-facets-toggle bottom-toggle icon">
+            <span class="hide-filters">{{ labels.filtersHide }}</span> <i class="icon chevron2-up"></i>
+        </button>
+</section>

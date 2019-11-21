@@ -1,0 +1,42 @@
+.modal-content.quickview-modal {
+  border: none;
+  box-shadow: none;
+  position: fixed;
+  top: 15%;
+  left: 0;
+  right: 0;
+  margin: 0 auto;
+  z-index: 1041;
+
+  h2 {
+    font-size: 24px;
+    font-style: normal;
+    margin-top: 0;
+  }
+
+  h4 {
+    font-style: normal;
+  }
+
+  .mz-productdetail {
+    font-size: 12px;
+
+    .mz-productdetail-bundleitems {
+      height: 100px;
+      overflow-y: auto;
+    }
+  }
+
+  .mz-productdetail-shortdesc {
+    line-height: 1;
+  }
+}
+.in {
+  .modal-content.quickview-modal {
+    display: block;
+  }
+}
+
+body.modal-open {
+  overflow: auto;
+}

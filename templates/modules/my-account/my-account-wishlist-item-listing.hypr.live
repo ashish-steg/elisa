@@ -1,0 +1,10 @@
+﻿{% extends "modules/common/wishlist-item-listing" %}
+
+{% block item-listing-actions %}
+    <td>
+        <button class="primary" data-mz-action="addItemToCart" data-mz-item-id="{{ model.id }}" {% if model.purchasableStatusType == 'notpurchasable' %} disabled {% endif %}>{% if model.purchasableStatusType == 'notpurchasable' %}Product is out of stock{% else %}{{ labels.addToBag }}{% endif %}</button>
+    </td>
+    <td>
+        <a class="remove-wishlist-item mz-itemlisting-action" href="javascript:;" data-mz-item-id="{{ model.id }}"><i class="icon exit1-circle-punched"></i></a>
+    </td>
+{% endblock item-listing-actions %}

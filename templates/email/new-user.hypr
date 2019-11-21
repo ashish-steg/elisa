@@ -1,0 +1,38 @@
+﻿  {% extends "email/email" %}
+
+  {% block body-content %}
+  <div style=" display: block; width: 100%; margin-bottom: 5%;"> 
+    {% comment %}
+	{% if user and user.firstName %} 
+		{{ labels.emailOpening|string_format(user.firstName)|safe }}
+	{% else %}
+		{{ labels.emailOpeningAlternative|safe }}
+	{% endif %}
+    {% endcomment %}
+
+    {% comment %}
+    <h1 style="margin:15px; font-size:25px;">{{ labels.newUserEmailSalutation|string_format(siteContext.generalSettings.websiteName) }}</h1>
+    {% endcomment %}
+    <p style="color:#333;font-family:'Trebuchet MS', Verdana, Geneva, sans-serif;font-size: 20px;font-weight:bold;padding: 16px 0;width: 85%;display: block;line-height:21px;margin-top: 0px;margin-bottom: 0px;">Thank you for choosing <a style="color:#333;text-decoration: none; margin: 0;" href="http://{{domainName}}/">elisailana.com</a>.</p>
+    <p style="color:#333;font-family:'Trebuchet MS', Verdana, Geneva, sans-serif;font-size: 16px;padding: 0px 0;width: 85%;display: block;line-height:21px;margin: 0px;"> Your account is confirmed and ready to go. Go get your shop on! </p>
+    {%  comment %}
+    <p>{{ labels.newUserEmailNotification|string_format(domainName, model.UserEmailAddress)|safe }}</p>
+    
+    {{ labels.emailClosing|string_format(siteContext.generalSettings.websiteName)|safe }}
+    {% endcomment %}
+    {%comment%}
+        <p style="color:#333; display: block; font-family:'Trebuchet MS', Verdana, Geneva, sans-serif;font-size: 16px; padding: 10px 0; width:85%;line-height:21px; "> If you have any questions, please email us at contact@{{domainName}}.</p>{%endcomment%}
+    <p style=" color:#333;font-family:'Trebuchet MS', Verdana, Geneva, sans-serif; font-size: 16px; padding: 20px 0; width: 85%; display: block;line-height:21px; font-weight: bold;">Sincerely,</p>
+    <p style="color:#333; font-family:'Trebuchet MS', Verdana, Geneva, sans-serif;font-size: 16px; padding: 0; width: 85%; display: block;line-height:21px;">The Elisa Ilana Jewelry Customer Service Team</p>
+    </div> 
+    {%comment%}
+      <div style="width:100%;display:block;text-align:center;">
+                        <span class="mz-email_content" style=" font-family:'Trebuchet MS', Verdana, Geneva, sans-serif;font-style: normal;color:#b9b9b9;font-size:12px;width:100%; margin:0 auto 10px;display:inline-table;">
+                            You've received this message because you've registered or accepted our 
+                            invitation to receive email from Demo Store or you've made a purchase from 
+                            <a style=" text-decoration: none; margin: 0;color:#333; " href="http://{{domainName}}/">Demo Store</a>
+                            
+                        </span>
+        </div>
+    {%endcomment%}
+{% endblock body-content %} 

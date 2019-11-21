@@ -1,0 +1,8 @@
+﻿{% extends "modules/product/product-list" %}
+{% block featured-products-carousel %}
+	<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.0.0-beta.3/assets/owl.carousel.min.css">
+	{% require_script "widgets/featured-products-carousel" %}
+{% endblock featured-products-carousel %}
+{% block module-classes %}mz-productlist-carousel{% endblock module-classes %}
+{% block featured-products-id %} id="fp-slider"{% endblock featured-products-id %}
+{% block list-classes %}owl-carousel{% endblock list-classes %}

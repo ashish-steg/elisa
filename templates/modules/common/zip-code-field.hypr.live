@@ -1,0 +1,4 @@
+        <div class="col-sm-12 cart-fields-right">
+            <input type="text" id="zip-code" class="discount-code" name="zip-code" value="{{ model.zipCode }}" placeholder="zip-code" data-mz-value="zipCode">
+            <button type="button" id="cart-zip-code" class="mz-button discount-code" placeholder="{{ labels.zipCode }}" data-mz-action="estimateZipCode">{{ labels.estimate }}</button>
+        </div>

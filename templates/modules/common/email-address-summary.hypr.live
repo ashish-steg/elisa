@@ -1,0 +1,13 @@
+﻿    <span style="display:block;line-height:21px;">{{ model.firstName }} {{ model.lastNameOrSurname }}</span>
+    <span style="display:block;line-height:21px;"> {{ model.address.address1 }}</span>
+     {% if model.address.address2 %}
+      <span style="display:block;line-height:21px;">   {{ model.address.address2 }} </span>
+    {% endif %}
+    {% if model.address.address3 %}
+       <span style="display:block;line-height:21px;"> {{ model.address.address3 }} </span>
+    {% endif %}
+   <span style="display:block;line-height:21px;"> {{ model.address.cityOrTown }}, {{ model.address.stateOrProvince }} {{ model.address.postalOrZipCode }}</span>
+   <span style="display:block;line-height:21px;"> {{ model.address.countryCode }} </span>
+    {% if model.phoneNumbers.home %}
+        <span style="display:block;line-height:21px;">{{ model.phoneNumbers.home }}</span>
+    {% endif %}

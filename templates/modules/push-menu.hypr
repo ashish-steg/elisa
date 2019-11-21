@@ -1,0 +1,53 @@
+{% require_script "modules/contextify" %}
+{% require_script "modules/push-menu" %}
+<nav id="push-menu" class="mz-mobilenav col-xs-12 no-pad">
+  <div class="push-menu-top col-xs-12 no-pad">
+    <div class="exit-push-menu"><i class="icon exit1"></i></div>
+    <form id="searchbox" class="mz-searchbox{% if themeSettings.useSearchAutocomplete %} mz-searchbox-expands{% endif %}" action="/search">
+        <input placeholder="{{ labels.search }}" type="search" class="mz-searchbox-input" autocomplete="off" name="query" data-mz-role="searchquery" />
+        <button class="mz-searchbox-button" type="submit">Search</button>
+    </form>
+    <div class="nav-account">
+        {% if user.isAuthenticated %}
+            {% if user.firstName !== '' %}
+                <span class="mz-welcome-text">Welcome, {{ user.firstName }}!</span>
+            {% endif %}
+            <a href="/myaccount" title="{{ labels.logIn }}" rel="nofollow">My Account</a> | <a class="mz-utilitynav-link logout">Logout</a>
+        {% else %}
+            <a rel="nofollow" id="user-logged-in-link-m">Login/Register</a>
+        {% endif %}
+    </div>
+  </div>
+  <ul class="mz-mobilenav-list col-xs-12 no-pad" 
+      data-mz-contextify='.mz-mobilenav-link[href="{{ navigation.currentNode.url }}"]'
+      data-mz-contextify-attr='class'
+      data-mz-contextify-val='is-current'>
+    {% partial_cache %}
+      {% for link in navigation.tree  %}
+        {% if not link.isHidden and forloop.counter0 > 0 %}
+          <li class="mz-mobilenav-item">
+            {% if link.items %}
+              <div class="mz-mobilenav-sub-toggle">{{link.name}} <i class="icon chevron2-right"></i></div>
+              <ul class="mz-mobilenav-sub">
+                {% for sublink in link.items|dictsort:"name" %}
+                   {% if not sublink.isHidden and not sublink.isEmpty and sublink.nodeType == "category" %}
+                    <li data-mz-role="sitemenu-item" class="mz-mobilenav-item">
+                        <a class="mz-mobilenav-link" href="{{sublink.url}}">{{sublink.name}}</a>
+                    </li>
+                  {% endif %}
+                {% endfor %}
+                <li data-mz-role="sitemenu-item" class="mz-mobilenav-item">
+                  <a class="mz-mobilenav-link" href="{{link.url}}">{{ labels.viewAll }}</a>
+                </li>
+              </ul>
+            {% else %}
+            <a class="mz-mobilenav-link" href="{{link.url}}">{{link.name}}</a>
+            {% endif %}
+          </li>
+        {% endif %}
+      {% endfor %}
+    {% endpartial_cache %}
+  </ul>
+  <div class="exit-push-menu center"><i class="icon exit1"></i></div>
+</nav>
+<div id="push-menu-body-overlay"></div>

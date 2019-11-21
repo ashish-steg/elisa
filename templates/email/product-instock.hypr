@@ -1,0 +1,89 @@
+﻿  {% extends "email/email" %}
+
+  {% block body-content %}
+    <div style=" display: block; width: 100%;">
+       
+        <div style=" display: block; width: 100%; margin: 0 auto; padding-bottom: 3%;">
+            
+            <p style="line-height:21px;color:#333;font-family:'Trebuchet MS', Verdana, Geneva, sans-serif;font-size: 17px;padding: 20px 0;width:100%;display: block;">
+                Something fabulous is back in stock! 
+                <a style=" text-decoration: none; color: #333; border-bottom: 1px solid #333;" href="http://{{domainName}}/{{model.productCode}}/">Get it here</a>
+            </p>
+            <div style="width: 100%;overflow: hidden;">
+                <div style="width: 10%;display: inline-block;vertical-align: middle;">
+              
+                     {% if model.content.productImages %}
+                        	<a target="_blank" href="{{ image.imageUrl }}"> 
+                        	<img class="mob-full-wid" src="{{ model.content.productImages.0.imageUrl }}?max=100" style="vertical-align: middle;float: left;" itemprop="image" />	        
+                        	</a> 
+                      {% endif %}
+                      
+                </div>
+                <div style="clear: both;margin-top: 5px;overflow: hidden;">
+                      <a href="#" style="margin-bottom: 5px;text-decoration:underline;display: block;font-family:'Trebuchet MS', Verdana, Geneva, sans-serif;font-size: 14px; color:#333; ">{{ model.content.productName }} </a>
+                       {% for prop in item.product.properties %}
+                        {% if prop.attributeFQN == "tenant~sku" or  prop.attributeFQN == "tenant~style" %}
+                            {% for v in prop.values %}
+                                {% if v.stringValue %}
+                                    <div style="margin-bottom: 5px;color:#333;text-decoration:underline;display: block;font-family:'Trebuchet MS', Verdana, Geneva, sans-serif;font-size:14px; ">{% if prop.attributeFQN == "tenant~sku" %}{{ labels.skucode }}{% else %}{{ labels.stylecode }} {% endif %} {{ v.stringValue|safe }}</div>
+                                {% endif %}
+                            {% endfor %}
+                        {% endif %} 
+                      {% endfor %}
+                      </div>
+                <a href="{{siteContext.domains.current.domainName}}/p/{{ item.product.productCode }}" style="text-decoration:none;margin-left: 15px;font-family:'Trebuchet MS', Verdana, Geneva, sans-serif;color: #333;font-size:14px;" target="_blank">{{ item.product.name }}</a>
+            </div>
+            <p style="clear:both; margin-top: 5%;color:#333;display: block;font-family:'Trebuchet MS', Verdana, Geneva, sans-serif; ">We only have a limited amount, and this email is not a guarantee you will get one. 
+So, hurry to elisailana.com to be one of the lucky shoppers who do! </p>
+            <p style="color:#333;display: block;font-family:'Trebuchet MS', Verdana, Geneva, sans-serif; ">Happy Shopping!</p>
+            <p style="color:#333; 'Trebuchet MS', Verdana, Geneva, sans-serif;font-size: 16px; padding: 0;display: block;line-height:21px;font-family: 'Trebuchet MS', Verdana, Geneva, sans-serif;">The Elisa Ilana Jewelry Customer Service Team</p>
+            
+            <p style="color:#333; 'Trebuchet MS', Verdana, Geneva, sans-serif;font-size: 16px; padding: 0;display: block;line-height:21px;font-family: 'Trebuchet MS', Verdana, Geneva, sans-serif;margin-top: 30px;">P.S. If you arrive at our site and the item is already sold out, we are sorry. But, at least you know you have great taste!</p>
+        </div>
+    </div>
+
+    {% comment %}
+	{% if user and user.firstName %}
+		{{ labels.emailOpening|string_format(user.firstName)|safe }}
+	{% else %}
+		{{ labels.emailOpeningAlternative|safe }}
+	{% endif %}
+
+	{{ labels.inStockBlob1|string_format(siteContext.generalSettings.websiteName)|safe }}
+
+	<table class="mz-ordersummary" style="width:98%;margin:10px;">
+    <thead>
+        <tr>
+            <th class="mz-ordersummary-header-product">{{ labels.item }}</th>
+            <th class="mz-ordersummary-header-price">{{ labels.price }}</th>
+        </tr>
+    </thead>
+	<tbody>
+		<tr>
+			<td style="width:70%;">
+				<p>{% if model.content.productShortDescription and themeSettings.showProductDetailShortDesc %}</p>
+				<div class="mz-productdetail-shortdesc mz-l-stack-section" style="margin:10px 0">
+				  <span style="margin:10px 0" itemscope="description">{{ model.content.productShortDescription|safe }}</span>
+				</div>
+				{% endif %}
+				{% if model.options %}
+				<div class="mz-productdetail-options mz-l-stack-section" style="margin:10px 0">
+				  <p>{% include "modules/product/product-options" %}</p>
+				</div>
+				{% endif %}
+				{{model.productCode}}
+			</td>
+			<td style="vertical-align:top;text-align:center;">
+				<div style="margin:10px 0" itemprop="offers" itemscope itemtype="http://schema.org/Offer" class="mz-productdetail-price mz-l-stack-section">
+			    <p>	{% include "modules/product/price-stack" %} </p>
+				</div>
+			</td>
+		</tr>
+	</tbody>
+	</table>
+
+	{{ labels.inStockBlob2|string_format(domainName, model.productCode)|safe }}
+
+	{{ labels.emailClosing|string_format(siteContext.generalSettings.websiteName)|safe }}
+    {% endcomment %} 
+{% endblock body-content %}

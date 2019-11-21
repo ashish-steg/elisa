@@ -1,0 +1,62 @@
+﻿  {% extends "email/email" %}
+
+  {% block body-content %}
+  <div style=" display: block; width: 100%; margin-bottom: 3%;">
+   
+    <div style=" display: block; width: 95%; margin: 0 auto; "> 
+        <p style="color:#333333;font-family:'Trebuchet MS', Verdana, Geneva, sans-serif;font-size: 18px;padding-top: 10px;width: 100%;display: block;margin-bottom: 0px;">{{ model.Order.billingInfo.billingContact.firstName }} has sent you a gift to <a href="" style="text-decoration: none; color: #333;" title="elisailana.com">elisailana.com</a>!</p>
+        <p style="color: #333;font-family:'Trebuchet MS', Verdana, Geneva, sans-serif;font-size: 14px;padding: 0px;width: 100%;display: block;margin-top: 5px;">{{ model.order.shopperNotes.giftMessage }} </p>
+            <div style="width: 96%; margin: 20px 0px; padding: 20px 2%; border-top: 1px solid #cccccc; border-bottom: 1px solid #cccccc;"> 
+                <div style="width:20%;float: left;">
+                    <span style="display:block; font-family:'Trebuchet MS', Verdana, Geneva, sans-serif; font-size: 16px;margin-bottom: 1%;width: 100%;color: #333;">Amount:</span>
+                    <span style="display:block; font-family:'Trebuchet MS', Verdana, Geneva, sans-serif; font-size: 18px;font-weight: bold;width: 100%;color: #333;">{{model.Credit.CurrentBalance|currency}}</span>
+                </div> 
+                
+                <div style="width: 80%;overflow: hidden;">
+                    <span style="display:block; font-family:'Trebuchet MS', Verdana, Geneva, sans-serif; font-size: 16px;margin-bottom: 0.5%;width: 100%;color: #333;">Code:</span>
+                    <span style="display: block; font-family:'Trebuchet MS', Verdana, Geneva, sans-serif; font-size: 18px;font-weight: bold;width: 100%;color: #333;">{{model.Credit.Code}}</span>    
+                </div>
+                
+                <div style="width:100%; clear:both; margin-top: 30px;">
+                    <p style="display:block; font-family:'Trebuchet MS', Verdana, Geneva, sans-serif; font-size: 18px;font-weight: bold;width: 100%;color: #333;margin-bottom: 5px;">Redeem your gift at :</p>
+                    
+                    <span style="margin-bottom: 3px;display: block;"><a style="display:inline; font-family:'Trebuchet MS', Verdana, Geneva, sans-serif; font-size: 14px;margin-bottom: 0.3%;width: 100%;color: #333;" href="http://{{domainName}}/" title='ELISAILANA.COM'>ELISAILANA.COM</a></span>
+                    <span style="margin-bottom: 3px;display: block;"><a style="display:inline; font-family:'Trebuchet MS', Verdana, Geneva, sans-serif; font-size: 14px;margin-bottom: 0.3%;width: 100%;color: #333;" href="http://PANCHARMBRACELETS.COM" title='PANCHARMBRACELETS.COM'>PANCHARMBRACELETS.COM</a></span>
+                    <span style="margin-bottom: 3px;display: block;"><a style="display:inline; font-family:'Trebuchet MS', Verdana, Geneva, sans-serif; font-size: 14px;margin-bottom: 0.3%;width: 100%;color: #333;" href="http://MYPANJEWELRY.COM" title='MYPANJEWELRY.COM'>MYPANJEWELRY.COM</a></span>
+                </div>
+            </div>
+        {%comment%}
+            <p style="line-height:21px;color:#333333;display: block; font-family:'Trebuchet MS', Verdana, Geneva, sans-serif; font-size: 16px; padding: 10px 0; width:100%; ">Your special code is {{model.Credit.Code}}</p>
+            <p style="line-height:21px;color:#333333;display: block; font-family:'Trebuchet MS', Verdana, Geneva, sans-serif; font-size: 16px; padding: 10px 0; width:100%; ">To redeem your gift, visit us at <a style=" text-decoration: none;color: #000000; " href="http://{{domainName}}/">{{domainName|safe}}</a></p>
+        {%endcomment%}
+        <p style="display: block;font-family: 'Trebuchet MS', Verdana, Geneva, sans-serif; font-size: 18px;font-weight: bold;width: 100%; color: #333; margin-bottom: 5px;     ">Happy Shopping!</p>
+        <p style="line-height:21px; color:#333;display: block; font-family:'Trebuchet MS', Verdana, Geneva, sans-serif; font-size: 14px; padding: 10px 0; width:100%;margin-top: 0%;">The Elisa Ilana Jewelry Customer Service Team</p>
+        
+        <p style="line-height:21px; color:#333;display: block; font-family:'Trebuchet MS', Verdana, Geneva, sans-serif; font-size: 14px; padding: 10px 0; width:100%;">* Not valid for in-store purchases.This Gift Certificate is for ONLINE purchases ONLY at <a href='http://{{domainName}}/' title='elisailana.com' style='color:#333; text-decoration: none;'>elisailana.com</a>, <a href='http://Pancharmbracelets.com' title='Pancharmbracelets.com' style='color:#333;text-decoration: none;'>Pancharmbracelets.com</a> or <a href='http://mypanjewelry.com' title='mypanjewelry.com' style='color:#333;text-decoration: none;'>mypanjewelry.com</a></p>
+    </div>
+  </div>
+  {% comment %}
+    <br> 
+    {{ user.firstName }}
+    {{ labels.giftCardEmailBanner|string_format(domainName)|safe}}
+ 
+    <p>
+    {% if model.Order.billingInfo.billingContact.firstName %}
+        {{ labels.giftCardEmailGreeting|string_format(model.Order.billingInfo.billingContact.firstName, model.Order.billingInfo.billingContact.lastNameOrSurname)|safe }}
+    {% else %}
+        {{ labels.emailOpeningAlternative|safe }}
+    {% endif %}
+    </p>
+
+    {{ labels.giftCardEmailIntro|string_format(siteContext.generalSettings.websiteName)|safe }}
+    
+    {{ labels.giftCardEmailImage|string_format(domainName)|safe}}
+
+    <p><b>{{ labels.giftCardEmailAmount }}</b> <span class="mz-price">{{model.Credit.CurrentBalance|currency}}</span></p>
+    <p><b>{{ labels.giftCardEmailClaimCode }}</b> {{model.Credit.Code}}</p>
+
+    <p>{{ labels.giftCardEmailInstructions|string_format(domainName)|safe }}</p>
+
+    <p>{{ labels.giftCardEmailClosing|string_format(domainName)|safe }}</p>
+    {% endcomment %}
+{% endblock body-content %}

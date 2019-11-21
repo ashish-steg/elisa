@@ -1,0 +1,69 @@
+﻿@h1-font-weight: 		normal;
+@h2-font-weight: 		bold;
+@h3-font-weight: 		normal;
+@h4-font-weight: 		bold;
+@h5-font-weight: 		normal;
+@h6-font-weight: 		bold;
+
+@button-border-radius: 	0px;
+@button-border-width: 	0px; /* Internal borders for buttons with ".icon" class are controlled separately */
+
+
+/* Only update if fonts are not avaible via Google Fonts.
+New Goolge Fonts can be added in theme-ui.json under "loadGoogleFonts" */
+
+@font1: 				@theme-settings-primaryFont, sans-serif;
+@font2: 				@theme-settings-secondaryFont, sans-serif;
+
+
+/***************************************************************************************
+################ Start generator defaults. DO NOT EDIT BELOW THIS LINE ################
+***************************************************************************************/
+
+
+@fontFamily:            @theme-settings-primaryFont, sans-serif;
+@fontSize:              @theme-settings-fontSize;
+@font-size: 			@theme-settings-fontSize;
+@font-size-mobile: 		@theme-settings-fontSizeMobile;
+@fontSizeSmall:         @fontSize - 2px;
+@fontSizeLarger:        @fontSize + 2px;
+@fontSizeLarge:         @fontSize + 6px;
+@storeBrandingFontSize: 36px;
+
+@textColor:             @theme-settings-textcolor;
+@text-color:            @theme-settings-textcolor;
+@linkColor:             @theme-settings-hyperlinkColor;
+@linkHoverColor:        darken(@theme-settings-hyperlinkColor, 10%);
+@linkVisitedColor:      lighten(@theme-settings-hyperlinkColor, 10%);
+@errorText:             #f00;
+@errorBackground:       lighten(@theme-settings-warningNotificationColor, 50%);
+@warningText:           @textColor;
+@warningBackground:     lighten(@theme-settings-warningNotificationColor, 50%);
+@successText:           @textColor;
+@successBackground:     lighten(@theme-settings-successNotificationColor, 50%);
+
+@availableText:         #237e0e;
+@unavailableText:       #ae1231;
+
+@bodyBackgroundColor:   {{ themeSettings.bodyBackgroundColor }};
+
+@errorBorder:           darken(spin(@errorBackground, -10), 3%);
+@successBorder:         darken(spin(@successBackground, -10), 3%);
+@warningBorder:         darken(spin(@warningBackground, -10), 3%);
+
+@errorIcon:				"../resources/images/error-exclamation.png";
+@columnWidth-2col:		435px;
+@gutter:				{{themeSettings.gutterWidth}};
+@inputBorder:			#a7a7a7;
+
+@defaultTileHeight:            250px;
+@defaultTileWidth:             250px;
+@productTileHeight:            360px;
+@productTileWidth:             @defaultTileWidth;
+@addressTileHeight:            240px;
+@addressTileWidth:             @defaultTileWidth;
+@productImagesContainerWidth:  {{ themeSettings.productImagesContainerWidth }}px;
+@orderDetailWidth:      200px;
+@itemListingThumbSize:  {{ themeSettings.itemListingThumbSize }};
+@productListingThumbSize: {{ themeSettings.listProductThumbSize }}px;
+@productListingThumbSize: {{ themeSettings.listProductThumbSizeMobile }}px;

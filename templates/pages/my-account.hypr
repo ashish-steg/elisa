@@ -1,0 +1,91 @@
+﻿{% extends "page" %}
+
+{% block title-tag-content %}{% firstof pageContext.metaTitle labels.yourAccount %} - {% parent %}{% endblock title-tag-content %}
+
+{% block body-tag-classes %} mz-myaccount {% endblock body-tag-classes %}
+{% block breadcrumbs %}
+<div class="mz-breadcrumbs col-xs-12">
+    <a href="/" class="mz-breadcrumb-link">Home</a>
+    <span class="mz-breadcrumb-separator">/</span>
+    <span class="mz-breadcrumb-current">My Account</span>
+</div>
+{% endblock breadcrumbs %}
+{% block body-content %}
+
+{% require_script "pages/myaccount" %}
+{% preload_json model "customer" %}
+<div class="mz-l-container">
+    <div class="row">
+        <h2 class="mz-pagetitle my-account col-xs-12">
+            {{ labels.myAccount }}
+        </h2>
+    </div>
+    <div class="row">
+        <div class="mz-l-sidebar mz-myaccount-nav col-sm-3">
+            {% include "modules/my-account/my-account-nav" with navtarget="body" %}
+        </div>
+        <div id="account-panels" class="mz-myaccount-panels input-status mz-l-stack mz-l-stack-large col-sm-9">
+            <div class="col-sm-12">
+                <div class="row">
+                    <div class="col-sm-12">
+                        <p class="my-account-welcome">Welcome to your account. You'll use your account to manager orders, access information and more.</p>
+                    </div>
+                </div>
+                <div class="row">
+            		{% dropzone "my-account-top" scope="template" %}
+                </div>
+                <div class="row my-account-section" data-mz-content="messages">
+                    <div id="account-messages" class="col-xs-12">
+                        {% include "modules/common/message-bar" with model=model.messages %}
+                    </div>
+                </div>
+                <div class="row my-account-section" data-mz-content="personal-information">
+                    <div class="col-xs-12">
+                        {% include "modules/my-account/my-account-personal-information" %}
+                    </div>
+                </div>
+                <div class="row my-account-section" data-mz-content="quick-order" id="mz-quick-order">
+                    <div class="col-xs-12">
+                        {% include "modules/my-account/my-account-quick-order" %}
+                    </div>
+                </div>
+                <div class="row my-account-section" data-mz-content="order-history">
+                    <div class="col-xs-12">
+                        {% include "modules/my-account/my-account-orderhistory" showPaging=true %}
+                    </div>
+                </div>
+                <div class="row my-account-section" data-mz-content="account-returnhistory">
+                    <div class="col-xs-12">
+                        {% include "modules/my-account/my-account-returnhistory" with model=model.returnHistory %}
+                    </div>
+                </div>
+                <div class="row my-account-section" data-mz-content="my-wishlist">
+                    {% if siteContext.generalSettings.isWishlistCreationEnabled %}
+                    <a id="wishlist"></a>
+                    <div class="col-xs-12">
+                        {% include "modules/my-account/my-account-wishlist" with model=model.wishlist %}
+                    </div>
+                    {% endif %}
+                </div>
+                <div class="row my-account-section" data-mz-content="account-addressbook" id="mz-account-addressbook">
+                    <div class="col-xs-12">
+                        {% include "modules/my-account/my-account-addressbook" %}
+                    </div>
+                </div>
+                <div class="row my-account-section" data-mz-content="payment-methods" id="mz-account-paymentmethods">
+                    {% include "modules/my-account/my-account-paymentmethods" %}
+                </div>
+                <div class="row my-account-section" data-mz-content="store-credit">
+                    {% include "modules/my-account/my-account-storecredit" %}
+                </div>
+                <div class="row my-account-section">
+        		  {% dropzone "my-account-bottom" scope="template" %}
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock body-content %}
+
+{% block body-below-content %}
+{% endblock body-below-content %}

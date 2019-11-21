@@ -1,0 +1,2 @@
+<div class="dynamicCategory" data-mz-cats="{{ Model.config.cats }}" style="max-width: {{ Model.config.maxWidth }}"></div>
+{% require_script "widgets/dynamicCategory" %}

@@ -1,0 +1,65 @@
+<div class="row">
+    <div class="col-sm-7">
+        <table class="table my-account-table" id="my-account-info">
+            <thead>
+                <tr>
+                    <th>{{ labels.personalInformation }}</th>
+                    {% if not editing %}
+                        <th class="text-right"><a href class="mz-link-edit-accountsettings" data-mz-action="startEdit">{{ labels.edit }}</a></th>
+                    {% endif %}
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><strong>{{ labels.firstName }} / {{ labels.lastName }}</strong></td>
+                    {% if not editing %}
+                    <td>
+                        {{ model.firstName }} {{ model.lastName }}
+                    </td>
+                    {% endif %}
+                </tr>
+                {% if editing %}
+                    <tr>
+                        <td>
+                            <input class="mz-accountsettings-firstname mz-edit-account-settings" type="text" placeholder="{{ labels.firstName }}" data-mz-value="firstName" value="{{ model.firstName }}" />
+
+                            <input class="mz-accountsettings-lastname mz-edit-account-settings" type="text" placeholder="{{ labels.lastName }}" data-mz-value="lastName" value="{{ model.lastName }}" />
+
+                            <span class="mz-validationmessage" data-mz-validationmessage-for="firstName"></span>
+                            <span class="mz-validationmessage" data-mz-validationmessage-for="lastName"></span>
+                        </td>
+                    </tr>
+                {% endif %}
+                <tr>
+                    <td><strong>{{ labels.emailAddress }}</strong></td>
+                    {% if editing %}
+                        </tr>
+                        <tr>
+                            <td>
+                                <input class="mz-accountsettings-email mz-edit-account-settings" type="email" placeholder="{{ labels.emailAddress }}" data-mz-value="emailAddress" value="{{ model.emailAddress }}" />
+                                <span class="mz-validationmessage" data-mz-validationmessage-for="emailAddress"></span>
+                            </td>
+                    {% else %}
+                        <td>
+                            {{ model.emailAddress }}
+                        </td>
+                    {% endif %}
+                </tr>
+                <tr>
+                    <td>
+                        <input type="checkbox" id="account-acceptsmarketing" data-mz-value="acceptsMarketing" {% if model.acceptsMarketing %}checked="checked"{% endif %} {% if not editing %}disabled="disabled"{% endif %} />{{ labels.accountOptIn }}
+                    </td>
+                    {% if editing %}
+                    </tr>
+                    <tr>
+                        <td>
+                            <button class="mz-button mz-edit-account-settings" data-mz-action="finishEdit">{{ labels.save }}</button>
+                            <button class="mz-button mz-edit-account-settings" data-mz-action="cancelEdit">{{ labels.cancel }}</button>
+                        </td>
+                    {% endif %}
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <div class="mz-passwordsection" id="password-section"></div>
+</div>

@@ -1,0 +1,69 @@
+﻿{% comment %}
+{# Warning: the below code has significant performance costs.           #}
+{#                                                                      #}
+{# Serializing this data is no longer necessary with the partial-driven #}
+{# view system. Uncomment this code only if you need access to the raw  #}
+{# data from the faceted products collection, e.g. to use HyprLive      #}
+{# templates. **Note, however, that the partial-driven view system does #}
+{# not require HyprLive templates.** Only uncomment this code if you    #}
+{# know you need it.                                                    #}
+<script type="text/json" id="data-mz-preload-facetedproducts">
+{
+	"facets": {% json model.facets %}, 
+	"currentPage": {{ model.currentPage }},
+	"firstIndex": {{ model.firstIndex }},
+	"hasNextPage": {{ model.hasNextPage|lower }},
+	"hasPreviousPage": {{ model.hasPreviousPage|lower }},
+	"lastIndex": {{ model.lastIndex }},
+	"middlePageNumbers": {% json model.middlePageNumbers %},
+	"pageCount": {{ model.pageCount }},
+	"pageSize": {{ model.pageSize }},
+	"startIndex": {{ model.startIndex }},
+	"totalCount": {{ model.totalCount }},
+	"currentSort": "{{ model.currentSort }}"
+}
+</script>
+{% endcomment %}
+
+{% if model.facets %}
+    <div data-mz-facets class="mz-l-sidebar col-xs-12 col-sm-3 col-lg-2">
+    	{% dropzone "sidebar-above-facets" scope="template" %}
+        {% include "modules/product/faceting-form" %}
+    	{% dropzone "sidebar-below-facets" scope="template" %}
+    </div>
+    <div class="mz-l-paginatedlist col-xs-12 col-sm-9 col-lg-10">
+{% else %}
+    <div class="mz-l-paginatedlist col-xs-12">
+{% endif %}
+    <div class="mz-breadcrumbs col-xs-12">
+    {% for crumb in navigation.breadcrumbs %}
+        {% if not crumb.isHidden %}
+        {% if not forloop.last %}
+            <a href="{{crumb.url}}" class="mz-breadcrumb-link{% if forloop.first %} is-first{% endif %}">{{crumb.name|safe}}</a> <span class="mz-breadcrumb-separator">/</span>
+        {% else %}
+            <span class="mz-breadcrumb-current">{{ crumb.name|safe }}</span>
+        {% endif %}
+        {% endif %}
+    {% endfor %}
+    </div>
+    <h2>{{ pageContext.title|safe }}</h2>
+    <div class="mz-l-paginatedlist-header col-xs-12 no-pad">
+        <div data-mz-pagesort class="mz-sortby">
+            {% include "modules/common/page-sort" %}
+        </div>
+        <div data-mz-pagingcontrols class="mz-pagingcontrols">
+            {% include "modules/common/paging-controls" %}
+        </div>
+    </div>
+    <div data-mz-productlist class="mz-l-paginatedlist-list col-xs-12 no-pad">
+        {% include "modules/product/product-list-tiled" %}
+    </div>
+    <div class="mz-l-paginatedlist-footer col-xs-12 no-pad">
+        <div data-mz-pagingcontrols class="mz-pagingcontrols col-xs-12 col-sm-11 col-sm-offset-1 col-md-6 col-md-offset-0 no-pad-r">
+            {% include "modules/common/paging-controls" %}
+        </div>
+        <div data-mz-pagenumbers class="mz-pagenumbers col-xs-12 col-sm-11 col-sm-offset-1 col-md-5 no-pad-l">
+            {% include "modules/common/page-numbers" %}
+        </div>
+    </div>
+</div>

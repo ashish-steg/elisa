@@ -1,0 +1,121 @@
+﻿    <table class="mz-ordersummary" align="left" cellpadding="16" width="100%" style="border-collapse:collapse;display: block;">
+        <thead style="display:block;">
+                <tr style="display:block;width:100%;">
+                <td style="width:84%;font-weight: bold;font-family:'Trebuchet MS', Verdana, Geneva, sans-serif;text-transform:uppercase;color: #333;font-size:16px;" bgcolor="#cccccc" class="mz-ordersummary-header-product" align="left"><font color="#000">{{ labels.product }}</font></td>
+                <td style="font-weight: bold;color: #333;font-size:16px;font-family:'Trebuchet MS', Verdana, Geneva, sans-serif;" align="center" bgcolor="#cccccc" class="mz-ordersummary-header-qty"><font color="#000">{{ labels.quantity }}</font></td>
+                <td style="width:100%;font-weight: bold;font-family:'Trebuchet MS', Verdana, Geneva, sans-serif;text-transform:uppercase;color: #000;font-size:16px;" align="center" bgcolor="#cccccc" class="mz-ordersummary-header-each"><font color="#000">{{ labels.each }}</font></td>
+                <td style="font-weight: bold;font-family:'Trebuchet MS', Verdana, Geneva, sans-serif;text-transform:uppercase; color: #333;font-size:18px;" bgcolor="#cccccc" align="right" class="mz-ordersummary-header-total"><font color="#000">{{ labels.total }}</font></td>
+            </tr>
+        </thead> 
+        {% for item in model.items %}
+            <tbody class="mz-ordersummary-lineitems" style="display:block;">  
+              <tr style="display:block;" class="mz-ordersummary-line mz-ordersummary-line-item {% if item.discountTotal > 0 %}is-discounted{% endif %}">
+                    <td class="mz-ordersummary-item-product" style="width: 84%;border-bottom: 1px solid #ccc;text-align:left;font-family:Helvetica,Arial,  sans-serif Verdana, Geneva, sans-serif ‘Trebuchet MS’, sans-serif;">
+                        <div style="width: 100%;float: left;">
+
+                            <div style="width: 10%;display: inline-block;float:left;vertical-align: middle;">
+                                <img class="mob-full-wid" style="vertical-align: middle;float: left;" src="http:{{ item.product.imageUrl }}?max=100" />
+                            </div>
+                            
+                            <div style="display: inline-block; clear: both;margin-top: 5px;overflow: hidden;">
+                                <div class="row product-code-wrapper" style="margin-top: 10px;font-family:'Trebuchet MS', Verdana, Geneva, sans-serif;font-size: 14px;">
+                                    STYLE: <span style="font-family:'Trebuchet MS', Verdana, Geneva, sans-serif;font-size: 14px;">&nbsp;{{ item.product.productCode }}</span>
+                                </div>
+                                <a href="{{siteContext.domains.current.domainName}}/p/{{ item.product.productCode }}" style="float: left;text-decoration:none;font-family:'Trebuchet MS', Verdana, Geneva, sans-serif;color: #333;font-size:14px;" target="_blank">
+                                    {{ item.product.name }}
+                                </a>
+                                {% for option in item.product.options %}
+                                    <div class="mz-colorcartattr"> 
+                                        <div style=" display: inline-block; float: left; ">{{ option.name }} - </div>
+                                        <div> 
+                                            <label>{{ option.value }}</label> 
+                                        </div>  
+                                    </div>
+                                {% endfor %}
+                            </div>
+                            
+                        </div> 
+                        {% if item.product.productUsage == 'Bundle' %}
+                            {%comment%}
+                            <dl class="mz-propertylist" style="width: 100%;">
+                                {% for bundledProduct in item.product.bundledProducts %}
+                                <dt style="margin:0;text-align:right;float:right;min-width: 30%;width: auto;">{{ bundledProduct.productCode }}</dt>&nbsp;
+                                <dd style="margin:0;text-align:left;min-width: 70%;width: auto;">{{ bundledProduct.name }} ({{ bundledProduct.quantity }})</dd>
+                                {% endfor %}
+                            </dl>
+                            {%endcomment%}
+                        {% endif %}
+                    </td>
+                    <td style="border-bottom: 1px solid #ccc;text-align:center;font-family:Helvetica,Arial,  sans-serif Verdana, Geneva, sans-serif ‘Trebuchet MS’, sans-serif; ">{{ item.quantity }}</td>
+                    <td align="center" style="width: 100%;border-bottom: 1px solid #ccc;"> {% include "modules/common/email-item-price" %}</td>
+                    <td align="right" style="border-bottom: 1px solid #ccc;"> {% include "modules/common/email-item-total" %}</td>
+                </tr>
+            </tbody>
+        {% endfor %} 
+      
+        <tbody style="display:block;margin-bottom: 25px;">
+            <tr class="mz-ordersummary-subtotal" style="display:block;">
+              <td align="right" colspan="4" style="padding: 15px 0 3px 0;display:block;width: 100%;">
+                <span class="mz-ordersummary-totalname" style="font-family:'Trebuchet MS', Verdana, Geneva, sans-serif;font-size:14px;">{{ labels.subtotal }}</span>
+                <span class="mz-ordersummary-totalvalue" style="font-family:'Trebuchet MS', Verdana, Geneva, sans-serif;font-size:14px;">{{ model.discountedTotal|currency }}</span>
+              </td>
+            </tr> 
+            {% for discount in model.orderDiscounts %}
+            {% if not discount.excluded %}
+            <tr class="mz-ordersummary-discount" style="display:block;">
+              <td align="right" colspan="4" style="padding: 3px 0;display:block;width: 100%;">
+                <span class="mz-ordersummary-discountname" style="font-family:'Trebuchet MS', Verdana, Geneva, sans-serif;font-size:14px;">{{ discount.discount.name }}:</span>
+                <span class="mz-ordersummary-discountamt" style="font-family:'Trebuchet MS', Verdana, Geneva, sans-serif;font-size:14px;">-{{ discount.impact|currency }}</span>
+              </td>
+            </tr>
+            {% endif %}
+            {% endfor %}
+            {% if discount.discountedSubTotal %}
+                <tr class="mz-ordersummary-subtotal" style="display:block;">
+                  <td align="right" colspan="4" style="padding: 3px 0;display:block;width: 100%;">
+                    <span class="mz-ordersummary-totalname" style="font-family:'Trebuchet MS', Verdana, Geneva, sans-serif;font-size:14px;">{{ labels.subtotal }}:</span>
+                    <span class="mz-ordersummary-totalvalue" style="font-family:'Trebuchet MS', Verdana, Geneva, sans-serif;font-size:14px;">{{ discount.discountedSubTotal|currency }}</span>
+                  </td>
+                </tr>
+            {% endif %}
+            {% if model.taxTotal %}
+                <tr class="mz-ordersummary-tax" style="display:block;">
+                    <td align="right" colspan="4" style="padding: 3px 0;display:block;width: 100%;">
+                        <span class="mz-ordersummary-totalname" style="font-family:'Trebuchet MS', Verdana, Geneva, sans-serif;font-size:14px;">{{ labels.tax }}:</span>
+                        <span class="mz-ordersummary-totalvalue" style="font-family:'Trebuchet MS', Verdana, Geneva, sans-serif;font-size:14px;">{{ model.taxTotal|currency }}</span>
+                    </td>
+                </tr>
+            {% endif %}
+                <tr class="mz-ordersummary-shippingtotal" style="display:block;">
+                  <td align="right" colspan="4" style="padding: 3px 0;display:block;width: 100%;">
+                    <span class="mz-ordersummary-totalname" style="font-family:'Trebuchet MS', Verdana, Geneva, sans-serif;font-size:14px;">{{ labels.shippingHandling }}:</span>
+                    <span class="mz-ordersummary-totalvalue" style="font-family:'Trebuchet MS', Verdana, Geneva, sans-serif;font-size:14px;">{{ model.shippingSubTotal|currency }}</span>
+                  </td>
+                </tr> 
+            {% for shippingDiscount in model.shippingDiscounts %}
+                <tr class="mz-ordersummary-shippingdiscount" style="display:block;">
+                  <td align="right" colspan="4" style="padding: 3px 0;display:block;width: 100%;">
+                    <span class="mz-ordersummary-totalname" style="font-family:'Trebuchet MS', Verdana, Geneva, sans-serif;font-size:14px;">{{ shippingDiscount.discount.discount.name }}:</span>
+                    <span class="mz-ordersummary-totalvalue" style="font-family:'Trebuchet MS', Verdana, Geneva, sans-serif;font-size:14px;">-{{ shippingDiscount.discount.impact|currency }}</span>
+                  </td>
+                </tr> 
+            {% endfor %}
+            {% if model.handlingAmount %}
+                <tr class="mz-ordersummary-additionalhandling" style="display:block;">
+                    <td align="right" colspan="4" style="padding: 3px 0;display:block;width: 100%;"> 
+                      <span class="mz-ordersummary-totalname" style="font-family:'Trebuchet MS', Verdana, Geneva, sans-serif;font-size:14px;">{{ labels.additionalHandling }}{% if model.handlingAmount > model.handlingTotal  %}<span class="is-crossedout" {% block crossedout-inline-style %}{% endblock crossedout-inline-style %}> ({{ model.handlingAmount|currency }})</span>{% endif %}</span>
+                      <span class="mz-ordersummary-totalvalue"style="font-family:'Trebuchet MS', Verdana, Geneva, sans-serif;font-size:14px;">{{ model.handlingTotal|currency }}</span>
+                    </td>
+                </tr>
+            {% endif %}
+            <tr class="mz-ordersummary-grandtotal" style="display:block;">
+                <td align="right" colspan="4" style="padding: 3px 0;display:block;width: 100%;">
+                    <span class="mz-ordersummary-totalname" style="font-weight: bold;font-family:'Trebuchet MS', Verdana, Geneva, sans-serif;font-size:18px;">{{ labels.total }}:</span>
+                    <span class="mz-ordersummary-totalvalue"style="font-weight: bold;font-family:'Trebuchet MS', Verdana, Geneva, sans-serif;font-size:18px;">{{ model.total|currency }}</span>
+                </td>
+            </tr>
+        </tbody>
+    </table> 
+
+
+

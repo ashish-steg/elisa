@@ -1,0 +1,65 @@
+﻿.mz-productdetail-bundleitems {
+    .mz-propertylist {
+        dt {
+            width: initial;
+            font-weight: normal;
+
+            &:after {
+                content: none;
+            }
+        }
+    }
+}
+
+.mz-propertylist {
+    .clearfix();
+    clear: both;
+
+    .data-container {
+        clear: both;
+        float: right;
+        width: 200px;
+    }
+
+    dt {
+        float: left;
+        clear: both;
+        font-weight: bold;
+        width: 30%;
+        text-transform: capitalize;
+
+        &.mz-productcodes-productcode-label {
+            text-align: right;
+        }
+
+        &:after,
+        &::after {
+            font-weight: bold;
+            content: ':';
+        }
+    }
+
+    dd {
+        float: left;
+        clear: right;
+        margin-left: @gutter/2;
+    }
+
+    &.mz-propertylist-justified dd {
+        float: right;
+        clear: right;
+    }
+
+    &.mz-propertylist-inline {
+        clear: none;
+
+        &+ .mz-propertylist-inline {
+            margin-left: @gutter/2;
+        }
+    }
+
+}
+
+.mz-property {
+    white-space: pre-wrap;
+}

@@ -1,0 +1,81 @@
+﻿{% require_script "modules/page-header" %}
+{% if not pageContext.isDebugMode and themeSettings.stickyHeader %}
+    <div class="header1-sticky-header-spacer{% if themeSettings.stickyHeader %} sticky-header{% endif %} col-xs-12"></div>
+{% endif %}
+{% include "modules/page-header1/login-modal" %}
+<header id="header1" class="mz-pageheader {% if themeSettings.elisalogo %}mz-pageheader-hasbanner{% endif %}{% if themeSettings.stickyHeader %} sticky-header{% endif %} col-xs-12 no-pad" {% if themeSettings.headerColor %}style="background: {{ themeSettings.headerColor }}"{% endif %} >
+    {% include "modules/my-account/my-account-quick-view" %}
+    <div class="container-fluid">
+        <div class="row">
+            <div class="header-content col-xs-12">
+                <div class="row">
+                    <div class="push-menu-toggle-wrapper col-xs-3 col-sm-3 no-pad-r hidden-sm hidden-md hidden-lg">
+                        <div class="push-menu-toggle">
+                            <i class="icon menu4"></i>
+                        </div>
+                    </div>
+                    
+                    <div class="utlility-nav-wrapper col-sm-3 col-md-3 hidden-xs call-us">
+                        {{ themeSettings.phoneText }} <strong>{% if themeSettings.phoneNumber != "" %}{{ themeSettings.phoneNumber }}{% endif %}</strong>
+                    </div>
+                    <div class="logo-wrapper col-xs-6 col-md-6 col-sm-6">
+                       {% block store-branding %}
+                            {% include "modules/page-header1/store-branding" %}
+                        {% endblock store-branding %}
+                    </div>
+                                        
+                    <div class="cart-search-wrapper hidden-lg hidden-md hidden-sm col-xs-3">
+                        <a class="mz-header-link-cart" href="{% make_url "cart" %}" rel="nofollow">
+                            <span class="mz-cartmonitor" data-mz-role="cartmonitor"><span class="cart-monitor-bracket bracket-left">(</span>0<span class="cart-monitor-bracket bracket-right">)</span></span>
+                        </a>
+                        {% require_script "modules/cart-monitor" %}
+                    </div>
+                    <div class="cart-search-wrapper col-sm-3 col-md-3 no-pad-l hidden-xs">
+                        
+                        <div class="row links">
+                            <div class="nav-account">
+                                {% if user.isAuthenticated %}
+                                    {% if user.firstName !== '' %}
+                                        <span class="mz-welcome-text">Welcome, {{ user.firstName }}!</span>
+                                    {% endif %}
+                                    <a class="mz-header-login" id="user-logged-in-link" href="#" title="{{ labels.logIn }}" rel="nofollow"></a>
+                                    <span id="user-logged-in-btn" class="mz-user-logged-in-btn"><small>&#x25BC;</small></span>
+                                {% else %}
+                                    <a class="mz-header-login" id="header-login" title="{{ labels.logIn }}" rel="nofollow"></a>
+                                {% endif %}
+                            </div>
+                            <div class="nav-wishlist">
+                                {% if user.isAuthenticated %}
+                                <a class="mz-header-wishlist" href="/myaccount#my-wishlist"></a>
+                                {% else %}
+                                <a class="mz-header-wishlist" id="unauthenticated-wishlist" href="/myaccount#my-wishlist"></a>
+                                {% endif %}
+                            </div>
+                            <div class="nav-cart">
+                                <a class="mz-header-link-cart" href="{% make_url "cart" %}" rel="nofollow">
+                                    <span class="mz-cartmonitor" data-mz-role="cartmonitor"><span class="cart-monitor-bracket bracket-left">(</span>0<span class="cart-monitor-bracket bracket-right">)</span></span>
+                                    {% require_script "modules/cart-monitor" %}
+                                </a>
+                                <div class="mz-cartmonitor-popout">{% include "modules/cart/cart-popout" %}</div>
+                                {% require_script "modules/cart-monitor-popout" %}
+                            </div>
+                        </div>
+
+                        <div class="row search-box">
+                            {% block search-box %}
+                                {% include "modules/page-header1/search-box" %}
+                            {% endblock search-box %}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-xs-12 hidden-xs no-pad">
+                {% block site-nav %}
+                    {% include "modules/site-nav" %}
+                {% endblock site-nav %}
+            </div>
+        </div>
+    </div>
+</header>

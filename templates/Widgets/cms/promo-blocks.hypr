@@ -1,0 +1,80 @@
+{% if model.config.promoStyle == "imgAboveDetails" %}
+	{% if model.config.promoLinkAll %}
+		<a class="promo-widget img-above-details col-xs-12 no-pad" href="{{ model.config.promoLinkUrl }}" style="color: {{ model.config.promoTextColor }};">
+	{% else %}
+		<div class="promo-widget img-above-details col-xs-12 no-pad" style="color: {{ model.config.promoTextColor }};">
+	{% endif %}
+		<div class="promo-graphic-wrapper col-xs-12 no-pad">
+			<img src="{% if pageContext.isMobile %}{% make_url 'image' model.config.promoGraphic with maxWidth=750 as_parameter %}{% else %}{{ model.config.promoGraphic.imageUrl }}{% endif %}" class="promo-graphic img-responsive">
+		</div>
+		<div class="promo-textbox {% if model.config.promoTextShadow %}text-shadow{% endif %} col-xs-12 no-pad">
+			{% if model.config.promoTitle %}
+				<div class="promo-title col-xs-12 no-pad">
+					{{ model.config.promoTitle }}
+				</div>
+			{% endif %}
+			{% if model.config.promoDescription %}
+				<div class="promo-description col-xs-12 no-pad">
+					{{ model.config.promoDescription }}
+				</div>
+			{% endif %}
+			{% if model.config.promoButtonText %}
+				<div class="promo-link-wrapper col-xs-12 no-pad">
+					{% if model.config.promoLinkAll %}
+							<button class="promo-button{% if model.config.promoButtonColor|lower == 'primary' %} primary{% endif %}{% if model.config.promoButtonColor|lower == 'secondary' %} secondary{% endif %}{% if model.config.promoButtonColor|lower == 'color3' %} color3{% endif %}{% if model.config.promoButtonColor|lower == 'color4' %} color4{% endif %}{% if model.config.promoButtonColor|lower == 'color5' %} color5{% endif %}{% if model.config.promoButtonColor|lower == 'gray' %} gray{% endif %}{% if model.config.promoButtonFullWidth %} full-width{% endif %}{% if model.config.promoButtonAlign|lower == 'left' %} align-left{% endif %}{% if model.config.promoButtonAlign|lower == 'center' %} align-center{% endif %}{% if model.config.promoButtonAlign|lower == 'right' %} align-right{% endif %}{% if model.config.promoButtonColor|lower == 'custom' %} custom{% endif %}" {% if model.config.promoButtonColor|lower == 'custom' %}style="color: {{model.config.promoButtonTextColorCustom}}; background-color: {{model.config.promoButtonBgColorCustom}};"{% endif %}>
+							{{ model.config.promoButtonText }}
+						</button>
+					{% else %}
+						<a class="promo-link {% if model.config.promoButtonFullWidth %}full-width{% endif %}{% if model.config.promoButtonAlign|lower == 'left' %} align-left{% endif %}{% if model.config.promoButtonAlign|lower == 'center' %} align-center{% endif %}{% if model.config.promoButtonAlign|lower == 'right' %} align-right{% endif %}" href="{{ model.config.promoLinkUrl }}">
+							<button class="promo-button{% if model.config.promoButtonColor|lower == 'primary' %} primary{% endif %}{% if model.config.promoButtonColor|lower == 'secondary' %} secondary{% endif %}{% if model.config.promoButtonColor|lower == 'color3' %} color3{% endif %}{% if model.config.promoButtonColor|lower == 'color4' %} color4{% endif %}{% if model.config.promoButtonColor|lower == 'color5' %} color5{% endif %}{% if model.config.promoButtonColor|lower == 'gray' %} gray{% endif %}{% if model.config.promoButtonFullWidth %} full-width{% endif %}{% if model.config.promoButtonColor|lower == 'custom' %} custom{% endif %}" {% if model.config.promoButtonColor|lower == 'custom' %}style="color: {{model.config.promoButtonTextColorCustom}}; background-color: {{model.config.promoButtonBgColorCustom}};"{% endif %}>
+								{{ model.config.promoButtonText }}
+							</button>
+						</a>
+					{% endif %}
+				</div>
+			{% endif %}
+		</div>
+	{% if model.config.promoLinkAll %}
+		</a>
+	{% else %}
+		</div>
+	{% endif %}
+{% else %}
+	{% if model.config.promoLinkAll %}
+		<a class="promo-widget col-xs-12 {% if not pageContext.isDesktop %}hovered {% endif %}{% if model.config.promoStyle == "slideUp" %}slide-up{% endif %}{% if model.config.promoStyle == "detailsOnHover" %}details-on-hover{% endif %}{% if model.config.promoStyle == "detailsOverlayImg" %}details-overlay-img{% endif %}" href="{{ model.config.promoLinkUrl }}" style="color: {{ model.config.promoTextColor }}; background-image: url({% if pageContext.isMobile %}{% make_url 'image' model.config.promoGraphic with maxWidth=750 as_parameter %}{% else %}{{ model.config.promoGraphic.imageUrl }}{% endif %});{% if model.config.promoStyle == "slideUp" %} height: {{model.config.promoSlideUpHeight}}px{% endif %}">
+	{% else %}
+		<div class="promo-widget col-xs-12 {% if not pageContext.isDesktop %}hovered {% endif %}{% if model.config.promoStyle == "slideUp" %}slide-up{% endif %}{% if model.config.promoStyle == "detailsOnHover" %}details-on-hover{% endif %}{% if model.config.promoStyle == "detailsOverlayImg" %}details-overlay-img{% endif %}" style="color: {{ model.config.promoTextColor }}; background-image: url({% if pageContext.isMobile %}{% make_url 'image' model.config.promoGraphic with maxWidth=750 as_parameter %}{% else %}{{ model.config.promoGraphic.imageUrl }}{% endif %});{% if model.config.promoStyle == "slideUp" %} height: {{model.config.promoSlideUpHeight}}px{% endif %}">
+	{% endif %}
+		<div class="promo-textbox {% if model.config.promoTextShadow %}text-shadow{% endif %} col-xs-12" style="background-color: {{ model.config.promoTextboxBg }};">
+			{% if model.config.promoTitle %}
+				<div class="promo-title col-xs-12 no-pad">
+					{{ model.config.promoTitle }}
+				</div>
+			{% endif %}
+			{% if model.config.promoDescription %}
+				<div class="promo-description col-xs-12 no-pad">
+					{{ model.config.promoDescription }}
+				</div>
+			{% endif %}
+			{% if model.config.promoButtonText %}
+				<div class="promo-link-wrapper col-xs-12 no-pad">
+					{% if model.config.promoLinkAll %}
+						<button class="promo-button{% if model.config.promoButtonColor|lower == 'primary' %} primary{% endif %}{% if model.config.promoButtonColor|lower == 'secondary' %} secondary{% endif %}{% if model.config.promoButtonColor|lower == 'color3' %} color3{% endif %}{% if model.config.promoButtonColor|lower == 'color4' %} color4{% endif %}{% if model.config.promoButtonColor|lower == 'color5' %} color5{% endif %}{% if model.config.promoButtonColor|lower == 'gray' %} gray{% endif %}{% if model.config.promoButtonFullWidth %} full-width{% endif %}{% if model.config.promoButtonAlign|lower == 'left' %} align-left{% endif %}{% if model.config.promoButtonAlign|lower == 'center' %} align-center{% endif %}{% if model.config.promoButtonAlign|lower == 'right' %} align-right{% endif %}{% if model.config.promoButtonColor|lower == 'custom' %} custom{% endif %}" {% if model.config.promoButtonColor|lower == 'custom' %}style="color: {{model.config.promoButtonTextColorCustom}}; background-color: {{model.config.promoButtonBgColorCustom}};"{% endif %}>
+							{{ model.config.promoButtonText }}
+						</button>
+					{% else %}
+						<a class="promo-link {% if model.config.promoButtonFullWidth %}full-width{% endif %}{% if model.config.promoButtonAlign|lower == 'left' %} align-left{% endif %}{% if model.config.promoButtonAlign|lower == 'center' %} align-center{% endif %}{% if model.config.promoButtonAlign|lower == 'right' %} align-right{% endif %}" href="{{ model.config.promoLinkUrl }}">
+							<button class="promo-button{% if model.config.promoButtonColor|lower == 'primary' %} primary{% endif %}{% if model.config.promoButtonColor|lower == 'secondary' %} secondary{% endif %}{% if model.config.promoButtonColor|lower == 'color3' %} color3{% endif %}{% if model.config.promoButtonColor|lower == 'color4' %} color4{% endif %}{% if model.config.promoButtonColor|lower == 'color5' %} color5{% endif %}{% if model.config.promoButtonColor|lower == 'gray' %} gray{% endif %}{% if model.config.promoButtonFullWidth %} full-width{% endif %}{% if model.config.promoButtonAlign|lower == 'left' %} align-left{% endif %}{% if model.config.promoButtonAlign|lower == 'center' %} align-center{% endif %}{% if model.config.promoButtonAlign|lower == 'right' %} align-right{% endif %}{% if model.config.promoButtonColor|lower == 'custom' %} custom{% endif %}" {% if model.config.promoButtonColor|lower == 'custom' %}style="color: {{model.config.promoButtonTextColorCustom}}; background-color: {{model.config.promoButtonBgColorCustom}};"{% endif %}>
+								{{ model.config.promoButtonText }}
+							</button>
+						</a>
+					{% endif %}
+				</div>
+			{% endif %}
+		</div>
+	{% if model.config.promoLinkAll %}
+		</a>
+	{% else %}
+		</div>
+	{% endif %}
+{% endif %}

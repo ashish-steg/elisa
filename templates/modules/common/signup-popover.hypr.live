@@ -1,0 +1,43 @@
+<div class="mz-register-modal-container">
+    <form name="mz-signupform">
+        <div class="row">
+            <div class="col-sm-11 col-sm-offset-1">
+                <h4>SIGNUP</h4>
+                <br />
+                <a href="#" id="back-to-login">&lsaquo; Back</a>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-5 col-sm-offset-1">
+                <input type="text" class="mz-register-modal-input" placeholder="{{ labels.firstName }}" data-mz-signup-firstname />
+            </div>
+            <div class="col-sm-5">
+                <input type="text" class="mz-register-modal-input" placeholder="{{ labels.lastName }}" data-mz-signup-lastname />
+            </div>
+        </div>
+        <br />
+        <div class="row">
+            <div class="col-sm-5 col-sm-offset-1">
+                <input type="email" class="mz-register-modal-input" placeholder="{{ labels.emailAddress }}" data-mz-signup-emailaddress />
+            </div>
+            <div class="col-sm-5">
+                <input name="confirm-email" value="{{ model.email }}" type="email" data-mz-signup-confirmemailaddress class="mz-register-modal-input" class="mz-register-modal-input" placeholder="confirm email">
+            </div>
+        </div>
+        <br />
+        <div class="row">
+            <div class="col-sm-5 col-sm-offset-1">
+                <input type="password" class="mz-register-modal-input" class="mz-register-modal-input" placeholder="{{ labels.password }}" data-mz-signup-password />
+            </div>
+            <div class="col-sm-5">
+                <input type="password" class="mz-register-modal-input" placeholder="{{ labels.confirmPassword }}" data-mz-signup-confirmpassword />
+            </div>
+        </div>
+        <br />
+        <div class="row">
+            <div class="col-sm-5 col-sm-offset-6">
+                <button class="mz-button mz-modal-button button-primary" data-mz-action="signup">{{ labels.continue }}</button>
+            </div>
+        </div>
+    </form>
+</div>

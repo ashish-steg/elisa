@@ -1,0 +1,74 @@
+﻿{% extends "email/email" %}  
+{% block body-content %}
+    <div style=" display: block; width: 100%;">
+
+        <div style=" color:#333;display: block; width: 100%; margin: 0 auto;font-family: 'Trebuchet MS', Verdana, Geneva, sans-serif;">
+            
+            <p style="color:#333;font-size: 18px;font-weight:bold;font-family:'Trebuchet MS', Verdana, Geneva, sans-serif;">{{ labels.orderWelcome }} {{ model.billingInfo.billingContact.firstName }} {{ model.billingInfo.billingContact.lastNameOrSurname }},</p>
+            
+            <p style="color:#333; margin: 24px 0;font-size: 16px;font-family:'Trebuchet MS', Verdana, Geneva, sans-serif;">Thank you for your order &amp; welcome to <a href="http://{{domainName}}/" style="color:#333;text-decoration: none;" title="elisailana.com">elisailana.com</a>. We'll get started on your order right away.</p>
+            
+            <p style="color:#333;font-size: 16px;font-family:'Trebuchet MS', Verdana, Geneva, sans-serif;">Your Order is confirmed. Once your package has shipped you will receive a shipping confirmation email.  To check the status of your order, log into your account <a href="http://{{domainName}}/myaccount" style="color: #333;text-decoration: underline;">here</a>.</p>
+            {% dropzone "email-template" scope="page" %}
+            
+        </div>   
+		<div style="font-family: 'Trebuchet MS', Verdana, Geneva, sans-serif;font-weight: bold; margin: 20px 0;"><span style="font-size: 16px;font-weight: bold;">Order #:</span> <span style="font-size: 20px;font-weight: bold;">{{ model.orderNumber }}</span></div>		
+        
+        <div style="font-family: 'Trebuchet MS', Verdana, Geneva, sans-serif;font-weight: bold;padding-bottom: 25px;border-bottom:1px solid #eee; "><span style="font-size: 16px;">Order Date:</span> <span style="font-size: 18px;font-weight: normal;">{{ model.submittedDate|add_time(-18000)|date("n/j/Y g:i:s A") }} CST</span></div>		
+        
+        <div style="font-family: 'Trebuchet MS', Verdana, Geneva, sans-serif;display: block; width: 100%; margin: 0 auto; ">
+            <div style=" display: block; width: 47%; float: left;font-weight: 300; font-style: normal; padding: 25px 0;">
+                <div>
+                    <span style="font-weight: bold; padding-bottom: 2px; display: block;color:#000; ">Bill to:</span>
+                    <div  style="margin-top: 10px; font-family: 'Trebuchet MS', Verdana, Geneva, sans-serif;line-height: 24px; font-size: 14px;color:#000;">
+                         {% include "modules/common/email-address-summary" with model=model.billingInfo.billingContact %}
+                    </div>
+                </div> 
+                <div style="display: block; margin-top: 25px; ">
+                   {% if model.billingInfo.paymentType == "CreditCard" %}
+                        <span style=" display: block; margin: 15px 0; font-weight: bold;color:#333;margin-bottom:0;">Payment Info:</span>
+                        <span style=" display: block; margin: 5px 0; color:#333;">{{ model.billingInfo.card.paymentOrCardType }} {{ model.billingInfo.card.cardNumberPartOrMask }}</span>
+                    {% endif %}
+
+                    {% if model.billingInfo.paymentType == "PaypalExpress" %}
+                        <span style=" display: block; margin: 15px 0; font-weight: bold;color:#333;margin-bottom:0;">Payment Info:</span>
+                        <span style=" display: block; margin: 5px 0;color:#333;">{{ labels.paypalExpress }}</span>
+                    {% endif %}
+                </div>
+            </div>
+            <div style=" display: block; width: 44%; float: left; font-family: 'Trebuchet MS', Verdana, Geneva, sans-serif; font-weight: 300; font-style: normal; padding: 25px 10px 10px 10px; color:#000;">
+                <div>
+                    <span style=" font-weight: bold; padding-bottom: 0; display: block;color:#333;font-family: 'Trebuchet MS', Verdana, Geneva, sans-serif;">Ship to:</span>
+                    <div  style=" line-height: 24px; font-size: 14px; color:#333;font-family: 'Trebuchet MS', Verdana, Geneva, sans-serif;">
+                        {% include "modules/common/email-address-summary" with model=model.fulfillmentInfo.fulfillmentContact %}
+                    </div>
+                    <div>
+                       <span style="display: block; margin:15px 0;font-weight: bold;color:#333;font-family: 'Trebuchet MS', Verdana, Geneva, sans-serif;margin-bottom:0; ">Shipping Method:</span>
+                       <span style=" display: block; margin: 5px 0;color:#333;font-family: 'Trebuchet MS', Verdana, Geneva, sans-serif; ">{{ model.fulfillmentInfo.shippingMethodName }}</span>
+                    </div>
+                </div>
+            </div> 
+        </div>
+        
+        <div   class="mz-orderdetails " style=" display: block; width: 100%; margin: 0 auto; clear: both;">
+            
+            <div style="width:100%;font-family: 'Trebuchet MS', Verdana, Geneva, sans-serif;">
+                {% include "modules/common/email-order-summary" %}
+            </div> 
+        </div>
+        
+       
+        
+        <p style="margin: 25px 0 10px 0;color: #333;clear:both;font-family:'Trebuchet MS', Verdana, Geneva, sans-serif;font-size: 14px;"><sup>*</sup> Email Gift Certificate(s) ordered Monday - Friday (excluding some holidays) before 4PM CST, will be emailed by the end of the current business day. Email Gift Certificates ordered on weekends, holidays or after 4PM CST will be emailed the next business day.</p>
+        
+        <p style="margin: 0 0 30px 0;color: #333;padding-bottom: 25px; border-bottom: 1px solid #ccc; clear:both;font-family:'Trebuchet MS', Verdana, Geneva, sans-serif;font-size: 14px;"><sup>**</sup> Sale Merchandise is not returnable.
+        
+        <p style="clear:both;color: #333;font-family:'Trebuchet MS', Verdana, Geneva, sans-serif;font-size: 16px; font-weight: bold;">Thank you so much for shopping with us!</p>
+        
+        <p style="margin-bottom: 40px;color: #333;clear:both;font-family:'Trebuchet MS', Verdana, Geneva, sans-serif;font-size: 14px;">The Elisa Ilana Jewelry Customer Service Team</p>
+        
+        <div>
+          
+        </div>
+    </div>
+{% endblock body-content %}

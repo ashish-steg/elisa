@@ -1,0 +1,790 @@
+{
+    "items": [
+        {
+            "xtype": "panel",
+            "title": "General",
+            "collapsed": false,
+            "items": [
+                {
+                    "xtype": "mz-input-checkbox",
+                    "name": "showAddressTypeDropdown",
+                    "fieldLabel": "Show Address Type dropdown in Address Forms (Residential/Commercial)"
+                },
+                {
+                    "xtype": "mz-input-checkbox",
+                    "name": "enablePartialCaching",
+                    "fieldLabel": "Enable partial caching using the Hypr {% partial_cache %} tag"
+                },
+                {
+                    "xtype": "mz-input-text",
+                    "name": "jQueryVersion",
+                    "fieldLabel": "jQuery Version (example: 2.1.4)"
+                }
+            ]
+        },
+        {
+            "xtype": "panel",
+            "title": "Extended Properties",
+            "collapsed": false,
+            "items": [
+                {
+                    "xtype": "mz-input-checkbox",
+                    "name": "extendedPropertiesEnabled",
+                    "fieldLabel": "Enable Extended Properties (Tracking Strings)"
+                },
+                {
+                    "xtype": "mz-input-textarea",
+                    "name": "extendedPropertyParameters",
+                    "fieldLabel": "Query Parameters (comma separated)"
+                }
+            ]
+        },
+        {
+            "xtype": "panel",
+            "title": "Anonymous Account Verification Options",
+            "collapsed": false,
+            "items": [
+                {
+                    "xtype": "mz-input-checkbox",
+                    "name": "zipCodeEnabled",
+                    "fieldLabel": "Billing Zip Code"
+                },
+                {
+                    "xtype": "mz-input-checkbox",
+                    "name": "phoneNumberEnabled",
+                    "fieldLabel": "Billing Phone Number"
+                },
+                {
+                    "xtype": "mz-input-checkbox",
+                    "name": "billingEmailEnabled",
+                    "fieldLabel": "Billing Email"
+                }
+            ]
+        },
+        {
+            "xtype": "panel",
+            "title": "Paging",
+            "collapsed": false,
+            "items": [
+
+                {
+                    "fieldLabel": "Show these page size options",
+                    "xtype": "mz-input-selectmulti",
+                    "name": "pageSizeOptions",
+                    "allowBlank": false,
+                    "forceSelection": true,
+                    "store": [
+                      20, 40, 60, 100, 150, 200
+                    ]
+                },
+                {
+                    "fieldLabel": "Default items per page",
+                    "xtype": "mz-input-dropdown",
+                    "name": "defaultPageSize",
+                    "allowBlank": false,
+                    "forceSelection": true,
+                    "storeFrom": "pageSizeOptions"
+                },
+                {
+                   "fieldLabel": "Default Sort Order",
+                    "xtype": "mz-input-dropdown",
+                    "name": "defaultSort",
+                    "allowBlank": false,
+                    "forceSelection": true,
+                    "store": [
+                      "price asc",
+                      "price desc",
+                      "productName asc",
+                      "productName desc",
+                      "createDate desc",
+                      "createDate asc"
+                    ]
+                }
+            ]
+        },
+        {
+            "xtype": "panel",
+            "title": "Product Grid",
+            "collapsed": false,
+            "items": [
+                {
+                    "xtype": "mz-input-checkbox",
+                    "name": "listProductQuickview",
+                    "fieldLabel": "Enable product quickview buttons"
+                },
+                {
+                    "xtype": "mz-input-checkbox",
+                    "name": "listProductCode",
+                    "fieldLabel": "Show product code in the product grid"
+                },
+                {
+                    "xtype": "mz-input-checkbox",
+                    "name": "listProductShortDesc",
+                    "fieldLabel": "Show product short description in the product grid"
+                },
+                {
+                    "xtype": "mz-input-number",
+                    "name": "listProductThumbSize",
+                    "fieldLabel": "Product grid max image size (px)"
+                },
+                {
+                    "xtype": "mz-input-number",
+                    "name": "listProductThumbSizeMobile",
+                    "fieldLabel": "Mobile Product grid max image size (px)"
+                }
+            ]
+        },
+        {
+            "xtype": "panel",
+            "title": "Product Page",
+            "collapsed": false,
+            "items": [
+                {
+                    "xtype": "mz-input-number",
+                    "name": "productImagesContainerWidth",
+                    "fieldLabel": "Main image max size (px)"
+                },
+                {
+                    "xtype": "mz-input-number",
+                    "name": "maxProductImageThumbnailSize",
+                    "fieldLabel": "Alternate images thumbnail max size (px)"
+                },
+                {
+                    "xtype": "mz-input-dropdown",
+                    "name": "pdpImgAlign",
+                    "fieldLabel": "Align product images (\"Right\" aligns left on mobile)",
+                    "allowBlank": false,
+                    "editable": false,
+                    "forceSelection": true,
+                    "store": [
+                        "Left",
+                        "Center",
+                        "Right"
+                    ]
+                }
+            ]
+        },
+        {
+            "xtype": "panel",
+            "title": "Search",
+            "collapsed": false,
+            "items": [
+                {
+                    "xtype": "mz-input-checkbox",
+                    "name": "showChildCategoriesInFaceting",
+                    "fieldLabel": "Show two levels of the category hierarchy in faceting"
+                },
+                {
+                    "xtype": "mz-input-checkbox",
+                    "name": "useSearchAutocomplete",
+                    "fieldLabel": "Show search suggestions"
+                },
+                {
+                    "xtype": "mz-input-checkbox",
+                    "name": "suggestPriorSearchTerms",
+                    "fieldLabel": "Show search terms others used on this site in search suggestions",
+                    "enableIf": "useSearchAutocomplete"
+                }
+            ]
+        },
+        {
+            "xtype": "panel",
+            "title": "Checkout",
+            "collapsed": false,
+            "items": [
+                {
+                    "xtype": "mz-input-checkbox",
+                    "name": "isCvvSuppressed",
+                    "fieldLabel": "Suppress CVV During Express Checkout"
+                }
+            ]
+        },
+        {
+            "xtype": "panel",
+            "title": "Header",
+            "collapsed": false,
+            "items": [
+                {
+                    "xtype": "box",
+                    "autoEl": {
+                        "html": "<br><br><h3>Logo</h3><hr>"
+                    }
+                },
+                {
+                    "fieldLabel": "Upload your company logo. To update, delete and re-upload.",
+                    "xtype": "mz-input-image",
+                    "name": "elisalogo",
+                    "hideTrigger": false,
+                    "allowDecimal": false,
+                    "minValue": 1
+                },
+                {
+                    "xtype": "box",
+                    "autoEl": {
+                        "html": "<br><br><h3>Sticky Header</h3><hr>"
+                    }
+                },
+                {
+                    "xtype": "mz-input-checkbox",
+                    "name": "stickyHeader",
+                    "fieldLabel": "Keep header at top when scrolling down"
+                },
+                {
+                    "xtype": "box",
+                    "autoEl": {
+                        "html": "<br><br><h3>Phone Number</h3><hr>"
+                    }
+                },
+                {
+                    "xtype": "mz-input-text",
+                    "name": "phoneNumber",
+                    "fieldLabel": "Change the company phone number"
+                },
+                {
+                    "xtype": "mz-input-text",
+                    "name": "phoneText",
+                    "fieldLabel": "Change the text before the phone number"
+                },
+                {
+                    "xtype": "box",
+                    "autoEl": {
+                        "html": "<br><br><h3>Background Color</h3><hr>"
+                    }
+                },
+                {
+                    "xtype": "mz-input-color",
+                    "name": "headerColor",
+                    "fieldLabel": "Choose the background color for your header"
+                }
+            ]
+        },
+        {
+            "xtype": "panel",
+            "title": "Navigation",
+            "collapsed": false,
+            "items": [
+                {
+                    "xtype": "box",
+                    "autoEl": {
+                        "html": "<br><br><h3>Top Nav</h3><hr>"
+                    }
+                },
+                {
+                    "fieldLabel": "Maximum Items In Top Nav",
+                    "xtype": "mz-input-number",
+                    "name": "maxTopLevelNavItems",
+                    "hideTrigger": false,
+                    "allowDecimal": false,
+                    "minValue": 1,
+                    "allowBlank": true
+                },
+                {
+                    "fieldLabel": "Maximum Nav Item Label Length",
+                    "xtype": "mz-input-number",
+                    "name": "maxTopLevelNavLabelLength",
+                    "hideTrigger": false,
+                    "allowDecimal": false,
+                    "minValue": 4,
+                    "allowBlank": false
+                },
+                {
+                    "xtype": "mz-input-checkbox",
+                    "name": "alphaSubcats",
+                    "fieldLabel": "Alphabetize subcategories (Top level nav categories must be manually arranged.)"
+                },
+                {
+                    "xtype": "box",
+                    "autoEl": {
+                        "html": "<br><br><h3>Mega Menu</h3><hr>"
+                    }
+                },
+                {
+                    "xtype": "mz-input-checkbox",
+                    "name": "enableMegaMenu",
+                    "fieldLabel": "Enable Mega Menu"
+                },
+                {
+                    "xtype": "mz-input-dropdown",
+                    "name": "mm-column-gap-size",
+                    "fieldLabel": "Gap size between columns",
+                    "allowBlank": false,
+                    "editable": false,
+                    "forceSelection": true,
+                    "store": [
+                        "0px",
+                        "5px",
+                        "10px",
+                        "15px",
+                        "20px",
+                        "25px"
+                    ]
+                },
+                {
+                    "xtype": "mz-input-dropdown",
+                    "name": "mm-column-divider-width",
+                    "fieldLabel": "Divider line size between columns",
+                    "allowBlank": false,
+                    "editable": false,
+                    "forceSelection": true,
+                    "store": [
+                        "0px",
+                        "1px",
+                        "2px",
+                        "3px",
+                        "4px",
+                        "5px"
+                    ]
+                },
+                {
+                    "xtype": "mz-input-color",
+                    "name": "mm-column-divider-color",
+                    "fieldLabel": "Divider Color"
+                },
+                {
+                    "xtype": "mz-input-color",
+                    "name": "mmLinkColor",
+                    "fieldLabel": "Navigation Link Color"
+                },
+                {
+                    "xtype": "mz-input-color",
+                    "name": "mmLinkColorHover",
+                    "fieldLabel": "Navigation Link Color (Hover)"
+                },
+                {
+                    "xtype": "mz-input-number",
+                    "name": "mm-1-col-end",
+                    "fieldLabel": "2 columns start at how many links?",
+                    "hideTrigger": false,
+                    "allowDecimal": false,
+                    "minValue": 8,
+                    "allowBlank": false
+                },
+                {
+                    "xtype": "mz-input-number",
+                    "name": "mm-2-cols-end",
+                    "fieldLabel": "3 columns start at how many links?",
+                    "hideTrigger": false,
+                    "allowDecimal": false,
+                    "minValue": 12,
+                    "allowBlank": false
+                },
+                {
+                    "xtype": "mz-input-number",
+                    "name": "mm-3-cols-end",
+                    "fieldLabel": "4 columns start at how many links?",
+                    "hideTrigger": false,
+                    "allowDecimal": false,
+                    "minValue": 16,
+                    "allowBlank": false
+                }
+            ]
+        },
+        {
+            "xtype": "panel",
+            "title": "Theme Styleguide",
+            "collapsed": false,
+            "items": [
+                {
+                    "xtype": "box",
+                    "autoEl": {
+                        "html": "<br><br><h3>Theme Colors</h3><hr>"
+                    }
+                },
+                {
+                    "xtype": "mz-input-color",
+                    "name": "nav1-color",
+                    "fieldLabel": "First Nav link color"
+                },
+                {
+                    "xtype": "mz-input-color",
+                    "name": "nav2-color",
+                    "fieldLabel": "Second Nav link color"
+                },
+                {
+                    "xtype": "mz-input-color",
+                    "name": "nav3-color",
+                    "fieldLabel": "Third Nav link color"
+                },
+                {
+                    "xtype": "mz-input-color",
+                    "name": "nav4-color",
+                    "fieldLabel": "Fourth Nav link color"
+                },
+                {
+                    "xtype": "mz-input-color",
+                    "name": "nav5-color",
+                    "fieldLabel": "Fifth Nav link color"
+                },
+                {
+                    "xtype": "mz-input-color",
+                    "name": "nav6-color",
+                    "fieldLabel": "Sixth Nav link color"
+                },
+                {
+                    "xtype": "mz-input-color",
+                    "name": "nav7-color",
+                    "fieldLabel": "Seventh Nav link color"
+                },
+                {
+                    "xtype": "mz-input-color",
+                    "name": "nav8-color",
+                    "fieldLabel": "Eighth Nav link color"
+                },
+                {
+                    "xtype": "mz-input-color",
+                    "name": "nav9-color",
+                    "fieldLabel": "Ninth Nav link color"
+                },
+                {
+                    "xtype": "mz-input-color",
+                    "name": "nav10-color",
+                    "fieldLabel": "Tenth Nav link color"
+                },
+                {
+                    "xtype": "mz-input-color",
+                    "name": "nav11-color",
+                    "fieldLabel": "Eleventh Nav link color"
+                },
+                {
+                    "xtype": "mz-input-color",
+                    "name": "themeColor1",
+                    "fieldLabel": "Theme Primary Color"
+                },
+                {
+                    "xtype": "mz-input-color",
+                    "name": "themeColor2",
+                    "fieldLabel": "Theme Secondary Color"
+                },
+                {
+                    "xtype": "mz-input-color",
+                    "name": "themeColor3",
+                    "fieldLabel": "Theme Color 3"
+                },
+                {
+                    "xtype": "mz-input-color",
+                    "name": "themeColor4",
+                    "fieldLabel": "Theme Color 4"
+                },
+                {
+                    "xtype": "mz-input-color",
+                    "name": "themeColor5",
+                    "fieldLabel": "Theme Color 5"
+                },
+                {
+                    "xtype": "mz-input-color",
+                    "name": "themeGray1",
+                    "fieldLabel": "Gray 1"
+                },
+                {
+                    "xtype": "mz-input-color",
+                    "name": "themeGray2",
+                    "fieldLabel": "Gray 2"
+                },
+                {
+                    "xtype": "mz-input-color",
+                    "name": "themeGray3",
+                    "fieldLabel": "Gray 3"
+                },
+                {
+                    "xtype": "mz-input-color",
+                    "name": "themeGray4",
+                    "fieldLabel": "Gray 4"
+                },
+                {
+                    "xtype": "box",
+                    "autoEl": {
+                        "html": "<br><br><h3>Notification Colors</h3><hr>"
+                    }
+                },
+                {
+                    "xtype": "mz-input-color",
+                    "name": "customInputColor",
+                    "fieldLabel": "Custom Checkbox/Radio Buttons Color"
+                },
+                {
+                    "xtype": "mz-input-color",
+                    "name": "successNotificationColor",
+                    "fieldLabel": "Success Notification Color"
+                },
+                {
+                    "xtype": "mz-input-color",
+                    "name": "warningNotificationColor",
+                    "fieldLabel": "Warning Notification Color"
+                },
+                {
+                    "xtype": "box",
+                    "autoEl": {
+                        "html": "<br><br><h3>Font Details</h3><hr>"
+                    }
+                },
+                {
+                    "xtype": "mz-input-selectmulti",
+                    "name": "loadGoogleFonts",
+                    "fieldLabel": "Load Google Fonts",
+                    "allowBlank": false,
+                    "forceSelection": true,
+                    "store": [
+                        "Droid Serif",
+                        "Lato",
+                        "Merriweather",
+                        "Montserrat",
+                        "Open Sans",
+                        "PT Sans",
+                        "PT Serif",
+                        "Roboto",
+                        "Source Sans Pro"
+                    ]
+                },
+                {
+                    "xtype": "mz-input-dropdown",
+                    "name": "primaryFont",
+                    "fieldLabel": "Primary Font",
+                    "allowBlank": false,
+                    "storeFrom": "loadGoogleFonts",
+                    "forceSelection": true
+                },
+                {
+                    "xtype": "mz-input-dropdown",
+                    "name": "secondaryFont",
+                    "fieldLabel": "Secondary Font",
+                    "allowBlank": false,
+                    "storeFrom": "loadGoogleFonts",
+                    "forceSelection": true
+                },
+                {
+                    "xtype": "mz-input-dropdown",
+                    "name": "fontSize",
+                    "fieldLabel": "Desktop Font Size",
+                    "allowBlank": false,
+                    "editable": false,
+                    "forceSelection": true,
+                    "store": [
+                        "12px",
+                        "14px",
+                        "16px",
+                        "18px",
+                        "20px"
+                    ]
+                },
+                {
+                    "xtype": "mz-input-dropdown",
+                    "name": "fontSizeMobile",
+                    "fieldLabel": "Mobile/Tablet Font Size",
+                    "allowBlank": false,
+                    "editable": false,
+                    "forceSelection": true,
+                    "store": [
+                        "12px",
+                        "14px",
+                        "16px",
+                        "18px",
+                        "20px"
+                    ]
+                },
+                {
+                    "xtype": "mz-input-color",
+                    "name": "textColor",
+                    "fieldLabel": "Text Color"
+                },
+                {
+                    "xtype": "mz-input-color",
+                    "name": "hyperlinkColor",
+                    "fieldLabel": "Hyperlink Color"
+                },
+                {
+                    "xtype": "mz-input-dropdown",
+                    "name": "fontSizeH1",
+                    "fieldLabel": "H1 Font Size",
+                    "allowBlank": false,
+                    "editable": false,
+                    "forceSelection": true,
+                    "store": [
+                        "12px",
+                        "14px",
+                        "16px",
+                        "18px",
+                        "20px",
+                        "22px",
+                        "24px",
+                        "26px",
+                        "28px",
+                        "30px",
+                        "32px",
+                        "34px",
+                        "36px"
+                    ]
+                },
+                {
+                    "xtype": "mz-input-dropdown",
+                    "name": "fontSizeH2",
+                    "fieldLabel": "H2 Font Size",
+                    "allowBlank": false,
+                    "editable": false,
+                    "forceSelection": true,
+                    "store": [
+                        "12px",
+                        "14px",
+                        "16px",
+                        "18px",
+                        "20px",
+                        "22px",
+                        "24px",
+                        "26px",
+                        "28px",
+                        "30px",
+                        "32px",
+                        "34px",
+                        "36px"
+                    ]
+                },
+                {
+                    "xtype": "mz-input-dropdown",
+                    "name": "fontSizeH3",
+                    "fieldLabel": "H3 Font Size",
+                    "allowBlank": false,
+                    "editable": false,
+                    "forceSelection": true,
+                    "store": [
+                        "12px",
+                        "14px",
+                        "16px",
+                        "18px",
+                        "20px",
+                        "22px",
+                        "24px",
+                        "26px",
+                        "28px",
+                        "30px",
+                        "32px",
+                        "34px",
+                        "36px"
+                    ]
+                },
+                {
+                    "xtype": "mz-input-dropdown",
+                    "name": "fontSizeH4",
+                    "fieldLabel": "H4 Font Size",
+                    "allowBlank": false,
+                    "editable": false,
+                    "forceSelection": true,
+                    "store": [
+                        "12px",
+                        "14px",
+                        "16px",
+                        "18px",
+                        "20px",
+                        "22px",
+                        "24px",
+                        "26px",
+                        "28px",
+                        "30px",
+                        "32px",
+                        "34px",
+                        "36px"
+                    ]
+                },
+                {
+                    "xtype": "mz-input-dropdown",
+                    "name": "fontSizeH5",
+                    "fieldLabel": "H5 Font Size",
+                    "allowBlank": false,
+                    "editable": false,
+                    "forceSelection": true,
+                    "store": [
+                        "12px",
+                        "14px",
+                        "16px",
+                        "18px",
+                        "20px",
+                        "22px",
+                        "24px",
+                        "26px",
+                        "28px",
+                        "30px",
+                        "32px",
+                        "34px",
+                        "36px"
+                    ]
+                },
+                {
+                    "xtype": "mz-input-dropdown",
+                    "name": "fontSizeH6",
+                    "fieldLabel": "H6 Font Size",
+                    "allowBlank": false,
+                    "editable": false,
+                    "forceSelection": true,
+                    "store": [
+                        "12px",
+                        "14px",
+                        "16px",
+                        "18px",
+                        "20px",
+                        "22px",
+                        "24px",
+                        "26px",
+                        "28px",
+                        "30px",
+                        "32px",
+                        "34px",
+                        "36px"
+                    ]
+                }
+            ]
+        },
+        {
+            "xtype": "panel",
+            "title": "Estimate Shipping Address",
+            "collapsed": false,
+            "items": [
+                {
+                    "xtype": "mz-input-text",
+                    "name": "shipaddress1",
+                    "fieldLabel": "Shipping Address Line 1",
+                    "allowBlank": true
+                },
+                {
+                    "xtype": "mz-input-text",
+                    "name": "shipcityOrTown",
+                    "fieldLabel": "City or Town",
+                    "allowBlank": true
+                },
+                {
+                    "xtype": "mz-input-text",
+                    "name": "shipcountryCode",
+                    "fieldLabel": "Country Code",
+                    "allowBlank": true
+                },
+                {
+                    "xtype": "mz-input-text",
+                    "name": "shippostalOrZipCode",
+                    "fieldLabel": "Zip Code",
+                    "allowBlank": true
+                },
+                {
+                    "xtype": "mz-input-text",
+                    "name": "shipstateOrProvince",
+                    "fieldLabel": "State or Province",
+                    "allowBlank": true
+                },
+                {
+                    "xtype": "mz-input-text",
+                    "name": "shipamtCode",
+                    "fieldLabel": "Currency Code",
+                    "allowBlank": true
+                }
+            ]
+        },
+        {
+            "xtype": "panel",
+            "title": "Constant Contact Config",
+            "collapsed": false,
+            "items": [
+                {
+                    "xtype": "mz-input-text",
+                    "name": "constantContactSiteId",
+                    "fieldLabel": "Enter the Site's Constant Contact ID"
+                }
+            ]
+        }
+    ]
+}

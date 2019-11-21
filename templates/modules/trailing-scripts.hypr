@@ -1,0 +1,39 @@
+﻿{% with themeSettings.useDebugScripts|default:pageContext.isDebugMode as debugMode %}
+
+<script src="{{siteContext.cdnPrefix}}/js/require-{% if debugMode %}debug{% else %}min{% endif %}.js"></script>
+<script type="text/javascript">
+    require.config({
+      cdnPrefix: "{{ siteContext.cdnPrefix }}",
+      cacheKey: "{{ siteContext.hashString }}",
+      urlArgs: "theme={{siteContext.themeId}}&cacheKey={{ siteContext.hashString }}",
+      baseUrl: "{{ siteContext.cdnPrefix }}{% if not debugMode %}/compiled{% endif %}/scripts",
+      paths: {
+        jquery: "//ajax.googleapis.com/ajax/libs/jquery/{{themeSettings.jQueryVersion}}/jquery{% if not debugMode %}.min{% endif %}",
+		underscore: "vendor/underscore/underscore",
+		backbone: "vendor/backbone/backbone"
+      }
+  });
+  {% if debugMode %}
+  require([{% all_scripts %}]);
+  {% else %}
+  require(['jquery'], function() { require(['modules/common'], function() { 
+    require([{% all_scripts %}], function(){
+        var ctct_variable = document.createElement('script');
+        var ctct_script = document.createElement('script');
+        ctct_variable.text= 'var _ctct_m = "{{ themeSettings.constantContactSiteId }}";';
+        ctct_script.id = "signupScript";
+        ctct_script.src = "//static.ctctcdn.com/js/signup-form-widget/current/signup-form-widget.js";
+        document.head.appendChild(ctct_variable);
+        document.head.appendChild(ctct_script);
+        
+    });
+  }); }); 
+  {% endif %}
+</script>
+
+
+{% if siteContext.generalSettings.isGoogleAnalyticsEnabled %}
+  {% include "modules/analytics/google-analytics-tracking-code" %}
+{% endif %}
+
+{%endwith%}

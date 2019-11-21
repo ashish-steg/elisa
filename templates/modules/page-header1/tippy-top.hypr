@@ -1,0 +1,6 @@
+<div class="row">
+    <div class="col-sm-12">
+        {% comment %} Editable under Site Editor > Templates > Default Site Template {% endcomment %}
+        {% dropzone "tippy-top" scope="site" %}
+    </div>
+</div>

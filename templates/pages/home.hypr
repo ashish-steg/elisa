@@ -1,0 +1,51 @@
+﻿{% extends "page" %}
+
+{% block title-tag-content %}{% firstof pageContext.metaTitle model.name %} - {% parent %}{% endblock title-tag-content %}
+
+{% block body-tag-classes %} mz-homepage push-menu-open{% endblock body-tag-classes %}
+
+{% block breadcrumbs %}
+{% endblock breadcrumbs %}
+
+{% block body-content %}
+	{% if pageContext.isEditMode %}
+		<div class="admin-message info-message col-xs-12">
+			{{ labels.currentlyViewing }}: 
+			<b class="visible-xs-inline">{{ labels.mobile }}. </b>
+			<b class="visible-sm-inline">{{ labels.tablet }}. </b>
+			<b class="hidden-xs hidden-sm">{{ labels.desktop }}. </b>
+			{{ labels.toggleDevice }}
+		</div>
+	{% endif %}
+	<div class="slideshow hero col-xs-12">
+    	{% dropzone "slideshow" scope="template" %}
+	</div>
+	
+	{% dropzone "homepageslide" scope="page" %}
+	<div class="promos-widget-wrapper promos-row-4 col-xs-12 no-pad">
+		<div class="promo promo-1 col-xs-12">
+	    	{% dropzone "promo1" scope="template" %}
+    	</div>
+		<div class="promo promo-2 col-xs-12">
+	    	{% dropzone "promo2" scope="template" %}
+    	</div>
+		<div class="promo promo-3 col-xs-12">
+	    	{% dropzone "promo3" scope="template" %}
+    	</div>
+		<div class="promo promo-4 col-xs-12">
+	    	{% dropzone "promo4" scope="template" %}
+    	</div>
+		<div class="promo promo-5 col-xs-12">
+	    	{% dropzone "promo5" scope="template" %}
+		</div>
+		<div class="promo promo-6 col-xs-12">
+	    	{% dropzone "promo6" scope="template" %}
+    	</div>
+		<div class="promo promo-7 col-xs-12">
+	    	{% dropzone "promo7" scope="template" %}
+		</div>
+	</div>
+{% endblock body-content %}
+
+{% block body-below-content %}
+{% endblock body-below-content %}

@@ -1,0 +1,78 @@
+﻿@search-btn-bg-color :                             #aaa;
+
+#header1 {
+    #searchbox {
+        display: inline-block;
+        display: -webkit-flexbox;
+        display: flex;
+        flex-direction: row;
+        -webkit-flex-direction: row;
+        -webkit-justify-content: flex-end;
+        justify-content: flex-end;
+        -ms-flex-pack: end;
+        width: 100%;
+
+        > span {
+            float: right;
+        }
+
+        > button {
+            float: right;
+        }
+        /**/
+        .mz-searchbox-input {
+            font-size: 15px;
+            font-weight: bold;
+            padding-left: 2%;
+            text-transform: uppercase;
+            height: 36px;
+            @media only screen and (min-width: 789){
+                min-width: 300px;
+            }
+        }
+
+        .mz-searchbox-button {
+            background: url('../resources/images/icons/elisa-search-icon.png') no-repeat @search-btn-bg-color center;
+            background-size: 18px;
+            border-radius: 0;
+            height: 36px;
+            min-width: 36px;
+            padding: 0;
+        }
+        .tt-dropdown-menu {
+            left: initial !important;
+            right: 0 !important;
+            width: 100%;
+            max-height: 400px;
+            background: #FFF;
+            border: 1px solid #000;
+            overflow: auto;
+
+            .mz-itemlisting {
+                display: flex;
+                align-items: center;
+                -webkit-flex-wrap: wrap;
+                flex-wrap: wrap;
+
+                .mz-itemlisting-thumb {
+                    width: 25%;
+                }
+
+                .mz-itemlisting-details {
+                    width: 75%;
+                    padding-left: 5px;
+                }
+            }
+        }
+    }
+}
+
+@media and screen(max-width: 768px) {
+    #header1 {
+        #searchbox {
+            .mz-searchbox-input {
+                min-width: 100px;
+            }
+        }
+    }
+}

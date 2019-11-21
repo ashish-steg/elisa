@@ -1,0 +1,29 @@
+﻿{% extends "modules/common/address-form" %}
+{% block address-form %}
+    {% set addresscontext="editingContact." %}
+    {% if model.isShippingContact %}
+    {% set countries=pageContext.shippingCountries %}
+    {% endif %}
+    <div class="mz-accountaddressbook-contact mz-accountaddressbook-form col-xs-10 col-xs-offset-1">
+        <div>
+            {% parent %}
+            <div class="mz-contacttypes mz-l-formfieldgroup-row">
+                <div class="mz-l-formfieldgroup-cell"></div>
+                <div class="mz-l-formfieldgroup-cell mz-l-formfieldgroup-norows mz-contacttype">
+                    <label>
+                        <input type="checkbox" data-mz-value="editingContact.isShippingContact" value="true" {% if model.isShippingContact %} checked="checked" {% endif %}> {{ labels.shippingContact }}
+                    </label>
+                    {% if model.isShippingContact %}
+                    <label class="mz-contacttype-isprimary">
+                        <input type="checkbox" data-mz-value="editingContact.isPrimaryShippingContact" value="true" {% if model.isPrimaryShippingContact %} checked="checked" {% endif %}> {{ labels.primary }}
+                    </label>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+        <div class="mz-contact-actions col-xs-12 no-pad">
+            <button class="mz-button mz-contact-cancel" data-mz-action="cancelEditContact">{{ labels.cancel }}</button>
+            <button class="mz-button mz-contact-save" data-mz-action="finishEditContact">{{ labels.save }}</button>
+        </div>
+    </div>
+{% endblock address-form %}

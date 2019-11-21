@@ -1,0 +1,99 @@
+﻿  {% extends "email/email" %}
+
+  {% block body-content %} 
+
+     <span style="color:#333;font-weight:bold;font-size: 18px;font-family:'Trebuchet MS', Verdana, Geneva, sans-serif;">{{ labels.orderWelcome }} {{ model.order.billingInfo.billingContact.firstName }} {{ model.order.billingInfo.billingContact.lastNameOrSurname }},</span>
+
+    <p style="margin-top: 28px;color:#333;font-size: 16px;font-weight:normal;font-family:'Trebuchet MS', Verdana, Geneva, sans-serif;">Your return has been authorized.</p>
+ 
+    <span style="display:block;margin-bottom:15px;font-size: 16px;color#333;font-family:'Trebuchet MS', Verdana, Geneva, sans-serif;">Please log into your customer account to view your return details.</span>
+    
+    <a href="http://{{domainName}}" style="text-decoration: none;font-size: 16px;color#333;font-family:'Trebuchet MS', Verdana, Geneva, sans-serif;">http://{{domainName}}</a>
+    
+     
+
+	<p style="display:block;font-size: 18px;font-weight:bold;margin-top:30px;line-height:25px;font-family:'Trebuchet MS', Verdana, Geneva, sans-serif;">Sincerely, </p>
+	
+	<p style="display:block;font-size: 16px;font-weight: normal;margin: 20px 0 40px 0;line-height:25px;font-family:'Trebuchet MS', Verdana, Geneva, sans-serif;">The Elisa Ilana Jewelry Customer Service Team</p>
+
+{% comment %}
+<div class="mz-returncontent " style=" display: block; width: 100%;">
+    <div style=" display: block; width: 100%; margin: 0 auto; margin-bottom: 20px;">
+        <p style="clear:both;font-size:15px;word-break: break-all;color:#000000; font-family:Helvetica,Arial, sans-serif Verdana, Geneva, sans-serif ‘Trebuchet MS’, sans-serif;font-weight: 300; font-style: normal;padding: 20px 0;width: 85%;display: block;margin: 0 auto;color:#000;">Hello {{ user.firstName}} {{ model.billingInfo.billingContact.lastNameOrSurname }},</p>
+        <p style="word-break: break-all;color:#000000;display: block; font-family:Helvetica,Arial, sans-serif Verdana, Geneva, sans-serif ‘Trebuchet MS’, sans-serif;font-weight: 300; font-style: normal; font-size: 16px; padding: 10px 0; width:85%;margin: 0 auto;text-align:justify;color:#000;line-height:25px; ">Your return has been approved. Please print our return form and indicate the nature of return, customer and order information, and preferred action for the returned package. Please include the return form inside package. All return packages must be addressed as follows:</p>
+        <p style="word-break: break-all;color:#000000;display: block; font-family:Helvetica,Arial, sans-serif Verdana, Geneva, sans-serif ‘Trebuchet MS’, sans-serif;font-weight: 300; font-style: normal; font-size: 16px; padding: 10px 0; width:85%; margin: 0 auto;text-align:justify;line-height:25px;">
+            <span style=" display: block; margin: 5px 0; color:#000000;font-family:Helvetica,Arial, sans-serif Verdana, Geneva, sans-serif ‘Trebuchet MS’, sans-serif;line-height:25px;">Echidna </span>
+            <span style=" display: block; margin: 5px 0; color:#000000;font-family:Helvetica,Arial, sans-serif Verdana, Geneva, sans-serif ‘Trebuchet MS’, sans-serif;line-height:25px;">Attn: Customer Service</span>
+            <span style=" display: block; margin: 5px 0; color:#000000;font-family:Helvetica,Arial, sans-serif Verdana, Geneva, sans-serif ‘Trebuchet MS’, sans-serif;line-height:25px; ">000  Suite 000</span>
+            <span style=" display: block; margin: 5px 0; color:#000000;font-family:Helvetica,Arial, sans-serif Verdana, Geneva, sans-serif ‘Trebuchet MS’, sans-serif;line-height:25px; ">MN 1111</span>
+            <span style=" display: block; margin: 5px 0; color:#000000;font-family:Helvetica,Arial, sans-serif Verdana, Geneva, sans-serif ‘Trebuchet MS’, sans-serif;line-height:25px;">USA</span>
+        </p> 
+        <p style="color:#000000;display: block; font-family:Helvetica,Arial, sans-serif Verdana, Geneva, sans-serif ‘Trebuchet MS’, sans-serif;font-weight: 300; font-style: normal; font-size: 16px; padding: 10px 0; width:85%;margin: 0 auto;text-align:center;text-align:justify;color:#000;word-break: break-all;line-height:25px; ">
+            Once your package has been received, your return/exchange will be processed as quickly as possible. An email will be sent notifying you when the return/exchange has been processed. Please allow 2-3 business days for refund to post to your account.
+        </p>
+        <p style="line-height:25px;word-break: break-all;color:#000000;display: block; font-family:Helvetica,Arial, sans-serif Verdana, Geneva, sans-serif ‘Trebuchet MS’, sans-serif;font-weight: 300; font-style: normal; font-size: 16px; padding: 10px 0; width:85%; margin: 0 auto;">
+            Please email contact@{{domainName}} if you need immediate assistance.
+        </p>
+    </div>
+    
+  </div> 
+  {% endcomment %}
+  {% comment %}
+	<dl class="mz-orderheader">
+
+		<dt style="margin:10px;font-weight:bold">{{ labels.orderNo }}</dt>
+	<dd><a href="https://{{domainName}}/checkout/{{model.id}}/confirmation">{{ model.orderNumber }}</a></dd>
+	
+		<dt style="margin:10px;font-weight:bold">{{ labels.return }}</dt>
+		<dd>{{ model.returnNumber }}</dd>
+
+		<dt style="font-weight:bold">{{ labels.orderDate }}:</dt>
+		<dd>{{ model.auditInfo.createDate }}</dd>
+
+		<dt style="font-weight:bold">{{ labels.returnRequestDate }}</dt> 
+		<dd>{{ model.rmaDeadline }}</dd>
+	</dl>
+	<br />
+
+	<p>
+	{% if user and user.firstName %}
+		{{ labels.emailOpening|string_format(user.firstName)|safe }}
+	{% else %}
+		{{ labels.emailOpeningAlternative|safe }}
+	{% endif %}
+	</p>
+
+	{{ labels.returnApprovedBlob1|string_format(siteContext.generalSettings.websiteName, domainName)|safe }}
+
+	<table class="mz-ordersummary">
+        <thead>
+            <tr>
+                <th class="mz-ordersummary-header-qty" style="text-transform:uppercase;">{{ labels.qty }}</th>
+                <th class="mz-ordersummary-header-product" style="text-transform:uppercase;">{{ labels.product }}</th>
+            </tr>
+		</thead>
+		<tbody class="mz-ordersummary-lineitems">
+		{% for item in model.items %}
+			{% for reason in item.reasons %}
+			<tr class="mz-ordersummary-line mz-ordersummary-line-item" style="border:1px solid #ccc;">
+				<td style="border:1px solid #ccc;text-align:center;">{{ reason.quantity }}</td>
+				<td style="border:1px solid #ccc;text-align:center;" class="mz-ordersummary-item-product">{{ item.product.name }}</td>
+			</tr>
+			{% endfor %}
+		{% endfor %}
+		</tbody>
+    </table>
+
+	{{ labels.returnApprovedBlob2|safe }}
+
+	<dd class="mz-addresssummary">
+		<span>{{ rmaLocation.shippingOriginContact.firstName}} {{ rmaLocation.shippingOriginContact.lastNameOrSurname }}</span>
+		<span>{{ rmaLocation.shippingOriginContact.companyOrOrganization }}</span>
+		{% include "modules/common/address-summary" with model=rmaLocation %}
+	</dd>
+
+	{{ labels.returnApprovedBlob3|safe }}
+
+	{{ labels.emailClosing|string_format(siteContext.generalSettings.websiteName)|safe }}
+    {% endcomment %}
+{% endblock body-content %}

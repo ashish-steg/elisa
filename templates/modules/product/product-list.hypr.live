@@ -1,0 +1,18 @@
+﻿{% require_script "modules/quickview" %}
+
+
+<div class="mz-productlist {% block module-classes %}{% endblock module-classes %} col-xs-12 no-pad">
+    {% if model.items %}
+		{% block featured-products-carousel %}{% endblock featured-products-carousel %}
+		<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.0.0-beta.3/assets/owl.carousel.min.css">
+	    {% block productlist-list %}
+		    <div {% block featured-products-id %}{% endblock featured-products-id %} class="mz-productlist-list {% block list-classes %}{% endblock list-classes %}">
+		        {% for prod in model.items %}
+		            <div class="mz-productlist-item item" data-mz-product="{{ prod.productCode }}">{% include "modules/product/product-listing" with model=prod %}</div>
+		        {% endfor %}
+		    </div>
+	    {% endblock productlist-list %}
+    {% endif %}
+</div>
+
+

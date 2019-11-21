@@ -1,0 +1,101 @@
+{% extends "page" %}
+
+{% block meta-tags %}
+<meta charset="utf-8">
+<meta name="description" content="{{ PageContext.MetaDescription }}">
+<meta name="keywords" content="{{ PageContext.MetaKeywords }}">
+<meta name="correlationId" content="{{ pageContext.correlationId }}">
+<meta name="viewport" content="initial-scale=1, maximum-scale=1">
+
+{% comment %}
+Twitter meta tags
+{% endcomment %}
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:site" content="Elisa Ilana">
+<meta name="twitter:title" content="{{ model.content.productName }}">
+<meta name="twitter:description" content="{% if model.content.MetaDescription %}{{ model.content.MetaTagDescription }}{% else %}{{ model.content.productName }}{% endif %}">
+<meta name="twitter:image" content="http:{% make_url "image" model.mainImage %}">
+<meta name="twitter:domain" content="{{ siteContext.secureHost }}">
+
+{% endblock meta-tags %}
+
+{% block title-tag-content %}{% firstof pageContext.metaTitle model.content.productName %}  - {% parent %}{% endblock title-tag-content %}
+
+{% block body-tag-classes %} mz-product {% endblock body-tag-classes %}
+
+{% block body-content %}
+
+{% require_script "pages/product" %}
+
+{% preload_json model "product" %}
+{% preload_json sitecontext "siteContext" %}
+
+<div itemscope itemtype="http://schema.org/Product" class="mz-l-container product-container">
+
+    <div class="mz-l-sidebar align-left col-xs-12 col-sm-6">
+        <div data-mz-productimages class="mz-productimages row">
+            {% include "modules/product/product-images" %}
+        </div>
+
+        {% for property in model.properties %}
+            {% if property.attributeFQN == "tenant~video" %}
+                <div class="row">
+                    <iframe width="560" height="315" src="{{ property.values|first|prop('value') }}" frameborder="0" allowfullscreen></iframe>
+                </div>
+            {% endif %}
+        {% endfor %}
+    </div>
+
+    <div class="mz-productdetail-wrap col-xs-12 col-sm-6">
+        {% include "modules/common/message-bar" %}
+        <div id="product-detail" class="mz-productdetail mz-l-stack col-xs-12 no-pad">
+            {% include "modules/product/product-detail" %}
+        </div>
+    </div>
+
+</div>
+
+{% for property in model.properties %}
+    {% if property.attributeFQN == "tenant~product-crosssell" %}
+        {% if property.values.length > 0 %}
+        <div class="relatedProducts">
+            <h3>Related Products</h3>
+            <div class="relatedProdLeft arrow"><</div>
+            <div class="relatedProdRight arrow">></div>
+            <div class="relatedProductsContainer">
+                {% for prod in property.values %}
+                    <a href="">
+                        <div class="relatedProduct" data-mz-prodCode="{{ prod.value }}">
+                            <img src="">
+                            <div class="relatedProd-header"></div>
+                            <div class="relatedProd-productCode"></div>
+                            <div class="relatedProd-price"></div>
+                        </div>
+                    </a>
+                {% endfor %}
+            </div>
+        </div>
+        {% endif %}
+    {% endif %}
+    {% if property.attributeFQN == "tenant~archive" %}
+        {% if property.values|first|prop("value") == true %}
+            <div class="archive-overlay">
+                <div class="archive-modal">
+                    <div>
+                        Product<br/>
+                        no longer available
+                    </div>
+                    <div>
+                        Need Assistance?<br/>
+                        Contact customer services at<br/>
+                        402-926-3479
+                    </div>
+                </div>
+            </div>
+        {% endif %}
+    {% endif %}
+{% endfor %}
+{% endblock body-content %}
+
+
+ 

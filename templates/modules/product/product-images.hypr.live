@@ -1,0 +1,35 @@
+{% if model.content.productImages %}
+<div class="row">
+    <div class="col-sm-12">
+        <figure class="mz-productimages-main {% if model.content.productImages.length > 1 %}{%else%} noAlt{% endif %}">
+            <img id="productImg" itemprop="image" class="mz-productimages-mainimage img-responsive" data-mz-productimage-main src="{% make_url "image" model.mainImage with max=themeSettings.productImagesContainerWidth as_parameters %}" data-zoom-image="{% make_url "image" model.mainImage %}" {% if model.mainImage.altText %}alt="{{ model.mainImage.altText }}"{% endif %} />
+            {% for property in model.properties %}
+                {% if property.attributeFQN == "tenant~badges" %}
+                    <div class="imgBadge">
+                    {% for badgeList in property.values %}
+                        {% for badgeImg in badgeList.value|split(",") %}
+                                <img src="{{ siteContext.cdnPrefix }}/cms/{{ siteContext.siteId }}/files/{{ badgeImg }}" />
+                        {% endfor %}
+                    {% endfor %}
+                    </div>
+                {% endif %}
+            {% endfor %}
+        </figure>
+        {% if model.content.productImages.length > 1 %}
+        <figure class="mz-productimages-thumbs">
+            {% for image in model.content.productImages %}
+                <a class="mz-productimages-thumb col-sm-6" data-mz-productimage-thumb="{{ image.sequence }}" href="{% make_url "image" image %}">
+                    <img class="mz-productimages-thumbimage img-responsive"  src="{% make_url "image" image with max=themeSettings.maxProductImageThumbnailSize as_parameters %}" {% if image.altText %}alt="{{ image.altText }}"{% endif %} />
+                </a>
+            {% endfor %}
+        </figure>
+        {% endif %}
+    </div>
+</div>
+{% else %}
+    {% if siteContext.generalSettings.missingImageSubstitute %}
+        <img class="img-responsive" src="{{siteContext.cdnPrefix}}/cms/files/{{ siteContext.generalSettings.missingImageSubstitute }}"/>
+    {% else %}
+        <span class="mz-productimages-noimage col-xs-12"><span class="mz-productimages-noimage-placeholdertext">{{ labels.productImagePlaceholder }}</span></span>
+    {% endif %}
+{% endif %}

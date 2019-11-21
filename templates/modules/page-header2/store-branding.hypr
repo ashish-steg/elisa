@@ -1,0 +1,11 @@
+﻿{% if themeSettings.elisalogo %}
+	<h1 class="mz-storebranding" id="store-branding">
+	    <a href="/" title="{{ siteContext.generalSettings.websiteName }}" rel="nofollow">
+	    	<img class="img-responsive" src="{{ themeSettings.elisalogo.imageUrl }}">
+    	</a>
+	</h1>
+{% else %}
+	<h1 class="mz-storebranding" id="store-branding">
+	    <a href="/" title="{{ siteContext.generalSettings.websiteName }}" rel="nofollow">{{ siteContext.generalSettings.websiteName }}</a>
+	</h1>
+{% endif %}

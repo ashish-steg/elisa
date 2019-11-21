@@ -1,0 +1,71 @@
+﻿<div class="mz-orderlisting col-xs-12 no-pad" data-mz-id="{{ model.id }}">
+    <h3 class="mz-orderlisting-date">
+        {% if model.submittedDate %}
+        {{ model.submittedDate|date("F j, Y") }}
+        {% else %}
+        {{ model.auditInfo.createDate|date("F j, Y") }}
+        {% endif %}
+    </h3>
+    <div class="mz-orderlisting-detail col-xs-12 col-md-4 col-lg-3">
+      {% block order-details %}
+        <dl class="mz-propertylist col-xs-12 col-sm-6 col-md-12">
+            <dt>{{ labels.orderNumber }}</dt>
+            <dd>{{ model.orderNumber }}</dd>
+            <dt>{{ labels.orderStatus }}</dt>
+            <dd>{{ model.status }}</dd>
+            <dt>{{ labels.total }}</dt>
+            <dd>{{ model.total|currency }}</dd>
+            {% if model.amountRefunded > 0 %}
+              <dt>{{ labels.refund }}</dt>
+              <dd>{{ model.amountRefunded|currency }}</dd>
+            {% endif %}
+            {% block order-shipped-to %}
+            {% if model.fulfillmentInfo.fulfillmentContact %}
+            <dt>{{ labels.shippedTo }}</dt>
+            <dd>{{ model.fulfillmentInfo.fulfillmentContact.firstName }} {{ model.fulfillmentInfo.fulfillmentContact.lastNameOrSurname }}</dd>
+            {% endif %}
+            {% endblock order-shipped-to %}
+            <dt>{{ labels.orderConfirmation }}</dt>
+            <dd><a class="confirmation-link" href="/checkout/{{ model.id }}/confirmation">{{ labels.view }}</a></dd>
+        </dl>
+        {% if order.packages.length %}
+            <div class="mz-propertylist mz-tracking-numbers col-xs-12 col-sm-6 col-md-12">
+                {% for package in order.packages %}
+                    {% if package.trackingNumber %}
+                        <dl class="mz-propertylist mz-tracking-number-wrapper" data-mz-tracking-number="{{ package.trackingNumber }}" data-mx-shipping-code="{{ package.shippingMethodCode }}" data-mx-shipping-name="{{ package.shippingMethodName }}">
+                            <dt class="mz-tracking-number-title">{{ labels.trackingNumber }}</dt>
+                            <dd class="mz-tracking-number">
+                                <div class="mz-tracking-carrier hidden">{{ package.shippingMethodCode }}</div>
+                                <a class="mz-tracking-link" href="https://www.google.com/webhp?hl=en#hl=en&q={{ package.trackingNumber }}" target="_blank">{{ package.trackingNumber }}</a>
+                            </dd>
+                            {% if package.items.length < order.items.length %}
+                                <dl class="mz-propertylist mz-products-included">
+                                    <dt class="mz-products-included-title">{{ labels.itemsIncluded }}</dt>
+                                    <dd class="mz-products-included-list">
+                                        <ul>
+                                            {% for product in package.items %}
+                                                {% for item in order.items %}
+                                                    {% if product.productCode == item.product.variationProductCode %}
+                                                        <li>{{ item.product.name }}</li>
+                                                    {% endif %}
+                                                {% endfor %}
+                                            {% endfor %}
+                                        </ul>
+                                    </dd>
+                                </dl>
+                            {% endif %}
+                        </dl>
+                    {% endif %}
+                {% endfor %}
+            </div>
+        {% endif %}
+        {% endblock order-details %}
+    </div>
+    <div class="mz-orderlisting-items col-xs-12 col-md-8 col-lg-9 no-pad">
+    {% block order-items %}
+        {% for item in model.items %}
+        {% include "modules/common/item-listing" with model=item %}
+        {% endfor %}
+    {% endblock order-items %}
+    </div>
+</div>

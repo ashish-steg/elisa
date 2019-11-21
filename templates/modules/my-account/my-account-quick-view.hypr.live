@@ -1,0 +1,32 @@
+<div class="mz-my-account-quick-view">
+    <div class="col-sm-4">
+    {% if user.isAuthenticated %}
+        {% if user.firstName !== '' %}
+            <h4>Hi, {{ user.firstName }}!</h4>
+        {% endif %}
+
+        <p>Welcome to Elisa Ilana.<br />We hope you have a great shopping experience.</p>
+    {% endif %}
+    </div>
+    <div class="col-sm-2">
+        <ul>
+            <li><a href="/myaccount#personal-information">{{ labels.personalInformation }}</a></li>
+            <li><a href="/myaccount#quick-order">{{ labels.quickOrder }}</a></li>
+            <li><a href="/myaccount#order-history">{{ labels.myOrders }}</a></li>
+            <li><a href="/myaccount#account-returnhistory">{{ labels.returns }}</a></li>
+        </ul>
+    </div>
+    <div class="col-sm-2">
+        <ul>
+            <li><a href="/myaccount#my-wishlist">{{ labels.wishlist }}</a></li>
+            <li><a href="/myaccount#account-addressbook">{{ labels.addressBook }}</a></li>
+            <li><a href="/myaccount#payment-methods">{{ labels.paymentMethods }}</a></li>
+            <li><a href="/myaccount#store-credit">{{ labels.storeCredit }}</a></li>
+        </ul>
+    </div>
+    <div class="col-sm-4">
+        <a class="mz-utilitynav-link logout">
+            Logout
+        </a>
+    </div>
+</div>

@@ -1,0 +1,60 @@
+﻿  {% extends "email/email" %}
+
+  {% block body-content %}
+
+	{% if user and user.firstName %}
+		<span style="line-height:25px;font-size:18px;font-weight: bold;color:#333; font-family:'Trebuchet MS', Verdana, Geneva, sans-serif;">{{ labels.emailOpening|string_format(user.firstName)|safe }}</span>
+	{% else %}
+		<span style="line-height:25px;font-size:18px;font-weight: bold;color:#333; font-family:'Trebuchet MS', Verdana, Geneva, sans-serif;">{{ labels.emailOpeningAlternative|safe }}</span>
+	{% endif %}
+
+
+	<span style="line-height:25px;color:#333;font-size: 16px;font-family: 'Trebuchet MS', Verdana, Geneva, sans-serif;">{{ labels.orderRefundBlob|string_format(siteContext.generalSettings.websiteName, domainName)|safe }}</span>
+ 
+
+	<dl class="mz-orderheader">
+		<dt style="color:#333;font-weight:bold;font-size: 16px;font-family:'Trebuchet MS', Verdana, Geneva, sans-serif;">{{ labels.orderNo }}</dt>
+		<dd style="margin: 0 0 25px 15px;color:#333;font-size: 16px;font-family:'Trebuchet MS', Verdana, Geneva, sans-serif;">{{ model.orderNumber }}</dd>
+
+		<dt style="font-weight:bold;color:#333; font-family: 'Trebuchet MS', Verdana, Geneva, sans-serif;">{{ labels.orderDate }}:</dt>
+		<dd style="margin: 0 0 25px 15px;color:#333;font-size: 16px;font-family:'Trebuchet MS', Verdana, Geneva, sans-serif;">{{ model.submittedDate }}</dd>
+	</dl>
+	<br />
+
+
+
+	<table class="mz-ordersummary" cellpadding=8 style="border-top:1px solid #ccc;border-bottom:1px solid #ccc;display: block;width: 100%;">
+        <thead style="width: 100%;display:block;">
+            <tr style="width: 100%;display:block;font-weight:bold;color:#333; font-family: 'Trebuchet MS', Verdana, Geneva, sans-serif;">
+                <td class="mz-ordersummary-header-product" style="width: 33.333%;font-weight: bold;display: inline-block;">Refund Method</td>
+                <td style="width: 33.333%;font-weight: bold;display: inline-block;">Amount Refunded</td> 
+				<td style="width: 10.333%;font-weight: bold;display: inline-block;">Refund Date</td>
+            </tr>
+		</thead>
+		<tbody style="width: 100%; display:block;">
+		{% for refund in model.refunds %}
+		<tr class="mz-ordersummary-line" style="width: 100%;display:block;color:#333; font-family: 'Trebuchet MS', Verdana, Geneva, sans-serif;">
+			<td class="mz-ordersummary-item-product" style="width: 33.3333%;display:inline-block;">
+				{% if refund.payment.paymentType == "CreditCard" %}
+					{{ refund.payment.billingInfo.card.paymentOrCardType }} {{ refund.payment.billingInfo.card.cardNumberPartOrMask }}
+				{% else %}
+					{% if refund.payment.paymentType == "PaypalExpress" %}
+						{{ labels.payPal }}
+					{% else %}
+						{% if refund.payment.paymentType == "StoreCredit" %}
+							{{ labels.storeCredit }} {{ refund.payment.billingInfo.storeCreditCode|default("") }}
+						{% endif %}
+					{% endif %}
+				{% endif %}
+			</td>
+			<td style="width: 33.3333%;display:inline-block;">{{ refund.amount|currency }}</td>
+			<td style="width: 15.3333%;display:inline-block;">{{ refund.auditInfo.createDate }}</td>
+		</tr>
+		{% endfor %}
+		</tbody>
+    </table>
+<p style="display:block;font-size: 18px;font-weight:bold;margin-top:30px;line-height:25px;font-family:'Trebuchet MS', Verdana, Geneva, sans-serif;">Sincerely, </p>
+            	
+            	<p style="display:block;font-size: 16px;font-weight: normal;margin: 20px 0 40px 0;line-height:25px;font-family:'Trebuchet MS', Verdana, Geneva, sans-serif;">The Elisa Ilana Jewelry Customer Service Team</p>	
+	
+{% endblock body-content %}

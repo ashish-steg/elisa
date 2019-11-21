@@ -1,0 +1,25 @@
+﻿<nav class="mz-utilitynav">
+    <ul class="mz-utilitynav-list">
+        {% if user.isAnonymous %}
+        <li class="mz-utilitynav-item">
+            <a href="/user/login" class="mz-utilitynav-link" alt="{{ labels.logIn }}" title="{{ labels.logIn }}" rel="nofollow">{{ labels.logIn }}</a>
+        </li>
+        <li class="mz-utilitynav-item">/</li>
+        <li class="mz-utilitynav-item">
+            <a href="/user/signup" class="mz-utilitynav-link" alt="{{ labels.register }}" title="{{ labels.register }}" rel="nofollow">{{ labels.register }}</a>
+        </li>
+        {%else%}
+        <li class="mz-utilitynav-item">
+            <div id="mz-logged-in-notice">
+                {{ labels.welcome }}, {{user.firstName|default(user.emailAddress)}}!
+            </div>
+        </li>
+        <li class="mz-utilitynav-item">
+            <a href="/myaccount" class="mz-utilitynav-link" alt="{{ labels.myAccount }}" title="{{ labels.myAccount }}" rel="nofollow">{{ labels.myAccount }}</a>
+        </li>
+        <li class="mz-utilitynav-item">
+            <a class="mz-utilitynav-link logout" alt="{{ labels.logout }}" title="{{ labels.logout }}" rel="nofollow">{{ labels.logout }}</a>
+        </li>
+        {% endif %}
+    </ul>
+</nav>

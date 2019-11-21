@@ -1,0 +1,100 @@
+{% require_script "widgets/slideshow" %}
+<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.0.0-beta.3/assets/owl.carousel.min.css">
+
+<div id="mz-slideshow" class="owl-carousel{% if not model.config.enableDots %} hide-dots{% endif %}{% if model.config.dotsStyle|lower == 'square' %} dots-square{% endif %}{% if model.config.dotsStyle|lower == 'rectangle' %} dots-rectangle{% endif %}{% if model.config.dotsAlign|lower == 'center' %} dots-center{% endif %}{% if model.config.dotsAlign|lower == 'right' %} dots-right{% endif %}{% if not model.config.enableArrows %} hide-arrows{% endif %}">
+	{% comment %} Slide 1 {% endcomment %}
+	{% if model.config.slide1Graphic %}
+		{% if model.config.slide1Link %}
+			<a class="item" href="{% if model.config.slide1Link %}{{model.config.slide1Link}}{% else %}#{% endif %}">
+		{% else %}
+			<div class="item">
+		{% endif %}
+			<img class="img-responsive" src="{% if pageContext.isMobile %}{% make_url 'image' model.config.slide1Graphic with maxWidth=750 as_parameter %}{% else %}{{ model.config.slide1Graphic.imageUrl }}{% endif %}" alt="{{ model.config.slide1AltTxt }}">
+			{% if model.config.slide1Caption %}
+				<div class="carousel-caption hidden-xs {% if model.config.enableDots %}dots-on{% endif %} col-xs-12">
+					{{ model.config.slide1Caption }}
+				</div>
+			{% endif %}
+		{% if model.config.slide1Link %}
+			</a>
+		{% else %}
+			</div>
+		{% endif %}
+	{% endif %}
+	{% comment %} Slide 2 {% endcomment %}
+	{% if model.config.slide2Graphic %}
+		{% if model.config.slide2Link %}
+			<a class="item" href="{% if model.config.slide2Link %}{{model.config.slide2Link}}{% else %}#{% endif %}">
+		{% else %}
+			<div class="item">
+		{% endif %}
+			<img class="img-responsive" src="{% if pageContext.isMobile %}{% make_url 'image' model.config.slide2Graphic with maxWidth=750 as_parameter %}{% else %}{{ model.config.slide2Graphic.imageUrl }}{% endif %}" alt="{{ model.config.slide2AltTxt }}">
+			{% if model.config.slide2Caption %}
+				<div class="carousel-caption hidden-xs {% if model.config.enableDots %}dots-on{% endif %} col-xs-12">
+					{{ model.config.slide2Caption }}
+				</div>
+			{% endif %}
+		{% if model.config.slide2Link %}
+			</a>
+		{% else %}
+			</div>
+		{% endif %}
+	{% endif %}
+	{% comment %} Slide 3 {% endcomment %}
+	{% if model.config.slide3Graphic %}
+		{% if model.config.slide3Link %}
+			<a class="item" href="{% if model.config.slide3Link %}{{model.config.slide3Link}}{% else %}#{% endif %}">
+		{% else %}
+			<div class="item">
+		{% endif %}
+			<img class="img-responsive" src="{% if pageContext.isMobile %}{% make_url 'image' model.config.slide3Graphic with maxWidth=750 as_parameter %}{% else %}{{ model.config.slide3Graphic.imageUrl }}{% endif %}" alt="{{ model.config.slide3AltTxt }}">
+			{% if model.config.slide3Caption %}
+				<div class="carousel-caption hidden-xs {% if model.config.enableDots %}dots-on{% endif %} col-xs-12">
+					{{ model.config.slide3Caption }}
+				</div>
+			{% endif %}
+		{% if model.config.slide3Link %}
+			</a>
+		{% else %}
+			</div>
+		{% endif %}
+	{% endif %}
+	{% comment %} Slide 4 {% endcomment %}
+	{% if model.config.slide4Graphic %}
+		{% if model.config.slide4Link %}
+			<a class="item" href="{% if model.config.slide4Link %}{{model.config.slide4Link}}{% else %}#{% endif %}">
+		{% else %}
+			<div class="item">
+		{% endif %}
+			<img class="img-responsive" src="{% if pageContext.isMobile %}{% make_url 'image' model.config.slide4Graphic with maxWidth=750 as_parameter %}{% else %}{{ model.config.slide4Graphic.imageUrl }}{% endif %}" alt="{{ model.config.slide4AltTxt }}">
+			{% if model.config.slide4Caption %}
+				<div class="carousel-caption hidden-xs {% if model.config.enableDots %}dots-on{% endif %} col-xs-12">
+					{{ model.config.slide4Caption }}
+				</div>
+			{% endif %}
+		{% if model.config.slide4Link %}
+			</a>
+		{% else %}
+			</div>
+		{% endif %}
+	{% endif %}
+	{% comment %} Slide 5 {% endcomment %}
+	{% if model.config.slide5Graphic %}
+		{% if model.config.slide5Link %}
+			<a class="item" href="{% if model.config.slide5Link %}{{model.config.slide5Link}}{% else %}#{% endif %}">
+		{% else %}
+			<div class="item">
+		{% endif %}
+			<img class="img-responsive" src="{% if pageContext.isMobile %}{% make_url 'image' model.config.slide5Graphic with maxWidth=750 as_parameter %}{% else %}{{ model.config.slide5Graphic.imageUrl }}{% endif %}" alt="{{ model.config.slide5AltTxt }}">
+			{% if model.config.slide5Caption %}
+				<div class="carousel-caption hidden-xs {% if model.config.enableDots %}dots-on{% endif %} col-xs-12">
+					{{ model.config.slide5Caption }}
+				</div>
+			{% endif %}
+		{% if model.config.slide5Link %}
+			</a>
+		{% else %}
+			</div>
+		{% endif %}
+	{% endif %}
+</div>

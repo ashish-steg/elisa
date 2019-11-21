@@ -1,0 +1,30 @@
+﻿@link-color :                                      #222;
+
+#header1 {
+    .mz-utilitynav {
+    	.mz-utilitynav-item {
+    		display: inline-block;
+			&:not(:last-child) {
+				margin-right: 10px;
+			}
+    		.mz-utilitynav-link {
+                color: @header1-link-color;
+    			text-decoration: none;
+                &:hover {
+                    color: @header1-link-hover-color;
+                }
+    		}
+            #mz-logged-in-notice {
+                text-transform: capitalize;
+            }
+    	}
+    }
+
+    .call-us {
+        padding: 27px 30px;
+
+        a {
+            color: @link-color;
+        }
+    }
+}

@@ -1,0 +1,2 @@
+﻿{% comment %} Editable under Site Editor > Templates > Default Site Template {% endcomment %}
+{% dropzone "footer-content" scope="site" %}

@@ -1,0 +1,83 @@
+﻿<div class="mz-productlisting {% block module-classes %}{% endblock module-classes %}" data-mz-product="{{ model.productCode }}">
+    <div class="mz-productlisting-image">
+        {% if themeSettings.listProductQuickview and pageContext.isDesktop %}
+            <!-- Button triggers modal -->
+            <button id="quickview-toggle" class="primary qvButton" type="button" data-toggle="modal" data-target="{{ model.productCode }}">
+                {{ labels.quickview }}
+            </button>
+        {% endif %}
+        {% block product-image %}
+        <a href="{% make_url "product" model %}">
+            {% if model.mainImage.imageUrl %}
+                <img class="mz-productlisting-image-img img-responsive" data-src="{% make_url "image" model.mainImage with maxWidth=500 quality=80 as_parameter %}" {% if model.mainImage.altText %}alt="{{ model.mainImage.altText }}"{% endif %} />
+            {% else %}
+                {% if siteContext.generalSettings.missingImageSubstitute %}
+                    <img class="mz-productlisting-image-img img-responsive" src="{{siteContext.cdnPrefix}}/cms/files/{{ siteContext.generalSettings.missingImageSubstitute }} }}"/>
+                {% else %}
+                    <span class="mz-productlisting-image-img mz-productlisting-imageplaceholder"><span class="mz-productlisting-imageplaceholdertext">{{ labels.productImagePlaceholder }}</span></span>
+                {% endif %}
+            {% endif %}
+            {% if model.content.productImages.length > 1 %}
+                {% for image in model.content.productImages %}
+                    {% if not forloop.first %}
+                        <img class="mz-productlisting-image-img img-responsive hideImg" data-src="{% make_url 'image' image with maxWidth=500 quality=80 as_parameter %}" {% if image.altText %}alt="{{ image.altText }}"{% endif %} />
+                    {% endif %}
+                {% endfor %}
+            {% endif %}
+        </a>
+        {% endblock product-image %}
+        {% for property in model.properties %}
+            {% if property.attributeFQN == "tenant~badges" %}
+                <div class="imgBadge">
+                {% for badgeList in property.values %}
+                    {% for badgeImg in badgeList.value|split(",") %}
+                            <img src="{{ siteContext.cdnPrefix }}/cms/{{ siteContext.siteId }}/files/{{ badgeImg }}" />
+                    {% endfor %}
+                {% endfor %}
+                </div>
+            {% endif %}
+        {% endfor %}
+    </div>
+    {% for property in model.properties %}
+        {% if property.attributeFQN == "tenant~color-mapping" and property.values|first|prop("value") %}
+            {% if model|get_product_attribute("tenant~color")|prop("values")|prop("length") > 1 %}
+                <div class="colorMaps">
+                    {% for color in model|get_product_attribute("tenant~color")|prop("values") %}
+                        {% if color.value != color.stringValue %}
+                            {% if color.stringValue.length == 6 %}
+                                <div data-mz-product="{{ model.productCode }}" data-mz-img="{{ model.productCode }}_{{ color.value }}_1.jpg" style="background: #{{ color.stringValue }};"class="color_swatch {{ color.value|lower }}"></div>
+                            {% else %}
+                                <div data-mz-product="{{ model.productCode }}"  data-mz-img="{{ model.productCode }}_{{ color.value }}_1.jpg" style="background-image: url('{{ siteContext.cdnPrefix }}/cms/{{ siteContext.siteId }}/files/{{ color.stringValue }}');"class="color_swatch {{ color.value|lower }}"></div>
+                            {% endif %}
+                        {% else %}
+                            <div data-mz-product="{{ model.productCode }}"  data-mz-img="{{ model.productCode }}_{{ color.value }}_1.jpg" style="background: {{ color.stringValue }};"class="color_swatch {{ color.value|lower }}"></div>
+                        {% endif %}
+                    {% endfor %}
+                </div>
+            {% endif %}
+        {% endif %}
+    {% endfor %}
+    <div class="mz-productlisting-info">
+        <a class="mz-productlisting-title" href="{% make_url "product" model %}">{{model.content.productName}}</a>
+        {% block product-code %}
+        {% if themeSettings.listProductCode %}
+        <div class="mz-productlisting-productcode">{{model.productCode}}</div>
+        {% endif %}
+        {% endblock product-code %}
+        {% include "modules/product/price-stack" %}
+        {% block product-extrainfo %}
+        {% if dealOfTheDay %}
+          {% if dealOfTheDay.savings %}
+            {% if model.price.discount.impact %}
+              <p class="mz-productlisting-savings">{{ labels.youSave }}: {{ model.price.discount.impact|currency }}</p>
+            {% endif %}
+          {% endif %}
+          {% if dealOfTheDay.expirationDate %}
+            {% if model.price.discount.discount.expirationDate %}
+              <p class="mz-productlisting-expirationdate">{{ labels.expires }}: {{ model.price.discount.discount.expirationDate|date("F j, Y") }}</p>
+            {% endif %}
+          {% endif %}
+        {% endif %}
+        {% endblock product-extrainfo %}
+    </div>
+</div>

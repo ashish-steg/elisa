@@ -1,0 +1,21 @@
+{% extends "page" %}
+
+{% block title-tag-content %}{% firstof pageContext.metaTitle model.name %}  - {% parent %}{% endblock title-tag-content %}
+
+{% block body-tag-classes %} mz-category {% endblock body-tag-classes %}
+
+{% block breadcrumbs %}
+{% endblock breadcrumbs %}
+
+{% block body-content %}
+
+{% require_script "pages/category" %}
+{% preload_json pageContext "pageContext" %}
+<div data-mz-category="{{model.categoryId}}" class="mz-l-container">
+    {% include "pages/category-interior" %}
+</div>
+<div id="product-details-quick-view">
+    <div class="modal-content quickview-modal">
+    </div>
+</div>
+{% endblock body-content %}

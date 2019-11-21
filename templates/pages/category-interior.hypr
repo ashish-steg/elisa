@@ -1,0 +1,5 @@
+{% dropzone "categorypromo1" scope="page" %}
+{% partial_cache model.categoryId pageContext.Sorting pageContext.Pagination pageContext.query.sortBy %}
+{% include_products "modules/product/faceted-products" with includeFacets=themeSettings.showCategoryFacets and pageWithUrl=true and sortWithUrl=true and pageSize=themeSettings.defaultPageSize and name=model.name as_parameter %}
+{% endpartial_cache %}
+{% dropzone "categorypromo2" scope="page" %}

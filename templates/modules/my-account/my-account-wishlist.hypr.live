@@ -1,0 +1,102 @@
+﻿<div class="mz-remove-wishlist-confirm">
+    <div class="modal">
+        <label>{{ labels.confirmDeleteWishlistItem }}</label>
+        <input type="hidden" name="wishlist-product-id" value="" />
+        <button class="mz-confirm-wishlist left" id="remove-wishlist-item" data-mz-action="remove" data-mz-product="">Yes</button>
+        <button class="mz-confirm-wishlist right" id="cancel-remove-wishlist-item">No</button>
+    </div>
+    <div class="background"></div>
+</div>
+<div class="row">
+    <div class="col-sm-12 my-account-page" id="account-wishlist">
+        <table class="table my-account-table">
+            <thead>
+                <tr>
+                    <th colspan="4">{{ labels.accountMyWishlist }}</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% if model.items.length > 0 %}
+                <tr>
+                    <td>
+                        <table class="table wishlist">
+                            <thead>
+                                <tr>
+                                    <th>{{ labels.item }}</th>
+                                    <th>{{ labels.itemDescription }}</th>
+                                    <th>{{ labels.price }}</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {% for item in model.items %}
+                                <tr>
+                                    {% include "modules/my-account/my-account-wishlist-item-listing" with model=item %}
+                                </tr>
+                                {% endfor %}
+                            </tbody>
+                        </table>
+                    </td>
+                </tr>
+                {% else %}
+                <tr>
+                    <td>{{ labels.accountNoWishlists }}</td>
+                </tr>
+                {% endif %}
+            </tbody>
+        </table>
+    </div>
+</div>
+<!-- <h3 class="mz-l-stack-sectiontitle">{{ labels.accountYourWishlist }}</h3>
+
+<div class="mz-accountwishlist-list col-xs-12 no-pad">
+  {% if model.hasItems %}
+    {% for item in model.items %}
+      {% include "modules/my-account/my-account-wishlist-item-listing" with model=item %}
+    {% endfor %}
+    <div data-mz-pagenumbers class="five wide column mz-pagingcontrols">
+        <div class="ui small pagination menu">
+            <a class="{% if model.page == 1 %}disabled {% endif %}item" id="page-arrow"  rel="previous" data-mz-action="favPrevious">
+                <i class="angle left icon"></i>
+            </a>
+
+            <a class="{% if model.page == 1 %}disabled {% endif %}item" data-mz-action="favPage" data-mz-page-num="1">1</a>
+
+        {% if model.page > 4 %}
+            <span class="disabled item">&hellip;</span>
+        {% endif %}
+        {% for pageNumber in model.pages %}
+            {% if pageNumber != 1 %}
+            {% if model.page == pageNumber %}
+                <span class="active item disabled">{{ pageNumber }}</span>
+            {% else %}
+                <a class="item" data-mz-action="favPage" data-mz-page-num="{{ pageNumber }}">
+                    {{ pageNumber }}
+                </a>
+            {% endif %}
+            
+            {% if forloop.last and pageNumber < model.page|last - 1 and model.page|last > 1 %}
+                {% if pageNumber != model.page|last %}
+                    <span class="disabled item">&hellip;</span>
+                {% endif %}
+                <a class="item" data-mz-action="favPage" data-mz-page-num="{{ model.pageCount }}">
+                    {{ model.page|last }}
+                </a>
+            {% endif %}
+            {% endif %}
+        {% endfor %}
+            <a class="{% if model.page == model.pages|last %}disabled {% endif %}item" id="page-arrow" rel="next" data-mz-action="favNext">
+                {% comment %}
+                    <span class="ui computer only">
+                        {{ labels.nextPage }}        
+                    </span>
+                {% endcomment %}
+
+                <i class="angle right icon"></i>
+            </a>
+        </div>
+    </div>
+  {% else %}
+    <div class="info-message">{{ labels.accountNoWishlists }}</div>
+  {% endif %}
+</div>
+ -->

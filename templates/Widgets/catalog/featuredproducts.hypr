@@ -1,0 +1,4 @@
+﻿<div class="featuredProducts">
+{% include_products Model.config.template|default:"modules/product/product-list-tiled" with  productCodes=Model.config.productCodes as_parameter %}
+</div>
+{% require_script "widgets/featuredproducts" %}

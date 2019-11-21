@@ -1,0 +1,18 @@
+﻿<div class="col-sm-12 mz-saved-card">
+    <div class="col-sm-2">
+        <strong>{{ labels.cardType }}: </strong>{{ model.cardType }}
+    </div>
+    <div class="col-sm-3">
+        <strong>{{ labels.nameOnCard }}: </strong>{{ model.nameOnCard }}
+    </div>
+    <div class="col-sm-3">
+        <strong>{{ labels.cardNo }}: </strong>{{ model.cardNumberPart }}
+    </div>
+    <div class="col-sm-3">
+        <strong>{{ labels.expiryDate }}: </strong>{{ model.expireMonth }}/{{ model.expireYear }}
+    </div>
+    <div class="col-sm-1">
+        {% block payment-method-actions %}
+        {% endblock payment-method-actions %}
+    </div>
+</div>

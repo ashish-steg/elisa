@@ -1,0 +1,15 @@
+﻿{% extends "modules/common/item-listing" %}
+{% block item-name %}
+    {% if model.fulfillmentDate %} {{ labels.shipped }}: {{ model.fulfillmentDate|date("F j, Y") }}{% endif %}
+    {% parent %}
+{% endblock item-name %}
+{% block item-listing-extras %}
+<div class="mz-return-wrapper col-xs-12 no-pad">
+    {% if returning == model.id %}
+    <div class="mz-itemlisting-prompt warning-message col-xs-12">{{ labels.returnInfo|safe }}</div>
+    {% endif %}
+    {% if returning == model.id %}
+        {% include "modules/common/item-return-form" %}
+    {% endif %}
+</div>
+{% endblock item-listing-extras %}

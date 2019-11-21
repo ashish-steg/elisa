@@ -1,0 +1,158 @@
+﻿.mobile-facets-toggle {
+    width: 100%;
+    max-width: 320px;
+    margin-bottom: 20px;
+    display: none;
+
+    @media only screen and (max-width: 767px){
+        display: inline-block;
+    }
+    &.open {
+        i.icon {
+            -webkit-transform: rotate(180deg); /* Chrome, Safari, Opera */
+            -ms-transform: rotate(180deg); /* IE 9 */
+            transform: rotate(180deg);
+        }
+    }
+    .hide-filters,
+    .show-filters {
+        float: left;
+    }
+    i.icon {
+        float: right;
+        -webkit-transition:transform 0.3s linear; /* For Safari and Chrome */
+        -moz-transition:transform 0.3s linear; /* For Firefox */
+        -o-transition:transform 0.3s linear; /* For Opera */
+        transition:transform 0.3s linear; /* Standard syntax */
+    }
+}
+.mz-facetingform {
+
+    @media only screen and (max-width: 767px){
+        display: none;
+    }
+
+    h4 {
+        text-indent: 5%;
+        color: #484848;
+        background-color: #efefef;
+        height: 28px;
+        line-height: 28px;
+        margin: 0 0 10px;
+        font-style: italic;
+    }
+    .accordion-toggle {
+        text-decoration: none;
+        &.collapsed {
+            i.icon {
+                &:before{
+                    content: "+";
+                }
+            }
+        }
+    }
+    h6 {
+        margin-top: 0;
+        margin-bottom: 0;
+        padding-top: 10px;
+        padding-right: 20px;
+        padding-bottom: 10px;
+        font-size: 18px;
+        font-style: italic;
+        color: @color-text;
+        @media only screen and (max-width: 991px) {
+            font-size: @font-size-mobile;
+        }
+        i.icon {
+            font-size: 16px;
+            margin-left: 12px;
+            position: absolute;
+            right: 0;
+            &:before {
+                content: "-";
+            }
+        }
+    }
+
+    .mz-l-sidebaritem {
+        > ul {
+            overflow: auto;
+            max-height: 200px;
+        }
+    }
+    .mz-facetingform-facet {
+        list-style-type: none;
+        padding: 0;
+        margin: 0;
+
+        li {
+            margin: 0;
+            input {
+                display: none;
+                visibility: hidden;
+                margin: 0;
+
+                &:checked + label:before {
+                    background: #000;
+                    border: 2px solid #fff;
+                    box-shadow: 0 0 0 1px #000;
+                    width: 12px;
+                    height: 12px;
+                    margin-top: 4px;
+                    left: 1px;
+                }
+            }
+
+            label {
+                margin: 0;
+                margin-left: 20px;
+            }
+
+        }
+        a {
+            text-decoration: none;
+            color: #333;
+
+            &:hover {
+                color: #333;
+            }
+
+            &:visited {
+                color: #333;
+            }
+        }
+    }
+    .mz-facetingform-valuelabel {
+        display: inline-block;
+        margin-left: 8px;
+
+        &:before {
+            content: '';
+            width: 14px;
+            height: 14px;
+            position: absolute;
+            left: 0;
+            border: 1px solid #3e3e3e;
+            border-radius: 2px;
+            margin-top: 3px;
+        }
+    }
+
+    .mz-facetingform-facet-hierarchy {
+        .mz-facetingform-facet-hierarchy {
+            li {
+                margin: 0 0 4px 0.5em;
+                line-height: 1em;
+                .checkBox {
+                    display: inline-block;
+                    width: 14px;
+                    height: 14px;
+                    border: 1px solid #000;
+                    border-radius: 2px;
+                    margin-top: 3px;
+                    margin-right: 3px;
+                }
+            }
+        }
+    }
+}

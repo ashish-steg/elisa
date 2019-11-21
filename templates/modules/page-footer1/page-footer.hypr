@@ -1,0 +1,101 @@
+﻿<footer id="footer1" class="mz-pagefooter col-xs-12 no-pad">
+    <div class="container-fluid">
+        <div class="footer-top row no-pad">
+            <div class="col-sm-7">
+                <div class="row">
+                    {% include "modules/page-footer1/footer-content" %}
+                </div>
+            </div>
+            <div class="col-sm-5">
+                <div class="row">
+                    {% if not pageContext.isMobile %}<div class="col-sm-12">{% endif %}
+                        <div class="mz-newsletter-opt-in col-sm-12 col-md-9">
+                        <h2 class="phone">{{ themeSettings.phoneNumber }}</h2>
+                        <h3 class="insider">{{ labels.becomeAnEIInsider }}</h3>
+                            <div class="row">
+                                <div class="col-sm-12">
+
+                                    <!--Begin CTCT Sign-Up Form-->
+                                    <!-- EFD 1.0.0 [Fri Oct 07 15:43:45 EDT 2016] -->
+                                    <div class="ctct-embed-signup">
+                                        <div>
+                                            <span id="success_message" style="display:none;">
+                                                <div>Thank you for signing up as an EI Insider</div>
+                                            </span>
+                                            <form data-id="embedded_signup:form" class="ctct-custom-form Form" name="embedded_signup" method="POST" action="https://visitor2.constantcontact.com/api/signup">
+                                                <!-- The following code must be included to ensure your sign-up form works properly. -->
+                                                <input data-id="ca:input" type="hidden" name="ca" value="b7d71991-f767-471b-9236-354e3268cb21">
+                                                <input data-id="list:input" type="hidden" name="list" value="2052058915">
+                                                <input data-id="source:input" type="hidden" name="source" value="EFD">
+                                                <input data-id="required:input" type="hidden" name="required" value="list,email">
+                                                <input data-id="url:input" type="hidden" name="url" value="">
+                                                <div class="col-sm-9 col-xs-8 no-padding">
+                                                    <p data-id="Email Address:p" class="mz-cc-email-input"><input placeholder="{{ labels.enterEmailAddress }}" class="mz-newsletter-signup" id="mz-newsemail" data-id="Email Address:input" type="text" name="email" value="" maxlength="80" required></p>
+                                                </div>
+                                                <div class="col-sm-3 col-xs-4 no-padding">
+                                                    <input type="submit" class="primary mz-newsletter-signup" data-enabled="enabled" value="&raquo; {{ labels.signUp }}" />
+                                                </div>
+                                            </form>
+                                        </div>
+                                    </div>
+                                    <!--End CTCT Sign-Up Form-->
+
+                                </div>
+                            </div>
+                            <div class="mz-social-wrapper">
+                                <a target="_blank" class="social-icon facebook" href="https://www.facebook.com/ElisaIlanaJewelry"></a>
+                                <a target="_blank" class="social-icon twitter" href="https://twitter.com/elisailana"></a>
+                                <a target="_blank" class="social-icon pinterest" href="https://www.pinterest.com/elisailana"></a>
+                                <a target="_blank" class="social-icon instagram" href="https://instagram.com/elisailana/"></a>
+                                <a target="_blank" class="social-icon google-plus" href="https://plus.google.com/+Elisailanajewelry/posts"></a>
+                                <a target="_blank" class="social-icon polyvore" href="http://elisailana.polyvore.com/"></a>
+                            </div>
+                        </div>
+                    {% if not pageContext.isMobile %}</div>{% endif %}
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom row no-pad">
+            <div class="cc-icons-wrapper col-xs-12 col-md-6 pull-right">
+                {% for ccEnabled in siteContext.checkoutSettings.supportedCards %}
+                    {% if ccEnabled == "[VISA, VISA]" %}
+                        <i class="icon cc-visa"></i>
+                    {% endif %}
+                {% endfor %}
+                {% for ccEnabled in siteContext.checkoutSettings.supportedCards %}
+                    {% if ccEnabled == "[AMEX, AMEX]" %}
+                        <i class="icon cc-amex"></i>
+                    {% endif %}
+                {% endfor %}
+                {% for ccEnabled in siteContext.checkoutSettings.supportedCards %}
+                    {% if ccEnabled == "[MC, MC]" %}
+                        <i class="icon cc-mc"></i>
+                    {% endif %}
+                {% endfor %}
+                {% for ccEnabled in siteContext.checkoutSettings.supportedCards %}
+                    {% if ccEnabled == "[DISCOVER, DISCOVER]" %}
+                        <i class="icon cc-discover"></i>
+                    {% endif %}
+                {% endfor %}
+                {% for ccEnabled in siteContext.checkoutSettings.supportedCards %}
+                    {% if ccEnabled == "[JCB, JCB]" %}
+                        <b>JCB</b>
+                    {% endif %}
+                {% endfor %}
+                {% for externalPayment in siteContext.checkoutSettings.externalPaymentWorkflowSettings %}
+                    {% if externalPayment.isEnabled %}
+                        {% if externalPayment.name|lower == "visacheckout" %}
+                            <i><b><i class="icon cc-visa"></i> {{ labels.checkout }}</b></i>
+                        {% endif %}
+                        {% if externalPayment.name|lower == "paypalexpress2" %}
+                            <i class="icon cc-paypal"></i>
+                        {% endif %}
+                    {% endif %}
+                {% endfor %}
+            </div>
+            <div id="copyright" class="mz-pagefooter-copyright col-xs-12">
+                &copy; 1996-{% now Y %} {{ siteContext.generalSettings.websiteName }}&reg; | <a href="#">COPYRIGHTS</a> | <a href="/pages/privacy-security-policy">Privacy/Security Policy</a>
+            </div>
+        </div>
+    </div>
+</footer>

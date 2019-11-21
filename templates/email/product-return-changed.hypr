@@ -1,0 +1,90 @@
+﻿  {% extends "email/email" %}
+
+  {% block body-content %}
+
+   
+	<dl class="mz-orderheader test">
+
+	<dt style="margin:0;clear:both;color:#333;font-weight:bold;font-size: 16px;font-family:'Trebuchet MS', Verdana, Geneva, sans-serif;" >{{ labels.orderNo }}</dt>
+		<dd><a href="https://{{domainName}}/checkout/{{model.id}}/confirmation">{{ model.orderNumber }} </a></dd>
+	
+		<dd style="margin: 0 0 25px 15px;color:#333;font-size: 16px;font-family:'Trebuchet MS', Verdana, Geneva, sans-serif;">{{ model.returnNumber }}</dd>
+
+		<dt style="margin:0;clear:both;font-weight:bold;color:#333; font-family: 'Trebuchet MS', Verdana, Geneva, sans-serif;">{{ labels.orderDateReceive }}:</dt>
+		<dd style="margin: 0 0 25px 15px;color:#333;font-size: 16px;font-family:'Trebuchet MS', Verdana, Geneva, sans-serif;">{{ model.auditInfo.createDate }}</dd>
+        
+		<dt style="margin:0;clear:both;font-weight:bold;color:#333;font-family: 'Trebuchet MS', Verdana, Geneva, sans-serif;">{{ labels.returnRequestDate }}:</dt>
+		<dd style="margin: 0 0 25px 15px;color:#333;font-size: 16px;font-family:'Trebuchet MS', Verdana, Geneva, sans-serif;">{{ model.rmaDeadline }}</dd>
+		
+	</dl>
+	<br />
+
+
+   	{% if user and user.firstName %}
+		<span style="line-height:25px;font-size:18px;font-weight: bold;color:#333; font-family:'Trebuchet MS', Verdana, Geneva, sans-serif;">{{ labels.orderWelcome }} {{ model.order.billingInfo.billingContact.firstName }} {{ model.order.billingInfo.billingContact.lastNameOrSurname }},</span>
+	{% else %}
+		<span style="line-height:25px;font-size:18px;font-weight: bold;color:#333; font-family:'Trebuchet MS', Verdana, Geneva, sans-serif;">	{{ labels.emailOpeningAlternative|safe }}</span>
+	{% endif %}
+	<span style="line-height:25px;color:#333;font-size: 16px;font-family: 'Trebuchet MS', Verdana, Geneva, sans-serif; display: block;margin-bottom: 28px;">{{ labels.returnReceivedBlob1|string_format(siteContext.generalSettings.websiteName, domainName)|safe }}</span>
+ 
+	<table align="left" class="mz-ordersummary" cellpadding=6 style="border-collapse:collapse;width:100%;margin-bottom: 30px;" >
+        <thead style="background:#ccc;font-family: 'Trebuchet MS', Verdana, Geneva, sans-serif;">
+            <tr>
+                <th style=" text-transform:uppercase; color: #000;
+text-align: left;padding-left: 30px;" class="mz-ordersummary-header-product">{{ labels.product }}</th>
+            
+            <th class="mz-ordersummary-header-qty" style="text-transform:uppercase; background:#ccc ; color:#000; 
+text-align: center;">{{ labels.quantity }}</th>
+            </tr> 
+		</thead>
+		<tbody class="mz-ordersummary-lineitems">
+		{% for item in model.items %}
+			{% for reason in item.reasons %} 
+			<tr class="mz-ordersummary-line mz-ordersummary-line-item">
+				<td style="text-align:left;color:#333;border-bottom:1px solid #ccc;" class="mz-ordersummary-item-product">
+				    <div style="width: 20%;display: inline-block;vertical-align: middle;">
+				        <img class="mob-full-wid" style="vertical-align: middle;float: left;" src="http:{{item.product.imageUrl}}?max=100"  / >
+				    </div>
+				    <div style="font-family: 'Trebuchet MS', Verdana, Geneva, sans-serif;font-size: 14px; color: #333;">STYLE:&nbsp;{{ item.product.productCode }}</div>
+				    <div style="font-family: 'Trebuchet MS', Verdana, Geneva, sans-serif;font-size: 14px; color: #333;">{{ item.product.name }}</div>
+				    {%comment%}
+				    {% for property in item.product.properties %}
+				            {% if property.attributeFQN == "tenant~sku" %}
+                                {% for v in property.values %} 
+                                    {% if v.stringValue %}
+                                        <div> 
+                                            <dt>SKU</dt>
+                                            <dd>{{ v.stringValue|safe }}</dd>
+                                        </div>
+                                    {% endif %}
+                                {% endfor %} 
+                            {% endif %}
+                    {% endfor %}
+                    
+                    {% for property in item.product.properties %}
+				            {% if property.attributeFQN == "tenant~style" %}
+                                {% for v in property.values %} 
+                                    {% if v.stringValue %}
+                                     <div>
+                                        <dt>STYLE</dt>
+                                        <dd>{{ v.stringValue|safe }}</dd>
+                                    </div>
+                                    {% endif %}
+                                {% endfor %} 
+                            {% endif %}
+                    {% endfor %}
+                    {%endcomment%}
+				</td>
+				<td style="text-align:center;color:#333;border-bottom:1px solid #ccc;">
+				    {{ reason.quantity }}
+				</td>
+			</tr>
+			{% endfor %}
+		{% endfor %}
+		</tbody>
+    </table>
+
+	<span style="display:block;line-height:25px;color:#333; font-size:16px;font-family:'Trebuchet MS', Verdana, Geneva, sans-serif;">{{ labels.returnReceivedBlob2|safe }} </span>
+        <p style="display:block;font-size: 18px;color:#333;font-weight:bold;margin-top:30px;line-height:25px;font-family:'Trebuchet MS', Verdana, Geneva, sans-serif;">Sincerely, </p>
+        <p style="display:block;font-size: 16px;color:#333;font-weight: normal;margin: 20px 0 40px 0;line-height:25px;font-family:'Trebuchet MS', Verdana, Geneva, sans-serif;">The Elisa Ilana Jewelry Customer Service Team</p>	
+{% endblock body-content %}

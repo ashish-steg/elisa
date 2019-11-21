@@ -1,0 +1,204 @@
+.mz-save-favorite {
+    text-transform: uppercase;
+
+    button {
+
+        padding: 0;
+        min-width: initial;
+        background: transparent !important;
+        color: #000;
+        text-align: left;
+
+        span {
+            display: inline-block;
+            font-family: 'Roboto', sans-serif;
+            font-size: 13px;
+            font-weight: bold;
+            padding: 0 5px;
+            line-height: 37px;
+            vertical-align: top;
+        }
+
+        &.added-to-wishlist {
+            i {
+                color: #a74e92
+            }
+        }
+
+        &.is-disabled {
+            background: transparent !important;
+
+            &:hover {
+                background: transparent !important;
+            }
+
+        }
+    }
+
+    i {
+        color: #d1d1d1;
+        font-size: 24px;
+        padding-top: 6px;
+    }
+}
+
+.mz-productcodes {
+    font-family: 'Roboto', sans-serif;
+    font-size: 12px;
+    font-weight: bold;
+    text-transform: uppercase;
+}
+
+.qty-button {
+    border: 1px solid black;
+    display: inline-block;
+    line-height: 20px;
+    padding: 2px 10px 6px 10px;
+    vertical-align: top;
+
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+
+    -o-user-select: none;
+    user-select: none;
+
+    &:hover {
+        color: white;
+        cursor: pointer;
+        background-color: #820072;
+    }
+
+    &.disabled {
+        border-color: #ddd;
+        color: #666;
+
+        &:hover {
+            background-color: white;
+            cursor: default;
+        }
+    }
+}
+
+.mz-productdetail {
+    @media only screen and (max-width: 767px) {
+        margin-top: 40px;
+    }
+    .mz-productdetail-options {
+        .mz-productoptions-optioncontainer {
+            &:not(:first-child) {
+                margin-top: 20px;
+            }
+            .mz-productoptions-optionlabel {
+                width: 150px;
+                max-width: 100%;
+            }
+
+            .color_swatch {
+                width: 20px;
+                height: 20px;
+                display: inline-block;
+                margin: 3px;
+                border: 1px solid #000;
+                border-radius: 3px;
+                cursor: pointer;
+            }
+
+            .mz-productoptions-valuecontainer {
+                .mz-productoption-options {
+                    display: none;
+                    &:checked + label {
+                        background: #000;
+                        color: #fff;
+                    }
+                    &:checked + .color_swatch {
+                        box-shadow: 0px 0px 0px 1px #000 !important;
+                    }
+                }
+                .mz-productoptions-option-label {
+                    border: 1px solid #000;
+                    padding: 5px;
+                }
+            }
+        }
+    }
+
+    h2 {
+        &.mz-pagetitle {
+            font-family: 'Roboto', sans-serif;
+            font-size: 24px;
+            margin: 0 0 18px 0;
+            text-transform: uppercase;
+        }
+    }
+    .mz-productdetail-conversion-buttons {
+        margin-top: 10px;
+    }
+    .mz-instorepickuplink-button {
+        margin-top: 10px;
+    }
+    .mz-productdetail-properties,
+    .mz-productdetail-measurements {
+        dr {
+            background: #ddd;
+            padding: 4px 15px;
+            display: flex;
+            justify-content: flex-start;
+            -ms-flex-pack: start;
+
+            &:first-of-type {
+                padding-top: 20px;
+            }
+
+            &:last-of-type {
+                padding-bottom: 20px;
+            }
+        }
+    }
+
+    .mz-productdetail-properties {
+        dr {
+            dt,
+            dd {
+                width: 50%;
+            }
+
+            dd {
+                text-align: left;
+            }
+        }
+    }
+
+    .mz-qty-label {
+        color: #656465;
+        font-family: 'Roboto', sans-serif;
+        font-size: 13px;
+        font-weight: bold;
+        line-height: 29px;
+        text-transform: uppercase;
+    }
+
+    .mz-productdetail-conversion-controls {
+        display: flex;
+        flex-wrap: wrap;
+
+        .mz-productdetail-qty {
+            border: 1px solid black;
+            font-weight: bold;
+            height: 30px;
+            margin: 0 5px;
+            text-align: center;
+            width: 70px !important;
+        }
+    }
+
+    .mz-productdetail-fulldesc {
+
+        .border-top {
+            border-bottom: none;
+            border-top: 1px solid #eee;
+            font-weight: bold;
+            padding-top: 30px;
+        }
+    }
+}

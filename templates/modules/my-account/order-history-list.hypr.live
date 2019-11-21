@@ -1,0 +1,3 @@
+﻿{% for order in model.items %}
+	{% include "modules/my-account/order-history-order-listing" with model=order %}
+{% endfor %}

@@ -1,0 +1,16 @@
+﻿{% extends "modules/common/credit-card-form" %}
+{% block credit-card-form %}
+    {% set cardcontext="editingCard." %}
+    <div class="mz-accountpaymentmethods-method mz-accountpaymentmethods-form col-xs-12">
+        <div class="mz-creditcardform row no-pad">
+        {% parent %}
+        <h4>{{labels.billingAddress}}</h4>
+        {% include "modules/common/address-form" with addresscontext="editingContact." model=editingContact %}
+		<span class="mz-validationmessage" data-mz-validationmessage-for="{{ cardcontext }}contactId"></span>
+        </div>
+        <div class="mz-creditcard-actions col-xs-12 no-pad">
+            <button class="mz-button mz-creditcard-save" data-mz-action="finishEditCard">{{ labels.save }}</button>
+            <button class="mz-button mz-creditcard-cancel gray" data-mz-action="cancelEditCard">{{ labels.cancel }}</button>
+        </div>
+    </div>
+{% endblock credit-card-form %}

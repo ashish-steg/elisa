@@ -1,0 +1,70 @@
+﻿{% require_script "modules/contextify" %}
+{% require_script "modules/site-nav" %}
+{% if themeSettings.enableMegaMenu %}
+<nav id="mega-menu" class="mz-sitenav col-xs-12 no-pad">
+{% else %}
+<nav class="mz-sitenav col-xs-12 no-pad">
+{% endif %}
+  <ul class="mz-sitenav-list" 
+    data-mz-contextify='.mz-sitenav-link[href="{{ navigation.currentNode.url }}"]'
+    data-mz-contextify-attr='class'
+    data-mz-contextify-val='is-current'>
+    {% partial_cache %}
+    {% for link in navigation.tree %}
+      {% if not forloop.first %} {% comment %} Removes "Home" link. {% endcomment %}
+        {% if not link.isHidden and not link.isEmpty %}
+          {% comment %} Tablet in landscape: Update links with subnavs to JS toggles {% endcomment %}
+          {% if not pageContext.isDesktop and link.items %}
+            <li class="mz-sitenav-item mz-sitenav-sub-toggle">
+              <a class="mz-sitenav-link mz-tablet-link" href="{{link.url}}">{{link.name|truncatechars(themeSettings.maxTopLevelNavLabelLength)|safe}} </a>
+          {% else %}
+            <li class="mz-sitenav-item">
+              <a class="mz-sitenav-link" href="{{link.url}}">{{link.name|truncatechars(themeSettings.maxTopLevelNavLabelLength)|safe}} </a>
+          {% endif %}
+          {% if link.items %}
+            <div class="mz-sitenav-sub-container {% if link.items.length > 28 %}mz-multi-column-nav{% endif %}">
+              <div {% if themeSettings.headerColor %}style="background: {{ themeSettings.headerColor }};"{% endif %}>
+                <ul class="mz-sitenav-sub">
+                    {% for sublink in link.items %}
+                      {% if sublink.isHidden %}
+                      {% endif %}
+                      {% if not sublink.isHidden and not sublink.isEmpty and sublink.nodeType == "category" %}
+                        {% comment %} Tablet in landscape: Update sublinks with sub-subnavs to JS toggles. Not applicable to Mega Menu. {% endcomment %}
+                        <li data-mz-role="sitemenu-item" class="mz-sitenav-item {% if not pageContext.isDesktop and not themeSettings.enableMegaMenu %}mz-sitenav-sub-sub-toggle{% endif %}">
+                          {% if not pageContext.isDesktop and not themeSettings.enableMegaMenu %}
+                            <div class="mz-sitenav-link">{{ sublink.name|safe }} </div>
+                          {% else %}
+                            <a class="mz-sitenav-link" href="{{sublink.url}}">{{ sublink.name|safe }} </a>
+                          {% endif %}
+                          {% if sublink.items %}
+                            <ul class="mz-sitenav-sub-sub">
+                              {% for subsublink in sublink.items %}
+                                {% if not subsublink.isHidden and not subsublink.isEmpty %}
+                                <li class="mz-sitenav-item">
+                                  <a class="mz-sitenav-link" href="{{subsublink.url}}">{{ subsublink.name|safe }}</a>
+                                </li>
+                                {% endif %}
+                              {% endfor %}
+                            </ul>
+                          {% endif %}
+                        </li>
+                      {% endif %}
+                    {% endfor %}
+                    {% comment %} Tablet in landscape: Submenu parent "view all" link. Not applicable to Mega Menu. {% endcomment %}
+                    {% if not pageContext.isDesktop and not themeSettings.enableMegaMenu and link.items %}
+                      <li data-mz-role="sitemenu-item" class="mz-sitenav-item">
+                        <a class="mz-sitenav-link" href="{{link.url}}">{{ labels.viewAll }}</a>
+                      </li>
+                    {% endif %}
+                </ul>
+                <img id="nav-img-{{ link.originalId }}" style="display: none;" class="nav-img" src="" />
+              </div>
+            </div>
+            {% endif %}
+          </li>
+        {% endif %}
+      {% endif %}
+    {% endfor %}
+    {% endpartial_cache %}
+  </ul>
+</nav>

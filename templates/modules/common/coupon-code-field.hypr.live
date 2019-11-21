@@ -1,0 +1,9 @@
+﻿        <div class="col-sm-12">
+            <input type="text" id="cart-coupon-code" class="discount-code" name="coupon-code" placeholder="{{ labels.promoCode }}" value="{{ model.couponCode }}" data-mz-value="couponCode">
+            <button type="button" id="cart-coupon-code" class="mz-button discount-code" data-mz-action="addCoupon" {% if not model.couponCode %} disabled="disabled" {% endif %}>{{ labels.apply }}</button>
+        </div>
+        {% if model.tentativeCoupon %}
+        <div>
+            <span>{{labels.couponDisclaimer|string_format(model.tentativeCoupon)|safe}}</span>
+        </div>
+        {% endif %}

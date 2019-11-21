@@ -1,0 +1,84 @@
+/* PDP images align left by default. To align images center or right, visit Theme Settings > Product Page */
+
+@pdp-img-border-color:          #f0f0f0;
+@pdp-img-main-border-size:      1px;
+@pdp-img-thumbnail-border-size: 1px;
+
+.mz-productimages {
+    &.align-center {
+        .mz-productimages-main {
+            .mz-productimages-mainimage {
+                margin-left: auto;
+                margin-right: auto;
+            }
+        }
+        .mz-productimages-thumbs {
+            justify-content: center;
+            -ms-flex-pack: center;
+            .mz-productimages-thumb {
+                margin-right: 5px;
+                margin-left: 5px;
+            }
+        }
+    }
+    &.align-right {
+        /* Right aligns left on mobile */
+        @media only screen and (max-width: 767px) {
+            .mz-productimages-thumbs {
+                justify-content: flex-start;
+                -ms-flex-pack: start;
+                .mz-productimages-thumb {
+                    margin-right: 10px;
+                }
+            }
+        }
+        @media only screen and (min-width: 768px) {
+            .mz-productimages-main {
+                .mz-productimages-mainimage {
+                    margin-left: auto;
+                }
+            }
+            .mz-productimages-thumbs {
+                justify-content: flex-end;
+                -ms-flex-pack: end;
+                .mz-productimages-thumb {
+                    margin-left: 10px;
+                }
+            }
+        }
+    }
+    .mz-productimages-main {
+        float: right;
+        width: 85%;
+        min-height: 175px;
+        position: relative;
+        
+        &.noAlt {
+            width: 100%;
+        }
+    }
+    .mz-productimages-thumbs {
+        max-height: 300px;
+        width: 70px;
+        position: absolute;
+        left: 10px;
+        
+        @media only screen and (max-width: 767px) {
+            width: 40px;
+        }
+        
+        .mz-productimages-thumb {
+            border: @pdp-img-thumbnail-border-size solid @pdp-img-border-color;
+            display: block;
+            margin: 0 0 10px;
+            padding: 0;
+            position: relative;
+            width: 100%;
+
+            .mz-productimages-thumbimage {
+                width: 100%;
+                padding: 0;
+            }
+        }
+    }
+}

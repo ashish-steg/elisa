@@ -1,0 +1,102 @@
+﻿#account-paymentmethods {
+    .mz-accountpaymentmethods-list {
+        border: 1px solid @my-account-section-border-color;
+        .mz-paymentmethod,
+        .mz-accountpaymentmethods-method {
+            padding-top: 15px;
+            padding-bottom: 15px;
+            &:not(:last-child) {
+                border-bottom: 1px solid @my-account-section-border-color;
+            }
+            .mz-paymentmethod-actions {
+                @media only screen and (max-width: 767px) {
+                    margin-top: 20px;
+                    padding-left: 0;
+                }
+                .mz-paymentmethod-action {
+                    display: block;
+                    @media only screen and (min-width: 501px) and (max-width: 767px) {
+                        float: left;
+                        width: ~"calc(50% - 7px)";
+                    }
+                    &:first-child {
+                        @media only screen and (min-width: 501px) and (max-width: 767px) {
+                            margin-right: 7px;
+                        }
+                    }
+                    &:last-child {
+                        @media only screen and (min-width: 501px) and (max-width: 767px) {
+                            margin-left: 7px;
+                        }
+                    }
+                    &:not(:last-child) {
+                        margin-bottom: 10px;
+                        @media only screen and (min-width: 501px) and (max-width: 767px) {
+                            margin-bottom: 0;
+                        }
+                    }
+                }
+                button {
+                    width: 100%;
+                }
+            }
+        }
+    }
+    .mz-accountpaymentmethods-form {
+        .mz-l-formfieldgroup-row {
+            @media only screen and (max-width: 767px) {
+                display: block;
+                margin-bottom: 10px;
+            }
+            &.mz-payment-credit-card-defaultflag-row {
+                input,
+                label {
+                    display: inline;
+                }
+            }
+        }
+        .mz-l-formfieldgroup-cell {
+            @media only screen and (max-width: 767px) {
+                display: block;
+            }
+        }
+        .mz-payment-credit-card-type {
+            max-width: 200px;
+        }
+        .mz-payment-credit-card-expiration-row {
+            .mz-payment-expiration-month,
+            .mz-payment-expiration-year {
+                min-width: 0;
+                width: auto;
+            }
+        }
+        .mz-contactselector-summarywrapper {
+            .mz-l-formfieldgroup-row,
+            .mz-l-formfieldgroup-cell {
+                @media only screen and (max-width: 991px) {
+                    display: block;
+                    width: 100%;
+                }
+            }
+            .mz-l-formfieldgroup-row {
+                margin-bottom: 10px;
+            }
+            .mz-l-formfieldgroup-cell {}
+            label {
+                margin-bottom: 0;
+                @media only screen and (min-width: 992px) {
+                    text-align: right;
+                }
+            }
+            select,
+            input:not([type="radio"]):not([type="checkbox"]):not([type="submit"]) {
+                @media only screen and (min-width: 768px) and (max-width: 991px) {
+                    width: 100%;
+                }
+            }
+        }
+    }
+    .add-new {
+        margin-top: 20px;
+    }
+}

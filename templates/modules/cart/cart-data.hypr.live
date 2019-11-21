@@ -1,0 +1,154 @@
+<tfoot class="mz-carttable-footer">
+    <tr class="mz-carttable-summary-details-row">
+        <td colspan="6">
+            <div class="col-sm-9 col-sm-offset-3 col-lg-7 col-lg-offset-5">
+                <br />
+                <br />
+                <div class="row">
+                    <div class="col-sm-6 col-sm-offset-6">
+                        <p class="mz-auxiliary-text cart-data pull-right">
+                            {{ labels.giftCardsAtCheckout }}
+                            <br />
+                            {{ labels.taxAtCheckout }}
+                        </p>
+                    </div>
+                </div>
+                <br />
+                <br />
+                <div class="row">
+                    <div class="col-sm-7">
+                        <div class="row cart-fields-right">
+                            {% include "modules/common/coupon-code-field" %}
+                        </div>
+                    </div>
+                    <div class="col-sm-5">
+                        <div class="row pull-right cart-subtotal">
+                            <div class="col-sm-6 subtotal-title">
+                                {{ labels.subtotal }}
+                            </div>
+                            <div class="col-sm-6">
+                                <span id="mz-carttable-total" class="mz-carttable-total">
+                                    <strong>{{ model.discountedSubtotal|currency }}</strong>
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                {% for orderDiscount in model.orderDiscounts %}
+                <div class="row">
+                    <div class="col-sm-7">
+                    </div>
+                    <div class="col-sm-5">
+                        <div class="row pull-right cart-orderDiscount">
+                            <div class="col-sm-6">
+                                {{ orderDiscount.discount.name }}:
+                            </div>
+                            <div class="col-sm-6">
+                                <span id="mz-carttable-total" class="mz-carttable-total">
+                                    -{{ orderDiscount.impact|currency }}
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
+                {% if model.discountedTotal < model.subtotal %}
+                <div class="row">
+                    <div class="col-sm-7">
+                    </div>
+                    <div class="col-sm-5">
+                        <div class="row pull-right cart-subtotal">
+                            <div class="col-sm-6 subtotal-title">
+                                {{ labels.discountSubtotal }}
+                            </div>
+                            <div class="col-sm-6">
+                                <span id="mz-carttable-total" class="mz-carttable-total">
+                                    <strong>{{ model.discountedTotal|currency }}</strong>
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                {% endif %}
+                <br />
+                <div class="row">
+                    {% with siteContext.checkoutSettings.externalPaymentWorkflowSettings|findwhere("isEnabled", true) as externalPaymentWorkflowsEnabled %} 
+                        {% if externalPaymentWorkflowsEnabled && not model.isEmpty %}
+                            {% if not model.hasSubscription %}
+                                {% for externalPayment in siteContext.checkoutSettings.externalPaymentWorkflowSettings %}
+                                    {% if externalPayment.isEnabled %}
+                                    <div class="col-sm-4 cart-button">
+                                        <div class="mz-carttable-thirdpartypayment" >
+                                            {% if externalPayment.name == "PayPalExpress2" %}
+                                            <div id="btn_xpressPaypal" class="p-button">Check out with<span class="ppDBlue">Pay</span><span class="ppLBlue">Pal</div>
+                                            <script>
+                                            
+                                                window.paypalCheckoutReady = function() {
+                                                {% with externalPayment.credentials|findwhere("apiName", "merchantAccountId") as merchantAccountId %}
+                                                {% with externalPayment.credentials|findwhere("apiName", "environment") as environment %}
+                                                var isCart = window.location.href.indexOf("cart") > 0,
+                                                    id = "{{ model.id }}";
+                                                if(!window.paypalScriptLoaded){
+                                                    window.paypalScriptLoaded = true;
+                                                    paypal.checkout.setup('{{merchantAccountId.value}}', {
+                                                        environment: '{{environment.value}}',
+                                                        click: function(event) {
+                                                        },
+                                                        button: ['btn_xpressPaypal']
+                                                    });
+                                                    
+                                                    jQuery("body").off("click.ppexpress").on("click.ppexpres", "#btn_xpressPaypal", function(event){
+                                                        event.preventDefault();
+                                                        paypal.checkout.initXO();
+                                                        jQuery.ajax({                                          
+                                                            url: "../paypal/token?id={{ model.id }}&isCart="+ isCart + (!document.URL.split('?')[1] ? "": "&" + document.URL.split('?')[1].replace("id="+id,"").replace("&&", "&")),
+                                                            type: "GET",   
+                                                            async: true,
+                                        
+                                                            //Load the minibrowser with the redirection url in the success handler
+                                                            success: function (token) {
+                                                                var url = paypal.checkout.urlPrefix + token.token;
+                                                                //Loading Mini browser with redirect url, true for async AJAX calls
+                                                                paypal.checkout.startFlow(url);
+                                                            },
+                                                            error: function (responseData, textStatus, errorThrown) {
+                                                                console.log("Error in ajax post " + responseData.statusText);
+                                                                //Gracefully Close the minibrowser in case of AJAX errors
+                                                                paypal.checkout.closeFlow();
+                                                            }
+                                                        });
+                                                    });
+                                                }
+                                                {%endwith%}{%endwith%}
+                                                }
+                                                jQuery.getScript("//www.paypalobjects.com/api/checkout.js", function(){
+                                                    window.paypalCheckoutReady();
+                                                });
+                                            </script>
+                                            {%endif%}
+                                        </div>
+                                    </div>  
+                                    {%endif%}
+                                {%endfor%}
+                            {% endif %}
+                        {% endif %}
+                    {% endwith %}
+                    <div class="col-sm-4 cart-button">
+                        <button id="cart-checkout" class="mz-button mz-carttable-button-active cart-button-full-width pull-left"  {% if model.isEmpty %} disabled="disabled" {% endif %} data-mz-action="proceedToCheckout">{{ labels.proceedToCheckout }}</button>
+                    </div>
+                    <div class="col-sm-4 cart-button">
+                        <button id="cart-checkout" class="mz-button button-primary cart-button-full-width pull-right" data-mz-action="continueShopping">{{ labels.continueShopping }}</button>
+                    </div>
+                </div>
+                <br />
+                <div class="row">
+                    <div class="col-sm-12 row">
+                        {% include "modules/common/zip-code-field" %}
+                    </div>
+                </div>
+                <div class="row mz-chooseestimate">
+                </div>
+            </div>
+        </td>
+    </tr>
+</tfoot>

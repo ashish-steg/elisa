@@ -1,0 +1,93 @@
+﻿.mz-checkout-digitalcredit {
+    @media only screen and (min-width: 992px) {
+        overflow-x: auto;
+    }
+    .mz-checkout-digitalcredit-table {
+        margin-top: 20px;
+        @media only screen and (max-width: 767px) {
+            float: left;
+            display: block;
+            width: 100%;
+            max-width: 320px;
+        }
+        thead {
+            @media only screen and (max-width: 767px) {
+                display: none;
+            }
+            th {
+                padding: 5px 10px;
+                text-align: right;
+                border-bottom: 1px solid @gray3;
+                white-space: nowrap;
+                &.mz-checkout-digitalcredit-header-code {
+                    text-align: left;
+                }
+                &.mz-checkout-digitalcredit-header-unlabeled {
+                    padding-right: 0;
+                    padding-left: 0;
+                }
+            }
+        }
+        tbody,
+        tr,
+        td {
+            @media only screen and (max-width: 767px) {
+                float: left;
+                display: block;
+                width: 100%;
+            }
+        }
+        td {
+            padding-top: 5px;
+            padding-bottom: 5px;
+            @media only screen and (min-width: 768px) {
+                padding-right: 10px;
+                padding-left: 10px;
+                text-align: right; 
+            }
+            &.mz-checkout-digitalcredit-cell-balance,
+            &.mz-checkout-digitalcredit-cell-amt-to-apply,
+            &.mz-checkout-digitalcredit-cell-remainder,
+            &.mz-checkout-digitalcredit-cell-savetoaccount {
+                @media only screen and (max-width: 767px) {
+                    padding-left: 25px;
+                }
+            }
+            &.mz-checkout-digitalcredit-cell-enable, 
+            &.mz-checkout-digitalcredit-cell-code,
+            &.mz-checkout-digitalcredit-cell-savetoaccount,
+            &.mz-checkout-digitalcredit-cell-savetoaccount-label {
+                text-align: left;
+                @media only screen and (max-width: 767px) {
+                    width: auto;
+                }
+            }
+            &.mz-checkout-digitalcredit-cell-code {
+                .mz-checkout-digitalcredit-code {
+                    overflow: hidden;
+                    text-overflow: ellipsis;
+                }
+            }
+            &.mz-checkout-digitalcredit-cell-amt-to-apply {
+                position: relative;
+                .visible-xs-inline {
+                    position: absolute;
+                    top: 50%;
+                    -webkit-transform: translateY(-50%); /* Chrome, Safari, Opera */
+                    -ms-transform: translateY(-50%); /* IE 9 */
+                    transform: translateY(-50%);
+                }
+                input.data-mz-credit-amt-to-apply {
+                    text-align: right;
+                    width: 90px;
+                    min-width: 0;
+                }
+            }
+            input[type="checkbox"] {
+                @media only screen and (max-width: 767px) {
+                    margin-right: 10px;
+                }
+            }
+        }
+    }
+}

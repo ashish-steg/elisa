@@ -1,0 +1,45 @@
+﻿<nav class="mz-scrollnav{% if themeSettings.stickyHeader %} sticky-header{% endif %}" id="account-nav">
+    <ul class="mz-scrollnav-list nav">
+        <li class="mz-scrollnav-item">
+            <a class="mz-scrollnav-link mz-my-account-link" href="#personal-information" data-mz-account="personal-information">
+                {{ labels.personalInformation }}
+            </a>
+        </li>
+        <li class="mz-scrollnav-item">
+            <a class="mz-scrollnav-link mz-my-account-link" href="#quick-order" data-mz-account="quick-order">
+                {{ labels.quickOrder }}
+            </a>
+        </li>
+        <li class="mz-scrollnav-item">
+            <a class="mz-scrollnav-link mz-my-account-link" href="#order-history" data-mz-account="order-history">
+                {{ labels.myOrders }}
+            </a>
+        </li>
+        <li class="mz-scrollnav-item">
+            <a class="mz-scrollnav-link mz-my-account-link" href="#account-returnhistory" data-mz-account="account-returnhistory">
+                {{ labels.returns }}
+            </a>
+        </li>
+        <li class="mz-scrollnav-item">
+            <a class="mz-scrollnav-link mz-my-account-link" href="#my-wishlist" data-mz-account="my-wishlist">
+                {{ labels.accountMyWishlist }}
+            </a>
+        </li>
+        <li class="mz-scrollnav-item">
+            <a class="mz-scrollnav-link mz-my-account-link" href="#account-addressbook" data-mz-account="account-addressbook">
+                {{ labels.addressBook }}
+            </a>
+        </li>
+        <li class="mz-scrollnav-item">
+            <a class="mz-scrollnav-link mz-my-account-link" href="#payment-methods" data-mz-account="payment-methods">
+                {{ labels.savedCards }}
+            </a>
+        </li>
+        <li class="mz-scrollnav-item">
+            <a class="mz-scrollnav-link mz-my-account-link" href="#store-credit" data-mz-account="store-credit">
+                {{ labels.myGiftCertificateBalance }}
+            </a>
+        </li>
+    </ul>
+</nav>
+{% require_script "modules/scroll-nav" %}

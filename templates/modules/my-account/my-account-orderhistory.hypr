@@ -1,0 +1,35 @@
+﻿<div class="row">
+    <div class="col-sm-12">
+        <table class="table my-account-table">
+            <thead>
+                <tr>
+                    <th>{{ labels.myOrders }}</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% if model.orderHistory.items.length == 0 %}
+                <tr>
+                    <td>You have not placed any orders</td>
+                </tr>
+                {% else %}
+                    <tr>
+                        <td>
+                            <div data-mz-pagingcontrols class="mz-pagingcontrols">
+                                {% include "modules/common/paging-controls" %}
+                            </div>
+                        </td>
+                    </tr>
+                    <tr data-mz-orderlist>
+                    </tr>
+                    <tr>
+                        <td>
+                            <div data-mz-pagenumbers class="mz-pagenumbers">
+                                {% include "modules/common/page-numbers" %}
+                            </div>
+                        </td>
+                    </tr>
+                {% endif %}
+            </tbody>
+        </table>
+    </div>
+</div>

@@ -1,0 +1,53 @@
+﻿.mz-l-paginatedlist {
+    .mz-l-paginatedlist-header {
+        margin-bottom: 20px;
+        display: flex;
+        justify-content: space-between;
+        flex-wrap: wrap;
+        flex-direction: column;
+    }
+    .mz-l-paginatedlist-footer {
+        margin-top: 20px;
+        display: flex;
+        justify-content: space-between;
+        -ms-flex-pack: justify;
+        flex-wrap: wrap;
+    }
+    label {
+        margin-bottom: 0;
+        select {
+            font-weight: normal;
+        }
+    }
+    .mz-sortby,
+    .mz-pagenumbers,
+    .mz-pagingcontrols {
+        @media only screen and (max-width: 767px) {
+            float: left;
+        }
+    }
+    .mz-sortby {
+        @media only screen and (max-width: 1199px) {
+            margin-bottom: 10px;
+            padding-right: 0;
+            padding-left: 0;
+        }
+        @media only screen and (max-width: 991px) {
+            margin-bottom: 20px;
+        }
+    }
+    .mz-pagenumbers {
+        text-align: right;
+        @media only screen and (max-width: 991px) {
+            margin-bottom: 20px;
+            padding-right: 0;
+        }
+    }
+    .mz-pagingcontrols {
+        @media only screen and (max-width: 991px) {
+            margin-bottom: 20px;
+            padding-right: 0;
+            padding-left: 0;
+        }
+    } 
+}

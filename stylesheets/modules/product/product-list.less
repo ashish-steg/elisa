@@ -1,0 +1,84 @@
+﻿/* Number of columns on the product grid on category pages. Mobile is always 1 */
+@product-columns-desktop-lg :	4; /* Screen is >= 1200px */
+@product-columns-desktop-sm : 	3; /* Screen is between 992px - 1199px */
+@product-columns-tablet : 		2; /* Screen is between 768px - 991px */
+@product-columns-mobile : 		2; /* Screen is between 501px - 767px */
+@product-columns-mobile-xs : 	1; /* Screen <= 500px. Do not chage. */
+
+.featuredProducts {
+    .mz-productlist-list {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        .mz-productlist-item {
+            display: block;
+            margin: 0 auto;
+            width: initial;
+
+			.mz-productlisting-image-img {
+				max-width: 100%;
+				max-height: 100%;
+				top: 0;
+				left: 0;
+				-webkit-transform: none;
+				-ms-transform: none;
+				transform: none;
+				position: relative;
+			}
+        }
+    }
+}
+
+.mz-productlist {
+	&-tiled {
+		.mz-productlist-list {
+	        display: -webkit-box;
+	        display: -moz-box;
+	        display: -ms-flexbox;
+	        display: -webkit-flex;
+	        display: flex;
+		    -webkit-flex-direction: row;
+		    -moz-flex-direction: row;
+		    flex-direction: row;
+		    -webkit-flex-wrap: wrap;
+		    -moz-flex-wrap: wrap;
+		    flex-wrap: wrap;
+		}
+		.mz-productlist-item {
+			@product-columns-desktop-lg : (100% / @product-columns-desktop-lg);
+			@product-columns-desktop-sm : (100% / @product-columns-desktop-sm);
+			@product-columns-tablet : (100% / @product-columns-tablet);
+			@product-columns-mobile-lg : (100% / @product-columns-mobile);
+			@product-columns-mobile-xs : (100% / @product-columns-mobile-xs);
+		    width: @product-columns-mobile-xs;
+		    margin-bottom: 40px;
+		    list-style: none;
+			@media only screen and (min-width: 501px) {
+			    padding-right: 10px;
+			    padding-left: 10px;
+			}
+		    @media only screen and (min-width: 501px) and (max-width: 767px) {
+		    	width: @product-columns-mobile-lg;
+		    }
+		    @media only screen and (min-width: 768px) and (max-width: 991px) {
+		    	width: @product-columns-tablet;
+		    }
+		    @media only screen and (min-width: 992px) and (max-width: 1199px) {
+		    	width: @product-columns-desktop-sm;
+		    }
+		    @media only screen and (min-width: 1200px) {
+		    	width: @product-columns-desktop-lg;
+
+				@media screen and (-ms-high-contrast: active), (-ms-high-contrast: none) {
+					width: 23%;
+				}
+		    }
+
+            /* IE9 */
+            @media screen and (min-width:0) and (min-resolution: .001dpcm) {
+            	float: left\9;
+            }
+		}
+	}
+}
